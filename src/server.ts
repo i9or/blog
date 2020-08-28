@@ -1,14 +1,22 @@
-import * as http from "http";
-import {RequestListener} from "http";
+import Koa from "koa";
+import bodyParser from "koa-bodyparser";
+import cors from "koa2-cors";
+import logger from "koa-logger";
+import { router as healthCheckRouter } from "./routes/healthcheck";
+import { config } from "./config";
 
-const port = 4000;
+const app = new Koa();
 
-const requestListener: RequestListener = (req, res) => {
-  res.writeHead(200);
-  res.end("Hello, blog!");
-}
+app.use(bodyParser());
+app.use(cors(config.cors));
+app.use(logger());
 
-const server = http.createServer(requestListener);
-server.listen(port, () => {
-  console.log(`🚀 Server is running on port: ${port}`)
-});
+app.use(healthCheckRouter.routes());
+
+export const server = app
+  .listen(config.port, async () => {
+    console.log(`🚀 Server is running at: http://localhost:${config.port}/`);
+  })
+  .on("error", (err) => {
+    console.error(err);
+  });
