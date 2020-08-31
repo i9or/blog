@@ -117,3 +117,7 @@ dist
 
 # Intellij IDEA
 .idea/
+
+# Database data folder
+db/*
+!db/.gitkeep
