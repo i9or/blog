@@ -1,0 +1,63 @@
+{
+  "name": "blog",
+  "version": "0.3.2",
+  "private": true,
+  "description": "Personal blogging application",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc",
+    "db:dev": "docker-compose -f docker-compose.dev.yml up",
+    "start": "node ./dist/server.js",
+    "start:dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i9or/blog.git"
+  },
+  "keywords": [
+    "yet",
+    "another",
+    "blog"
+  ],
+  "author": "Igor <dont@bzzr.me> (https://ignorethis.page/)",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/i9or/blog/issues"
+  },
+  "homepage": "https://github.com/i9or/blog#readme",
+  "devDependencies": {
+    "@types/koa": "^2.11.6",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.4.1",
+    "@types/koa2-cors": "^2.0.1",
+    "@types/node": "^14.14.16",
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^9.4.0",
+    "koa2-cors": "^2.0.6",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.29"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,json,md,css}": [
+      "prettier --write"
+    ]
+  }
+}
