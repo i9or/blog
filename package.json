@@ -21,7 +21,7 @@
     "blog"
   ],
   "author": "Igor <dont@bzzr.me> (https://ignorethis.page/)",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "AGPL-3.0-only",
   "bugs": {
     "url": "https://github.com/i9or/blog/issues"
   },

@@ -1,5 +1,9 @@
 # Blog
 
+![AGPL-3.0-only](./agpl3.png)
+
+Personal blogging application.
+
 ## Development
 
 This project needs to have `node.js`, `docker` and `docker-compose` installed on the development machine.
