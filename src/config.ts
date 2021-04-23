@@ -1,7 +1,7 @@
 import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
 
 export const appConfig = {
-  port: process.env.PORT || 4000,
+  port: process.env.PORT ?? 4000,
   cors: { origin: "*" },
 };
 
@@ -15,5 +15,5 @@ export const dbConfig: PostgresConnectionOptions = {
   database: "blog_dev",
   synchronize: true,
   logging: true,
-  entities: [__dirname + "/../src/**/*.{ts,js}"],
+  entities: [__dirname + "/entity/**/*.{ts,js}"],
 };
