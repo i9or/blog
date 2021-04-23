@@ -9,13 +9,13 @@ This project needs to have `node.js`, `docker` and `docker-compose` installed on
 To start development database instance run:
 
 ```shell
-npm run db:dev
+npm run db
 ```
 
 To start development server with code watch and automatic reload run:
 
 ```shell
-npm run start:dev
+npm run watch
 ```
 
 ---
