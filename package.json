@@ -7,13 +7,12 @@
   "scripts": {
     "build": "npm run build-ts && npm run copy-static-assets",
     "build-css": "echo \"Error: no css specified\" && exit 1",
+    "build-production": "cross-env NODE_ENV=production npm run build",
     "build-ts": "rimraf dist && tsc",
     "copy-static-assets": "ts-node copy-static-assets.ts",
-    "db": "docker-compose -f docker-compose.dev.yml up",
     "lint": "tsc --noEmit",
     "prewatch": "cross-env NODE_ENV=development npm run build",
-    "serve": "node dist/server.js",
-    "start": "npm run serve",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "cross-env NODE_ENV=development NODE_DEBUG=koabars concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
     "watch-css": "echo \"Error: no css specified\" && exit 1",
@@ -46,12 +45,12 @@
     "@types/node": "^14.14.41",
     "@types/shelljs": "^0.8.8",
     "concurrently": "^6.0.2",
-    "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.4",
+    "simple-git-hooks": "^2.4.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
   },
@@ -64,15 +63,10 @@
     "koa-mount": "^4.0.0",
     "koa-router": "^10.0.0",
     "koa-static": "^5.0.0",
-    "koa2-cors": "^2.0.6",
-    "pg": "^8.6.0",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.32"
+    "koa2-cors": "^2.0.6"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "**/*.{js,ts,json,md,css}": [

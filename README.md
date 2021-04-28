@@ -20,4 +20,4 @@ npm run watch
 
 ---
 
-![AGPL-3.0-only](./agpl3.png)
+![AGPL-3.0-only](agpl3.png)

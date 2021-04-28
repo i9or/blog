@@ -37,7 +37,8 @@ export const Koabars = (
     ...settings,
   };
 
-  const cache = Object.create(null);
+  // TODO: implement cache
+  // const cache = Object.create(null);
 
   const render = async (view: string, locals?: TemplateLocals) => {
     const viewFileName = `${view}.hbs`;
