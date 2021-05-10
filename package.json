@@ -46,7 +46,7 @@
     "@types/shelljs": "^0.8.8",
     "concurrently": "^6.0.2",
     "lint-staged": "^10.5.4",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.8-alpha.a",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
     "shelljs": "^0.8.4",
