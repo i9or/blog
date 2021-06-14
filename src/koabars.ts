@@ -20,12 +20,16 @@ type KoabarsSettings = {
   viewsRoot: string;
   caching?: boolean;
   layout?: string;
+  templateExtension?: string;
+  layoutExtension?: string;
 };
 
 const defaultSettings: KoabarsSettings = {
   viewsRoot: "views",
   caching: false,
   layout: "layout",
+  templateExtension: "hbs",
+  layoutExtension: "html",
 };
 
 export const Koabars = (
@@ -37,30 +41,39 @@ export const Koabars = (
     ...settings,
   };
 
+  const viewsRoot = path.resolve(process.cwd(), settingsWithDefaults.viewsRoot);
+
   // TODO: implement cache
   // const cache = Object.create(null);
 
-  const render = async (view: string, locals?: TemplateLocals) => {
-    const viewFileName = `${view}.hbs`;
-    const viewsRoot = path.resolve(
-      process.cwd(),
-      settingsWithDefaults.viewsRoot
-    );
+  const render = async (viewFileName: string, locals?: TemplateLocals) => {
     const viewPath = path.join(viewsRoot, viewFileName);
-    debuglog(viewPath);
 
     const templateSource = await readFile(viewPath, { encoding: "utf8" });
-    // debuglog(templateSource);
 
     const templateFn = Handlebars.compile(templateSource);
 
     return templateFn(locals);
   };
 
+  const renderTemplate = async (template: string, locals?: TemplateLocals) => {
+    const templateFileName = `${template}.${settingsWithDefaults.templateExtension}`;
+    const result = await render(templateFileName, locals);
+
+    return result;
+  };
+
+  const renderLayout = async (layout: string, locals?: TemplateLocals) => {
+    const layoutFileName = `${layout}.${settingsWithDefaults.layoutExtension}`;
+    const result = await render(layoutFileName, locals);
+
+    return result;
+  };
+
   app.context.render = async function (view, locals) {
     const ctx = this;
     const context = { ...ctx.state, ...locals };
-    let html = await render(view, context);
+    let html = await renderTemplate(view, context);
 
     const layout =
       context.layout === false
@@ -68,7 +81,7 @@ export const Koabars = (
         : context.layout || settingsWithDefaults.layout;
     if (layout) {
       context.outlet = html;
-      html = await render(layout, context);
+      html = await renderLayout(layout, context);
     }
 
     ctx.type = "html";
