@@ -1,0 +1,18 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "Yet another blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitstash.me:blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Igor <dont@bzzr.me> (https://ignorethis.page/)",
+  "license": "AGPL-3.0-only"
+}
