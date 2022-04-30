@@ -1,13 +1,15 @@
 import { App } from "@tinyhttp/app";
 import { logger } from "@tinyhttp/logger";
 
+import { layout } from "./templates/layout";
+
 const app = new App();
 
 app
   .use(logger())
   .get("/", (_, res) => {
     res.format({
-      html: () => res.send("<h1>Hello!</h1>"),
+      html: () => res.send(layout({ body: "<h1>Hello!</h1>" })),
       text: () => res.send("hello"),
     });
   })
