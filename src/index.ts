@@ -1,7 +1,12 @@
 import { App } from "@tinyhttp/app";
 import { logger } from "@tinyhttp/logger";
+import MarkdownIt from "markdown-it";
 
 import { layout } from "./templates/layout";
+
+import { samplePost } from "./sample-post";
+
+const md = new MarkdownIt();
 
 const app = new App();
 
@@ -9,7 +14,10 @@ app
   .use(logger())
   .get("/", (_, res) => {
     res.format({
-      html: () => res.send(layout({ body: "<h1>Hello!</h1>" })),
+      html: () => res.send(layout({
+        title: samplePost.title,
+        body: md.render(samplePost.content) 
+      })),
       text: () => res.send("hello"),
     });
   })
