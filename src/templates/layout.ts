@@ -3,16 +3,22 @@ type LayoutParams = {
   breadCrumbs?: string[]; // TODO: should be an array of url/text objects
   body?: string;
   footer?: string;
-}
+};
 
 const renderBreadCrumbs = (breadCrumbs?: string[]) => {
-  return breadCrumbs?.map(b => `/ ${b} `);
-}
+  return breadCrumbs?.map((b) => `/ ${b} `);
+};
 
-export const layout = ({ title = "Welcome!", breadCrumbs, body, footer = `© Copyright ${new Date().getFullYear()}` }: LayoutParams) => {
+export const layout = ({
+  title = "Welcome!",
+  breadCrumbs,
+  body,
+  footer = `© Copyright ${new Date().getFullYear()}`,
+}: LayoutParams) => {
   return `<!doctype html>
   <html>
     <head>
+      <link rel="stylesheet" href="/public/main.css">
       <title>${title}</title>
     </head>
     <body>
@@ -24,5 +30,5 @@ export const layout = ({ title = "Welcome!", breadCrumbs, body, footer = `© Cop
         ${footer}
       </footer>
     </body>
-  </html>`
-}
+  </html>`;
+};

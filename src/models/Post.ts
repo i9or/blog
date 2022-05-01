@@ -5,4 +5,4 @@ export type Post = {
   content: string;
   tags: string[];
   isDraft: boolean;
-}
+};

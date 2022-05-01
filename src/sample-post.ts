@@ -13,13 +13,25 @@ export const samplePost: Post = {
   1. Hello
   1. Bye
 
-  \`\`\`js
-  console.log("Hello, world!");
+  \`\`\`ts
+  const Foo = (name: string) => {
+    console.log(\`Hello, \${name}!\`);
+  }
   \`\`\`
 
   ## Sub Heading
 
   Some text is here.
+
+  \`\`\`c
+  #include <stdio.h>
+
+  int main() {
+    printf("Hello, World!\\n");
+
+    return 0;
+  }
+  \`\`\`
 
   ### Another level
 
@@ -27,4 +39,4 @@ export const samplePost: Post = {
 
   * Item 1
   * Item 2`,
-}
+};
