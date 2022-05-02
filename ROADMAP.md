@@ -10,3 +10,7 @@
 - [x] Add `shiki` for static code highlighting
 - [ ] Add `mathjax` math formulas SVG rendering
 - [x] Add CSS bundling via external `blog-css` module
+- [x] Add formatting via Prettier
+- [x] Add git hooks via Husky
+- [x] Add Lint Staged to run formatting of only changed files
+- [ ] Add ESLint
