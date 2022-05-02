@@ -13,7 +13,7 @@ export const samplePost: Post = {
   1. Hello
   1. Bye
 
-  \`\`\`ts
+  \`\`\`ts {"line": [3, 4, 5], "otherOption": "hello"}
   const Foo = (name: string) => {
     console.log(\`Hello, \${name}!\`);
   }

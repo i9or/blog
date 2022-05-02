@@ -12,7 +12,13 @@ import { samplePost } from "./sample-post";
   const highlighter = await getHighlighter({ theme: "material-palenight" });
 
   const md = new MarkdownIt({
-    highlight: (str, lang) => {
+    highlight: (str, lang, attrs) => {
+      if (attrs?.length > 0) {
+        const attributes = JSON.parse(attrs);
+        for (const [key, value] of Object.entries(attributes)) {
+          console.log(`Key: ${key}\nValue: ${value}`);
+        }
+      }
       try {
         return highlighter.codeToHtml(str, { lang });
       } catch (_) {
