@@ -1,6 +1,5 @@
 type LayoutParams = {
   title?: string;
-  breadCrumbs?: string[]; // TODO: should be an array of url/text objects
   body?: string;
   footer?: string;
 };
@@ -11,14 +10,15 @@ export const layout = ({
   footer = `© Copyright ${new Date().getFullYear()}`,
 }: LayoutParams) => {
   return `<!doctype html>
-  <html>
+  <html lang="en">
     <head>
+      <meta charset="utf-8">
       <link rel="stylesheet" href="/public/main.css">
       <title>${title}</title>
     </head>
     <body class="body-container">
       <header class="header">
-        <h1>Ignore this page</h1>
+        <h1>Ignore this page!</h1>
       </header>
       <nav class="navigation">
         <span>Home</span>

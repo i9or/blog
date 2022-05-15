@@ -1,1 +1,5 @@
 @import "blog-css/css/blog.min.css";
+
+.some-class {
+  color: #bada55;
+}
