@@ -5,13 +5,8 @@ type LayoutParams = {
   footer?: string;
 };
 
-const renderBreadCrumbs = (breadCrumbs?: string[]) => {
-  return breadCrumbs?.map((b) => `/ ${b} `);
-};
-
 export const layout = ({
   title = "Welcome!",
-  breadCrumbs,
   body,
   footer = `© Copyright ${new Date().getFullYear()}`,
 }: LayoutParams) => {
@@ -21,12 +16,31 @@ export const layout = ({
       <link rel="stylesheet" href="/public/main.css">
       <title>${title}</title>
     </head>
-    <body>
-      ${renderBreadCrumbs(breadCrumbs) ?? ""}
-      <main>
-        ${body}
+    <body class="body-container">
+      <header class="header">
+        <h1>Ignore this page</h1>
+      </header>
+      <nav class="navigation">
+        <span>Home</span>
+        <span>About</span>
+        <span>Now</span>
+      </nav>
+      <main class="main">
+        <article>
+          ${body}
+        </article>
       </main>
-      <footer>
+      <aside class="sidebar">
+        <section>
+          <header>Recent posts</header>
+          <ul>
+            <li>Post 1</li>
+            <li>Post 1</li>
+            <li>Post 1</li>
+          </ul>
+        </section>
+      </aside>
+      <footer class="footer">
         ${footer}
       </footer>
     </body>
