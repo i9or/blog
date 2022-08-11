@@ -1,5 +1,12 @@
 @import "blog-css/css/blog.min.css";
 
-.some-class {
-  color: #bada55;
+html,
+body {
+  height: 100%;
+}
+
+.shiki {
+  overflow-x: auto;
+  padding: 0.25rem;
+  border-radius: var(--e-border-radius);
 }

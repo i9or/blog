@@ -4,9 +4,12 @@ import sirv from "sirv";
 import MarkdownIt from "markdown-it";
 import { getHighlighter } from "shiki";
 
-import { layout } from "./templates/layout";
+import { Layout } from "./templates/Layout";
 
 import { samplePost } from "./sample-post";
+import { html } from "./utilities/html";
+
+const PORT = 4000;
 
 (async () => {
   const highlighter = await getHighlighter({ theme: "material-palenight" });
@@ -36,8 +39,7 @@ import { samplePost } from "./sample-post";
       res.format({
         html: () =>
           res.send(
-            layout({
-              title: samplePost.title,
+            Layout({
               body: md.render(samplePost.content),
             })
           ),
@@ -45,13 +47,20 @@ import { samplePost } from "./sample-post";
       });
     })
     .get("/page/:page/", (req, res) => {
-      res.status(200).send(`
-    <h1>Some cool page</h1>
-    <h2>URL</h2>
-    ${req.url}
-    <h2>Params</h2>
-    ${JSON.stringify(req.params, null, 2)}
-  `);
+      res.status(200).send(html`
+        <h1>Some cool page</h1>
+        <h2>URL</h2>
+        ${req.url}
+        <h2>Params</h2>
+        ${JSON.stringify(req.params, null, 2)}
+      `);
     })
-    .listen(3000, () => console.log(`🚀 Listening on http://localhost:3000`));
+    .get("/now", (req, res) => {
+      res
+        .status(200)
+        .send(Layout({ body: html`<h1>This is a <i>Now!</i> page</h1>` }));
+    })
+    .listen(PORT, () =>
+      console.log(`🚀 Listening on http://localhost:${PORT}`)
+    );
 })();
