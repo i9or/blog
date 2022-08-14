@@ -1,19 +1,22 @@
 {
   "name": "blog",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Yet another blog",
   "private": true,
+  "engines": {
+    "node": ">=16.16.0 <17",
+    "npm": ">=8.11.0 <9"
+  },
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "start": "node dist/index.js",
-    "build:ts": "esbuild src/index.ts --platform=node --external:vscode-oniguruma --external:shiki --bundle --outfile=dist/index.js --loader:.gif=file --loader:.png=file --asset-names=public/[name]-[hash]",
-    "build:css": "esbuild --bundle src/styles/main.css --outfile=dist/public/main.css",
-    "build": "cross-env NODE_ENV=production npm run build:ts -- --minify && cross-env NODE_ENV=production npm run build:css -- --minify",
-    "watch:ts": "npm run build:ts -- --watch",
-    "watch:css": "npm run build:css -- --watch",
+    "build:dev": "node scripts/build-dev.mjs",
+    "build": "cross-env NODE_ENV=production node scripts/build-prod.mjs",
+    "watch:dev": "node scripts/watch-dev.mjs",
     "watch:node": "nodemon --watch dist dist/index.js",
-    "watch": "concurrently -n \"TS,CSS,NODE\" -c \"blue,magenta,green\" \"npm:watch:ts\" \"npm:watch:css\" \"npm:watch:node\"",
+    "watch": "concurrently -n \"TS,NODE\" -c \"blue,green\" \"npm:watch:dev\" \"npm:watch:node\"",
     "prepare": "husky install"
   },
   "repository": {

@@ -14,7 +14,11 @@ import {
 } from "../assets";
 import { HitCounter } from "./HitCounter";
 
+let hits = 0;
+
 export const SidebarBanners = () => {
+  hits++;
+
   return html`<section class="sidebar-banners">
     <img src="${hairGif}" />
     <img src="${macosMovGif}" />
@@ -27,6 +31,6 @@ export const SidebarBanners = () => {
     <img class="sidebar-banners--firefox" src="${firefoxGetGif}" />
     <img src="${yankowGif}" />
     <img src="${buttonGif}" />
-    ${HitCounter(987654321)}
+    ${HitCounter(hits)}
   </section>`;
 };

@@ -5,11 +5,11 @@ const HIT_COUNTER_LENGTH = 10;
 export const HitCounter = (hits: number = 0) => {
   const hitsStr = `${hits}`;
 
-  if (hitsStr.length > 10) {
+  if (hitsStr.length > HIT_COUNTER_LENGTH) {
     throw new Error("Hit counter overflow");
   }
 
-  const paddedHitsStr = hitsStr.padStart(10, "0");
+  const paddedHitsStr = hitsStr.padStart(HIT_COUNTER_LENGTH, "0");
 
   return html`<div class="hit-counter">
     ${paddedHitsStr

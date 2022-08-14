@@ -47,13 +47,17 @@ const PORT = 4000;
       });
     })
     .get("/page/:page/", (req, res) => {
-      res.status(200).send(html`
-        <h1>Some cool page</h1>
-        <h2>URL</h2>
-        ${req.url}
-        <h2>Params</h2>
-        ${JSON.stringify(req.params, null, 2)}
-      `);
+      res.status(200).send(
+        Layout({
+          body: html`
+            <h1>Some cool page!!!</h1>
+            <h2>URL</h2>
+            ${req.url}
+            <h2>Params</h2>
+            ${JSON.stringify(req.params, null, 2)}
+          `,
+        })
+      );
     })
     .get("/now", (req, res) => {
       res

@@ -14,3 +14,8 @@
 - [x] Add git hooks via Husky
 - [x] Add Lint Staged to run formatting of only changed files
 - [ ] Add ESLint
+- [x] Migrate TS CLI build and watch calls to JS scripts
+- [x] Migrate CSS CLI build and watch calls to JS scripts
+  - [x] Integrate CSS build step into TS build script via custom plugin
+- [ ] Increase test coverage
+- [ ] Add favicon

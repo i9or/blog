@@ -1,4 +1,6 @@
 import { html } from "../utilities/html";
+// @ts-ignore
+import mainStyles from "../styles/main.css";
 import { RssButton } from "./RssButton";
 import { ThemeButton } from "./ThemeButton";
 import {
@@ -24,7 +26,7 @@ export const Layout = ({ body }: LayoutProps) => {
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/public/main.css" />
+        <link rel="stylesheet" href="${mainStyles}" />
         <title>Ignore This Page</title>
       </head>
       <body class="body-container">
