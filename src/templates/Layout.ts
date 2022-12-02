@@ -9,23 +9,21 @@ import {
 } from "./NavigationToggle";
 import { Navigation } from "./Navigation";
 import { SidebarBanners } from "./SidebarBanners";
+import { network2Ico } from "../assets";
 
-type LayoutProps = {
+type LayoutProperties = {
   body: string;
+  hits: number;
 };
 
-const fullDate = Intl.DateTimeFormat("en-US", {
-  dateStyle: "full",
-});
-
-export const Layout = ({ body }: LayoutProps) => {
-  const postDate = fullDate.format(new Date());
-
+export const Layout = ({ body, hits }: LayoutProperties) => {
   return html`<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="${network2Ico}" type="image/x-icon" />
+        <link rel="icon" href="${network2Ico}" type="image/x-icon" />
         <link rel="stylesheet" href="${mainStyles}" />
         <title>Ignore This Page</title>
       </head>
@@ -44,10 +42,7 @@ export const Layout = ({ body }: LayoutProps) => {
         </header>
         ${Navigation()}
         <main class="main">
-          <article>
-            <small>${postDate}</small>
-            ${body}
-          </article>
+          <article>${body}</article>
         </main>
         <aside class="sidebar">
           <section class="sidebar-widget">
@@ -117,10 +112,13 @@ export const Layout = ({ body }: LayoutProps) => {
               </li>
             </ul>
           </section>
-          ${SidebarBanners()}
+          ${SidebarBanners(hits)}
         </aside>
         <footer class="footer">
-          © Copyleft ${new Date().getFullYear().toString()}
+          <span>
+            Copyright © 2021 - ${new Date().getFullYear().toString()} Ignore
+            This Page. All rights reserved.
+          </span>
         </footer>
       </body>
     </html>`;

@@ -1,4 +1,4 @@
-import { htmlEscape } from "./html";
+import { htmlEscape } from "../html";
 
 test("escapeHtml should escape special symbols", () => {
   expect(htmlEscape("&")).toBe("&amp;");

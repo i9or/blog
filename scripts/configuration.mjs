@@ -2,14 +2,22 @@ import { cssFilePlugin } from "./cssFilePlugin.mjs";
 
 export const configuration = {
   logLevel: "info",
-  entryPoints: ["./src/index.ts"],
+  entryPoints: ["./src/server.ts"],
   platform: "node",
-  external: ["vscode-oniguruma", "shiki"],
+  external: [
+    "vscode-oniguruma",
+    "shiki",
+    "sqlite3",
+    "mock-aws-s3",
+    "aws-sdk",
+    "nock",
+  ],
   bundle: true,
   outfile: "dist/index.js",
   loader: {
     ".gif": "file",
     ".png": "file",
+    ".ico": "file",
   },
   assetNames: "public/[name]-[hash]",
   publicPath: "/",

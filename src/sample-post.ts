@@ -1,5 +1,6 @@
 import type { Post } from "./models/Post";
 
+// @ts-ignore
 export const samplePost: Post = {
   title: "Sample Post",
   tags: ["sample", "post", "testing"],
@@ -13,12 +14,20 @@ export const samplePost: Post = {
   It is the seat of the bishop of Bath and Wells.
   This photograph depicts the St Andrew's Cross arches under the tower, viewed from the nave.
   
+  ---
+  
+  Wells Cathedral is an Anglican cathedral in Wells, Somerset, commenced around 1175 on the site of a late-Roman mausoleum and an 8th-century abbey church.
+  The cathedral has been described by the architectural historian John Harvey as Europe's first truly Gothic structure, lacking the Romanesque work that survives in many other cathedrals.
+  It is the seat of the bishop of Bath and Wells.
+  This photograph depicts the St Andrew's Cross arches under the tower, viewed from the nave.
+  
   Some list:
 
   1. Hello
   1. Bye
 
   \`\`\`ts {"line": [3, 4, 5], "otherOption": "hello"}
+  // This function greets you
   const Foo = (name: string) => {
     console.log(\`Hello, \${name}!\`);
   }
@@ -31,6 +40,9 @@ export const samplePost: Post = {
   \`\`\`c
   #include <stdio.h>
 
+  /*
+   * Program starts here
+   */
   int main() {
     printf("Hello, World!\\n");
 

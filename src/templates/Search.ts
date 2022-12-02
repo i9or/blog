@@ -7,6 +7,7 @@ export const Search = () => {
       placeholder="Search"
       class="search__input"
       name="query"
+      disabled
     />
   </form>`;
 };

@@ -23,6 +23,7 @@ export const cssFilePlugin = {
       return {
         contents: result.outputFiles[0].text,
         loader: "file",
+        watchFiles: [args.path],
       };
     });
   },
