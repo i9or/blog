@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { todayInUnix } from "../dates";
 
 test("todayInUnix should return correct number of milliseconds for today", () => {

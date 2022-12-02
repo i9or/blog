@@ -17,5 +17,7 @@
 - [x] Migrate TS CLI build and watch calls to JS scripts
 - [x] Migrate CSS CLI build and watch calls to JS scripts
   - [x] Integrate CSS build step into TS build script via custom plugin
-- [ ] Increase test coverage
+- [ ] Testing
+  - [ ] Increase test coverage
+  - [x] Add vitest
 - [x] Add favicon

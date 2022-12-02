@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { htmlEscape } from "../html";
 
 test("escapeHtml should escape special symbols", () => {

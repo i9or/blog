@@ -1,3 +1,5 @@
+import { expect, test } from "vitest";
+
 import { Analytics } from "../Analytics";
 import { todayInUnix } from "../../utilities/dates";
 
