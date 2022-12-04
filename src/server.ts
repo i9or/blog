@@ -14,7 +14,7 @@ import { NowController } from "./controllers/NowController";
 import { PostsController } from "./controllers/PostsController";
 import { PostsService } from "./services/PostsService";
 import { di } from "./di";
-import { fiveHunderHandler } from "./utilities/fiveHunderHandler";
+import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
 
@@ -53,7 +53,7 @@ if (!isProduction()) {
       if (attrs?.length > 0) {
         const attributes = JSON.parse(attrs);
         for (const [key, value] of Object.entries(attributes)) {
-          di.logger.info(`Key: "${key}" Value: "${value}"`);
+          di.logger.debug(`Key: "${key}" Value: "${value}"`);
         }
       }
       try {
@@ -70,7 +70,7 @@ if (!isProduction()) {
 
   const app = new App({
     noMatchHandler: fourOFourHandler,
-    onError: fiveHunderHandler,
+    onError: fiveHundredHandler,
   });
 
   try {

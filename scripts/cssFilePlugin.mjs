@@ -18,12 +18,13 @@ export const cssFilePlugin = {
         bundle: true,
         write: false,
         minify: isProduction(),
+        metafile: true,
       });
 
       return {
         contents: result.outputFiles[0].text,
         loader: "file",
-        watchFiles: [args.path],
+        watchFiles: Object.keys(result.metafile?.inputs ?? {}),
       };
     });
   },

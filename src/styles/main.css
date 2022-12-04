@@ -1,16 +1,9 @@
 @import "blog-css/css/blog.min.css";
 
-html,
-body {
-  height: 100%;
-}
+@import "./global.css";
 
-.shiki {
-  overflow-x: auto;
-  padding: 0.5rem 1rem;
-  border-radius: var(--e-border-radius);
-}
+@import "./under-construction.css";
 
-.footer {
-  font-size: var(--t-small);
+.main > article {
+  padding-top: 1.5rem;
 }

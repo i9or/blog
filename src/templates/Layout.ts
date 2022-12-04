@@ -1,22 +1,25 @@
-import { html } from "../utilities/html";
-// @ts-ignore
-import mainStyles from "../styles/main.css";
-import { RssButton } from "./RssButton";
-import { ThemeButton } from "./ThemeButton";
 import {
   NavigationToggleButton,
   NavigationToggleCheckbox,
 } from "./NavigationToggle";
+import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
+import { RssButton } from "./RssButton";
 import { SidebarBanners } from "./SidebarBanners";
+import { ThemeButton } from "./ThemeButton";
+import { getLocalsValueByKey, Locals } from "../utilities/response";
+import { html } from "../utilities/html";
 import { network2Ico } from "../assets";
+import mainStyles from "../styles/main.css";
 
 type LayoutProperties = {
   body: string;
-  hits: number;
+  locals?: Locals;
 };
 
-export const Layout = ({ body, hits }: LayoutProperties) => {
+export const Layout = ({ body, locals }: LayoutProperties) => {
+  const hits = getLocalsValueByKey(locals, "hits") ?? 0;
+
   return html`<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -32,9 +35,9 @@ export const Layout = ({ body, hits }: LayoutProperties) => {
         <header class="header">
           <div class="header__title">
             <h1>Ignore This Page</h1>
-            <small class="small-screen-hidden"
-              >Move along, nothing to see here...</small
-            >
+            <small class="small-screen-hidden">
+              Move along, nothing to see here...
+            </small>
           </div>
           <div class="header__actions">
             ${RssButton("#")} ${ThemeButton()} ${NavigationToggleButton()}
@@ -76,7 +79,9 @@ export const Layout = ({ body, hits }: LayoutProperties) => {
           <section class="sidebar-widget">
             <header class="sidebar-widget__header">Tags</header>
             <ul class="sidebar-widget__content sidebar-widget__content--tags">
-              <li class="sidebar-widget__tag"><a href="#">Thoughts</a></li>
+              <li class="sidebar-widget__tag">
+                <a href="/tags/thoughts">Thoughts</a>
+              </li>
               <li class="sidebar-widget__tag">
                 <a href="/tags/graphics">Graphics</a>
               </li>
@@ -114,12 +119,7 @@ export const Layout = ({ body, hits }: LayoutProperties) => {
           </section>
           ${SidebarBanners(hits)}
         </aside>
-        <footer class="footer">
-          <span>
-            Copyright © 2021 - ${new Date().getFullYear().toString()} Ignore
-            This Page. All rights reserved.
-          </span>
-        </footer>
+        ${Footer()}
       </body>
     </html>`;
 };

@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 
-import { htmlEscape } from "../html";
+import { html, htmlEscape } from "../html";
 
 test("escapeHtml should escape special symbols", () => {
   expect(htmlEscape("&")).toBe("&amp;");
@@ -20,10 +20,86 @@ test("escapeHtml should properly escape supplied string", () => {
   );
 });
 
-test.todo("html tagged literal should return properly formatted string");
+test("html tagged literal should return properly formatted string", () => {
+  const testParagraph = "This is a test.";
+  const expected = html`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Test Page</title>
+      </head>
+      <body>
+        <h1>Hello!</h1>
+        <p>${testParagraph}</p>
+      </body>
+    </html>`;
 
-test.todo("html tagged literal should support escaping");
+  expect(expected).toMatchInlineSnapshot(`
+    "<!DOCTYPE html>
+        <html lang=\\"en\\">
+          <head>
+            <title>Test Page</title>
+          </head>
+          <body>
+            <h1>Hello!</h1>
+            <p>This is a test.</p>
+          </body>
+        </html>"
+  `);
+});
 
-test.todo(
-  "html tagged literal should support array of strings as substitution"
-);
+test("html tagged literal should support escaping", () => {
+  const testExpressionToEscape = "<script>alert(`Hello!`)</script>";
+  const expected = html`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Test Page</title>
+      </head>
+      <body>
+        <h1>Hello!</h1>
+        $${testExpressionToEscape}
+      </body>
+    </html>`;
+
+  expect(expected).toMatchInlineSnapshot(`
+    "<!DOCTYPE html>
+        <html lang=\\"en\\">
+          <head>
+            <title>Test Page</title>
+          </head>
+          <body>
+            <h1>Hello!</h1>
+            &lt;script&gt;alert(&#96;Hello!&#96;)&lt;/script&gt;
+          </body>
+        </html>"
+  `);
+});
+
+test("html tagged literal should support array of strings as substitution", () => {
+  const testParagraph = "This is a test.";
+  const testSidebar = ["This is a sidebar", " ", "and this is either", "."];
+  const expected = html`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <title>Test Page</title>
+      </head>
+      <body>
+        <h1>Hello!</h1>
+        <p>${testParagraph}</p>
+        <aside>${testSidebar}</aside>
+      </body>
+    </html>`;
+
+  expect(expected).toMatchInlineSnapshot(`
+    "<!DOCTYPE html>
+        <html lang=\\"en\\">
+          <head>
+            <title>Test Page</title>
+          </head>
+          <body>
+            <h1>Hello!</h1>
+            <p>This is a test.</p>
+            <aside>This is a sidebar and this is either.</aside>
+          </body>
+        </html>"
+  `);
+});

@@ -1,8 +1,8 @@
 import type { Request, Response } from "@tinyhttp/app";
 
 import { Layout } from "../templates/Layout";
-import { html } from "../utilities/html";
 import { BaseController } from "../framework/BaseController";
+import { NowPage } from "../templates/NowPage";
 
 export class NowController extends BaseController {
   constructor() {
@@ -12,12 +12,10 @@ export class NowController extends BaseController {
   }
 
   index = (_: Request, res: Response) => {
-    const hits = res.locals?.hits ?? 0;
-
     res.send(
       Layout({
-        body: html`<h1>Now! page</h1>`,
-        hits,
+        body: NowPage(),
+        locals: res.locals,
       })
     );
   };

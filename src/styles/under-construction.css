@@ -1,0 +1,13 @@
+.under-construction {
+  display: grid;
+  place-content: center;
+  place-items: center;
+}
+
+.under-construction__title {
+  margin-bottom: 2rem;
+}
+
+.under-construction__image {
+  border: thin solid black;
+}

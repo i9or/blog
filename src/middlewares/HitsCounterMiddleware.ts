@@ -2,6 +2,7 @@ import { Handler } from "@tinyhttp/app";
 
 import { BaseMiddleware } from "../framework/BaseMiddleware";
 import { di } from "../di";
+import { setLocalsValueByKey } from "../utilities/response";
 
 export class HitsCounterMiddleware extends BaseMiddleware {
   constructor() {
@@ -17,10 +18,11 @@ export class HitsCounterMiddleware extends BaseMiddleware {
           `Hits for today ${analyticsUpdated.parsedDate}: ${analyticsUpdated.hits}`
         );
 
-        res.locals = {
-          ...(res.locals ?? {}),
-          hits: analyticsUpdated.hits,
-        };
+        res.locals = setLocalsValueByKey(
+          res.locals,
+          "hits",
+          analyticsUpdated.hits
+        );
       }
 
       next();

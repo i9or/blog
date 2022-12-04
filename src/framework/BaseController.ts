@@ -1,12 +1,12 @@
 import { App } from "@tinyhttp/app";
 
 import { fourOFourHandler } from "../utilities/fourOFourHandler";
-import { fiveHunderHandler } from "../utilities/fiveHunderHandler";
+import { fiveHundredHandler } from "../utilities/fiveHundredHandler";
 
 export abstract class BaseController {
   private readonly _router = new App({
     noMatchHandler: fourOFourHandler,
-    onError: fiveHunderHandler,
+    onError: fiveHundredHandler,
   });
 
   get router() {
