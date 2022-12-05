@@ -1,5 +1,4 @@
 import MarkdownIt from "markdown-it";
-import path from "path";
 import pino from "pino";
 import pinoHttp from "pino-http";
 import sirv from "sirv";
@@ -8,6 +7,7 @@ import { App } from "@tinyhttp/app";
 import { Database, open } from "sqlite";
 import { getHighlighter } from "shiki";
 
+import { PORT, DB_FILENAME } from "./configuration";
 import { AnalyticsService } from "./services/AnalyticsService";
 import { HitsCounterMiddleware } from "./middlewares/HitsCounterMiddleware";
 import { NowController } from "./controllers/NowController";
@@ -17,9 +17,6 @@ import { di } from "./di";
 import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
-
-const PORT = 4000;
-const DB_FILENAME = path.resolve(__dirname, "../db/development.db");
 
 if (!isProduction()) {
   sqlite3.verbose();

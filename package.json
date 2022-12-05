@@ -1,11 +1,11 @@
 {
   "name": "blog",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Yet another blog",
   "private": true,
   "engines": {
     "node": ">=18.12.1 <19",
-    "npm": ">=9 <10"
+    "npm": ">=8 <10"
   },
   "main": "dist/index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "watch:dev": "node scripts/watch-dev.mjs",
     "watch:node": "nodemon --watch dist dist/index.js | pino-pretty -S",
     "watch": "concurrently -n \"BUILD,NODE\" -c \"blue,green\" \"npm:watch:dev\" \"npm:watch:node\"",
-    "prepare": "husky install",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
     "db:migrate": "node scripts/migrate.mjs"
   },
   "repository": {
@@ -37,7 +37,6 @@
     "@types/sqlite3": "3.1.8",
     "@vitest/coverage-c8": "0.25.3",
     "blog-css": "0.3.2",
-    "chalk": "5.0.1",
     "concurrently": "7.3.0",
     "cross-env": "7.0.3",
     "dayjs": "1.11.6",
@@ -56,11 +55,18 @@
     "vitest": "0.25.3"
   },
   "dependencies": {
+    "chalk": "5.0.1",
     "shiki": "0.10.1",
     "sqlite": "4.1.2",
     "sqlite3": "5.0.11"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  }
+  },
+  "files": [
+    "dist/*/**",
+    "migrations/*",
+    "scripts/migrate.mjs",
+    "npm-shrinkwrap.json"
+  ]
 }
