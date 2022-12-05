@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitstash.me:blog.git"
+    "url": "git@github.com:i9or/blog.git"
   },
   "keywords": [
     "blog"
