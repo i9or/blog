@@ -67,6 +67,7 @@
     "dist/*/**",
     "migrations/*",
     "scripts/migrate.mjs",
+    "scripts/utilities.mjs",
     "npm-shrinkwrap.json"
   ]
 }
