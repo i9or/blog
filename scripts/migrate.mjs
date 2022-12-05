@@ -4,12 +4,15 @@ import sqlite3 from "sqlite3";
 import url from "url";
 import { open } from "sqlite";
 
+import { isProduction } from "./utilities.mjs";
+
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 sqlite3.verbose();
 
-const dbFilename = path.resolve(__dirname, "../db/development.db");
+const dbFilename =
+  process.env.DB_FILENAME ?? path.resolve(__dirname, "../db/development.db");
 
 (async () => {
   const db = await open({
@@ -27,7 +30,7 @@ const dbFilename = path.resolve(__dirname, "../db/development.db");
   });
 
   await db.migrate({
-    force: true,
+    force: !isProduction(),
   });
   await db.close();
 })();
