@@ -38,7 +38,9 @@ export const SidebarBanners = (hits: number) => {
       <img src="${wibyGif}" alt="Wiby search engine micro banner" />
     </a>
     <img src="${openglPng}" alt="OpenGL logo micro banner" />
-    <img src="${agplv3Gif}" alt="AGPLv3 logo micro banner" />
+    <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">
+      <img src="${agplv3Gif}" alt="AGPLv3 logo micro banner" />
+    </a>
     <img src="${bestVwGif}" alt="Best viewed with computer and monitor" />
     <img src="${anyDamnGif}" alt="Best viewed with any damn browser" />
     <a href="https://www.mozilla.org/en-GB/firefox/new/">
@@ -63,12 +65,18 @@ export const SidebarBanners = (hits: number) => {
     <img src="${cokePng}" alt="Powered by Coca-Cola" />
     <img src="${cssPng}" alt="CSS is awesome" />
     <img src="${javascriptFreeGif}" alt="JavaScript Free Page" />
-    <img
-      src="${largestCollectionPng}"
-      alt="Largest collection of 88x31 buttons"
-    />
-    <img src="${mastodonGif}" alt="Join Mastodon, leave Twitter" />
-    <img src="${moneroNowGif}" alt="Monero Now" />
+    <a href="https://capstasher.neocities.org/88x31collection-page1.html">
+      <img
+        src="${largestCollectionPng}"
+        alt="Largest collection of 88x31 buttons"
+      />
+    </a>
+    <a rel="me" href="https://masto.ai/@i9or">
+      <img src="${mastodonGif}" alt="Join Mastodon, leave Twitter"
+    /></a>
+    <a href="https://www.getmonero.org/">
+      <img src="${moneroNowGif}" alt="Monero Now" />
+    </a>
     <img src="${possumsNowPng}" alt="Possums Now" />
     <img src="${slavaGif}" alt="Glory to Ukraine!" />
     <img src="${twoThousandOneGif}" alt="I wish it was 2001" />

@@ -17,6 +17,7 @@ import { di } from "./di";
 import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
+import { AboutController } from "./controllers/AboutController";
 
 if (!isProduction()) {
   sqlite3.verbose();
@@ -82,6 +83,7 @@ if (!isProduction()) {
         })
       )
       .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
+      .use(AboutController.path, new AboutController().router)
       .use(NowController.path, new NowController().router)
       .use(PostsController.path, new PostsController().router)
       .listen(PORT, () =>
