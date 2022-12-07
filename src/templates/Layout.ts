@@ -11,6 +11,7 @@ import { getLocalsValueByKey, Locals } from "../utilities/response";
 import { html } from "../utilities/html";
 import { network2Ico } from "../assets";
 import mainStyles from "../styles/main.css";
+import { ROUTES } from "../constants";
 
 type LayoutProperties = {
   body: string;
@@ -40,7 +41,7 @@ export const Layout = ({ body, locals }: LayoutProperties) => {
             </small>
           </div>
           <div class="header__actions">
-            ${RssButton("#")} ${ThemeButton()} ${NavigationToggleButton()}
+            ${RssButton()} ${ThemeButton()} ${NavigationToggleButton()}
           </div>
         </header>
         ${Navigation()}
@@ -61,13 +62,17 @@ export const Layout = ({ body, locals }: LayoutProperties) => {
                 </a>
               </li>
               <li class="sidebar-widget__list-item">
-                <a href="#" tabindex="0" title="Making Goodreads clone">
+                <a
+                  href="${ROUTES.home}"
+                  tabindex="0"
+                  title="Making Goodreads clone"
+                >
                   Making Goodreads clone
                 </a>
               </li>
               <li class="sidebar-widget__list-item">
                 <a
-                  href="#"
+                  href="${ROUTES.home}"
                   tabindex="0"
                   title="A few thoughts on software quality"
                 >

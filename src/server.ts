@@ -6,6 +6,7 @@ import sqlite3 from "sqlite3";
 import { App } from "@tinyhttp/app";
 import { Database, open } from "sqlite";
 import { getHighlighter } from "shiki";
+import { json } from "milliparsec";
 
 import { PORT, DB_FILENAME } from "./configuration";
 import { AnalyticsService } from "./services/AnalyticsService";
@@ -18,6 +19,7 @@ import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
 import { AboutController } from "./controllers/AboutController";
+import { ApiV1Controller } from "./controllers/api/v1/ApiV1Controller";
 
 if (!isProduction()) {
   sqlite3.verbose();
@@ -82,9 +84,12 @@ if (!isProduction()) {
           immutable: true,
         })
       )
+      .use(json())
       .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
+      .use(ApiV1Controller.path, new ApiV1Controller().router)
       .use(AboutController.path, new AboutController().router)
       .use(NowController.path, new NowController().router)
+      // should be the last as it mounts on '/'
       .use(PostsController.path, new PostsController().router)
       .listen(PORT, () =>
         di.logger.info(`🚀 Listening on http://localhost:${PORT}`)

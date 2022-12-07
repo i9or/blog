@@ -7,6 +7,7 @@ import { di } from "../di";
 import { samplePost } from "../sample-post";
 import { getLocalsValueByKey } from "../utilities/response";
 import { UnderConstruction } from "../templates/UnderConstruction";
+import { ROUTES } from "../constants";
 
 const fullDate = Intl.DateTimeFormat("en-US", {
   dateStyle: "full",
@@ -16,7 +17,9 @@ export class PostsController extends BaseController {
   constructor() {
     super();
 
-    this.router.get("/", this.beforeIndex, this.underConstruction, this.index);
+    this.router
+      .get("/", this.beforeIndex, this.underConstruction, this.index)
+      .get("/post/:slug", this.show);
   }
 
   beforeIndex = (_req: Request, _res: Response, next: NextFunction) => {
@@ -36,6 +39,17 @@ export class PostsController extends BaseController {
     );
   };
 
+  show = (req: Request, res: Response) => {
+    const { slug } = req.params;
+
+    res.send(
+      Layout({
+        body: html`<p>Single Post ${slug}</p>`,
+        locals: res.locals,
+      })
+    );
+  };
+
   underConstruction = (_: Request, res: Response) => {
     res.send(
       Layout({
@@ -46,6 +60,6 @@ export class PostsController extends BaseController {
   };
 
   static get path() {
-    return "/";
+    return ROUTES.home;
   }
 }

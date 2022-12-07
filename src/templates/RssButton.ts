@@ -1,8 +1,9 @@
 import { html } from "../utilities/html";
+import { ROUTES } from "../constants";
 
-export const RssButton = (feedUrl: string) => {
+export const RssButton = () => {
   return html`<a
-    href="#"
+    href="${ROUTES.rss}"
     class="rss-button small-screen-hidden"
     title="RSS feed"
   >

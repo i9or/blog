@@ -45,6 +45,7 @@
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
     "markdown-it": "13.0.1",
+    "milliparsec": "2.2.2",
     "nodemon": "2.0.19",
     "pino-http": "8.2.0",
     "pino-pretty": "9.1.0",

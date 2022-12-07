@@ -1,3 +1,5 @@
+import dayjs, { Dayjs } from "dayjs";
+
 type PostConstructor = {
   id?: number;
   createdAt?: string;
@@ -12,8 +14,8 @@ type PostConstructor = {
 
 export class Post {
   readonly id: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Dayjs;
+  updatedAt: Dayjs;
   title: string;
   slug: string;
   content: string;
@@ -33,8 +35,8 @@ export class Post {
     isDraft,
   }: PostConstructor) {
     this.id = id;
-    this.createdAt = createdAt ? new Date(createdAt) : new Date();
-    this.updatedAt = updatedAt ? new Date(updatedAt) : new Date();
+    this.createdAt = createdAt ? dayjs(createdAt) : dayjs();
+    this.updatedAt = updatedAt ? dayjs(updatedAt) : dayjs();
     this.title = title;
     this.slug = slug;
     this.content = content;

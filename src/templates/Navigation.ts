@@ -1,5 +1,6 @@
 import { html } from "../utilities/html";
 import { Search } from "./Search";
+import { ROUTES } from "../constants";
 
 const HouseIcon = () => {
   return html`<svg
@@ -24,7 +25,7 @@ export const Navigation = () => {
       <li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
       <li class="navigation__item">
         <a
-          href="/"
+          href="${ROUTES.home}"
           class="navigation__button navigation__button--home"
           arial-label="Home"
         >
@@ -34,27 +35,27 @@ export const Navigation = () => {
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item">
-        <a href="/about" class="navigation__button">About</a>
+        <a href="${ROUTES.about}" class="navigation__button">About</a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item">
-        <a href="/now" class="navigation__button">Now</a>
+        <a href="${ROUTES.now}" class="navigation__button">Now</a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item big-screen-hidden">
-        <a class="navigation__button" href="#">RSS Feed</a>
+        <a class="navigation__button" href="${ROUTES.rss}">RSS Feed</a>
       </li>
-      <li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
-      <li class="navigation__item big-screen-hidden">
-        <div class="navigation__button">
-          <label for="themeSelector"> Theme: </label>
-          <select name="themeSelector" id="themeSelector">
-            <option value="os">OS Default</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </div>
-      </li>
+      <!--<li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
+            <li class="navigation__item big-screen-hidden">
+              <div class="navigation__button">
+                <label for="themeSelector"> Theme: </label>
+                <select name="themeSelector" id="themeSelector">
+                  <option value="os">OS Default</option>
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                </select>
+              </div>
+            </li>-->
     </ul>
   </nav>`;
 };
