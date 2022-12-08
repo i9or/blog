@@ -1,0 +1,23 @@
+### Login
+POST http://localhost:4000/api/v1/ministry/break-in
+Content-Type: application/json
+Accept: application/json
+
+{
+  "login": "to_be_changed",
+  "password": "to_be_changed"
+}
+
+### Update user details
+PUT http://localhost:4000/api/v1/ministry/reform
+Content-Type: application/json
+Accept: application/json
+
+{
+  "login": "new_login",
+  "password": "qwerty123"
+}
+
+### Logout
+DELETE http://localhost:4000/api/v1/ministry/decamp
+Content-Type: application/json

@@ -6,20 +6,21 @@ import sqlite3 from "sqlite3";
 import { App } from "@tinyhttp/app";
 import { Database, open } from "sqlite";
 import { getHighlighter } from "shiki";
-import { json } from "milliparsec";
 
-import { PORT, DB_FILENAME } from "./configuration";
+import { AboutController } from "./controllers/AboutController";
 import { AnalyticsService } from "./services/AnalyticsService";
+import { ApiV1Controller } from "./controllers/api/v1/ApiV1Controller";
 import { HitsCounterMiddleware } from "./middlewares/HitsCounterMiddleware";
 import { NowController } from "./controllers/NowController";
+import { PORT, DB_FILENAME } from "./configuration";
 import { PostsController } from "./controllers/PostsController";
 import { PostsService } from "./services/PostsService";
+import { UsersService } from "./services/UsersService";
 import { di } from "./di";
 import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
-import { AboutController } from "./controllers/AboutController";
-import { ApiV1Controller } from "./controllers/api/v1/ApiV1Controller";
+import chalk from "chalk";
 
 if (!isProduction()) {
   sqlite3.verbose();
@@ -31,7 +32,7 @@ if (!isProduction()) {
   });
   const httpLogger = pinoHttp({ logger: di.logger });
 
-  di.logger.info(`DB File Name: ${DB_FILENAME}`);
+  di.logger.debug(`DB File Name: ${DB_FILENAME}`);
   let db: Database;
   try {
     db = await open({
@@ -43,8 +44,15 @@ if (!isProduction()) {
     throw new Error(err);
   }
 
+  if (!isProduction()) {
+    db.on("profile", (sql: string, time: number) => {
+      di.logger.debug(`${sql}, took ${time}ms`);
+    });
+  }
+
   di.analyticsService = new AnalyticsService(db);
   di.postsService = new PostsService(db);
+  di.usersService = new UsersService(db);
 
   const highlighter = await getHighlighter({ theme: "material-palenight" });
 
@@ -84,9 +92,8 @@ if (!isProduction()) {
           immutable: true,
         })
       )
-      .use(json())
-      .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
       .use(ApiV1Controller.path, new ApiV1Controller().router)
+      .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
       .use(AboutController.path, new AboutController().router)
       .use(NowController.path, new NowController().router)
       // should be the last as it mounts on '/'

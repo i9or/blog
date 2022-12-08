@@ -1,4 +1,4 @@
-import { Request, Response } from "@tinyhttp/app";
+import { NextFunction, Request, Response } from "@tinyhttp/app";
 
 import { BaseController } from "../../../framework/BaseController";
 
@@ -18,7 +18,7 @@ export class PostsApiController extends BaseController {
     });
   };
 
-  show = (req: Request, res: Response) => {
+  show = (req: Request, res: Response, next: NextFunction) => {
     const id = parseInt(req.params.id);
 
     res.json({

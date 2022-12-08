@@ -1,12 +1,17 @@
+import bodyParser from "body-parser";
+
 import { BaseController } from "../../../framework/BaseController";
 import { PostsApiController } from "./PostsApiController";
+import { UsersApiController } from "./UsersApiController";
 
 export class ApiV1Controller extends BaseController {
   constructor() {
     super();
 
-    // TODO: add catch all middleware to filter only application/json accept header requests
-    this.router.use(PostsApiController.path, new PostsApiController().router);
+    this.router
+      .use(bodyParser.json())
+      .use(UsersApiController.path, new UsersApiController().router)
+      .use(PostsApiController.path, new PostsApiController().router);
   }
 
   static get path() {

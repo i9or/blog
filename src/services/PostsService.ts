@@ -1,12 +1,11 @@
 import { Database } from "sqlite";
 
 import { Post } from "../models/Post";
+import { BaseService } from "../framework/BaseService";
 
-export class PostsService {
-  readonly db: Database;
-
+export class PostsService extends BaseService {
   constructor(db: Database) {
-    this.db = db;
+    super(db);
   }
 
   first(): Post {
