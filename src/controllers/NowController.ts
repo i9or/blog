@@ -3,6 +3,7 @@ import type { Request, Response } from "@tinyhttp/app";
 import { Layout } from "../templates/Layout";
 import { BaseController } from "../framework/BaseController";
 import { NowPage } from "../templates/NowPage";
+import { ROUTES } from "../constants";
 
 export class NowController extends BaseController {
   constructor() {
@@ -21,6 +22,6 @@ export class NowController extends BaseController {
   };
 
   static get path() {
-    return "/now";
+    return ROUTES.now;
   }
 }

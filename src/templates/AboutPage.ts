@@ -3,17 +3,19 @@ import { html } from "../utilities/html";
 export const AboutPage = () => html`<h1>About</h1>
   <p>
     Welcome to my personal technical blog about programming and technology! My
-    private digital garden, as they say, nowadays. Here, you'll find posts about
-    a variety of topics, mostly about outdated stuff, and probably a lot of
-    swearing and complaining. Possibly the best thing to do is
-    <em>ignore this page</em>, you have been warned.
+    private digital garden, as they say, nowadays. My name is Igor, by the way.
+    You can easily find that this name is usually automatically adjusted to
+    <em>Ignore</em> by many spellcheckers. Hence, the name of this blog. Here,
+    you'll find posts about a variety of topics, mostly about outdated stuff,
+    and probably a lot of swearing and complaining. Possibly the best thing to
+    do is <em>ignore this page</em>, you have been warned.
   </p>
 
   <p>
     This is actually around a third attempt to start a technical blog. At this
     point, I've been stuck with programming for far too long, and now just
     trying to survive the daily grind by offloading thoughts from my head into
-    something public place. So, the plan is simple: write a bunch of posts about
+    some public space. So, the plan is simple: write a bunch of posts about
     things I was never able to finish, hoping it will help me to mute an endless
     stream of thoughts and self-blaming 😅. Among the topics, I plan to write
     about are low-level game programming using C, computer graphics using legacy

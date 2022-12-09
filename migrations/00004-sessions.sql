@@ -2,18 +2,17 @@
 -- Up
 --------------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS users
+CREATE TABLE IF NOT EXISTS sessions
 (
-  id              INTEGER PRIMARY KEY AUTOINCREMENT,
-  login           TEXT NOT NULL UNIQUE,
-  hashed_password TEXT NOT NULL
+  id        INTEGER PRIMARY KEY AUTOINCREMENT,
+  userId    INTEGER NOT NULL,
+  expiresAt INTEGER NOT NULL,
+  token     TEXT    NOT NULL UNIQUE,
+  FOREIGN KEY (userId) REFERENCES users (id)
 );
-
-INSERT INTO users (login, hashed_password)
-VALUES ('to_be_changed', 'to_be_changed');
 
 --------------------------------------------------------------------------------
 -- Down
 --------------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS sessions;

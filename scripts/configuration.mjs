@@ -11,6 +11,7 @@ export const configuration = {
     "mock-aws-s3",
     "aws-sdk",
     "nock",
+    "bcrypt",
   ],
   bundle: true,
   outfile: "dist/index.js",

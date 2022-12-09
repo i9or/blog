@@ -14,10 +14,6 @@ export class HitsCounterMiddleware extends BaseMiddleware {
       const analyticsUpdated = await di.analyticsService.incrementToday();
 
       if (analyticsUpdated) {
-        di.logger.debug(
-          `Hits for today ${analyticsUpdated.parsedDate}: ${analyticsUpdated.hits}`
-        );
-
         res.locals = setLocalsValueByKey(
           res.locals,
           "hits",

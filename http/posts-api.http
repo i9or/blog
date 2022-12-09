@@ -1,0 +1,31 @@
+### GET all posts
+GET http://localhost:4000/api/v1/posts
+Accept: application/json
+
+### GET post by id
+GET http://localhost:4000/api/v1/posts/123
+Accept: application/json
+
+### GET non existent post by id
+GET http://localhost:4000/api/v1/posts/404
+Accept: application/json
+
+### POST new post
+POST http://localhost:4000/api/v1/posts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Hello",
+  "content": "World!"
+}
+
+### PUT post by id
+PUT http://localhost:4000/api/v1/posts/123
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Hello",
+  "content": "Updated"
+}

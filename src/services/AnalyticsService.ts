@@ -2,12 +2,11 @@ import { Database } from "sqlite";
 
 import { Analytics } from "../models/Analytics";
 import { todayInUnix } from "../utilities/dates";
+import { BaseService } from "../framework/BaseService";
 
-export class AnalyticsService {
-  readonly db: Database;
-
+export class AnalyticsService extends BaseService {
   constructor(db: Database) {
-    this.db = db;
+    super(db);
   }
 
   getToday = async (): Promise<Analytics | undefined> => {
