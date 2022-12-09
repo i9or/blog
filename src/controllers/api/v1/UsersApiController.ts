@@ -62,24 +62,20 @@ export class UsersApiController extends BaseController {
   };
 
   logout = async (req: Request, res: Response, next: NextFunction) => {
-    // TODO: remove before merge
-    di.logger.debug("=== LOGOUT ===");
-    di.logger.debug(req.signedCookies);
-
     const sessionToken: Optional<string> = req.signedCookies.sessionToken;
 
-    if (sessionToken) {
-      try {
-        await di.sessionsService.removeByToken(sessionToken);
-        res.clearCookie(SESSION_TOKEN, { httpOnly: true });
-
-        return res.sendStatus(204);
-      } catch (err: any) {
-        return next(err);
-      }
+    if (!sessionToken) {
+      return res.sendStatus(401);
     }
 
-    res.sendStatus(401);
+    try {
+      await di.sessionsService.removeByToken(sessionToken);
+      res.clearCookie(SESSION_TOKEN, { httpOnly: true });
+
+      return res.sendStatus(204);
+    } catch (err: any) {
+      return next(err);
+    }
   };
 
   update = async (req: Request, res: Response, next: NextFunction) => {
