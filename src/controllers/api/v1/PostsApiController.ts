@@ -27,7 +27,7 @@ export class PostsApiController extends BaseController {
   };
 
   create = (req: Request, res: Response) => {
-    // TODO: decide if validation needed
+    // TODO: add validation
     const data = req.body;
 
     res.json({
