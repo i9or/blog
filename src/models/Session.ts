@@ -1,5 +1,4 @@
-import dayjs from "dayjs";
-import { unixSecondsAsDate } from "../utilities/dates";
+import { isExpired, unixSecondsAsDate } from "../utilities/dates";
 
 type SessionConstructor = {
   id?: number;
@@ -23,5 +22,9 @@ export class Session {
 
   get expiresAtAsDate() {
     return unixSecondsAsDate(this.expiresAt);
+  }
+
+  get isExpired() {
+    return isExpired(this.expiresAt);
   }
 }

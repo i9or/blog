@@ -13,4 +13,8 @@ export const unixSecondsAsDate = (seconds: number) => {
   return dayjs.unix(seconds).toDate();
 };
 
+export const isExpired = (seconds: number) => {
+  return seconds > dayjs().unix();
+};
+
 export const MONTH_YEAR_DATE_FORMAT = "MMMM YYYY";
