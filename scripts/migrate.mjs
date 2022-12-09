@@ -20,6 +20,8 @@ const dbFilename =
     driver: sqlite3.Database,
   });
 
+  await db.run("PRAGMA foreign_keys = ON");
+
   db.on("trace", (data) => {
     console.log(
       chalk.grey(

@@ -1,4 +1,4 @@
-### Login
+### Login initial
 POST http://localhost:4000/api/v1/ministry/break-in
 Content-Type: application/json
 Accept: application/json
@@ -18,6 +18,20 @@ Accept: application/json
   "password": "qwerty123"
 }
 
+### Login with new credentials
+POST http://localhost:4000/api/v1/ministry/break-in
+Content-Type: application/json
+Accept: application/json
+
+{
+  "login": "new_login",
+  "password": "qwerty123"
+}
+
 ### Logout
 DELETE http://localhost:4000/api/v1/ministry/decamp
 Content-Type: application/json
+
+### Refresh session
+GET http://localhost:4000/api/v1/ministry/reinvigorate
+Accept: application/json

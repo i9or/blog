@@ -4,3 +4,5 @@ export const ROUTES = {
   now: "/now",
   rss: "/feed",
 } as const;
+
+export const SESSION_TOKEN = "sessionToken";

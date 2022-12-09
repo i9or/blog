@@ -12,15 +12,16 @@ import { AnalyticsService } from "./services/AnalyticsService";
 import { ApiV1Controller } from "./controllers/api/v1/ApiV1Controller";
 import { HitsCounterMiddleware } from "./middlewares/HitsCounterMiddleware";
 import { NowController } from "./controllers/NowController";
-import { PORT, DB_FILENAME } from "./configuration";
+import { PORT, DB_FILENAME, SECRET } from "./configuration";
 import { PostsController } from "./controllers/PostsController";
 import { PostsService } from "./services/PostsService";
+import { SessionsService } from "./services/SessionsService";
 import { UsersService } from "./services/UsersService";
 import { di } from "./di";
 import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
-import chalk from "chalk";
+import { cookieParser } from "@tinyhttp/cookie-parser";
 
 if (!isProduction()) {
   sqlite3.verbose();
@@ -39,6 +40,7 @@ if (!isProduction()) {
       filename: DB_FILENAME,
       driver: sqlite3.Database,
     });
+    await db.run("PRAGMA foreign_keys = ON");
   } catch (err: any) {
     di.logger.error(err);
     throw new Error(err);
@@ -53,6 +55,7 @@ if (!isProduction()) {
   di.analyticsService = new AnalyticsService(db);
   di.postsService = new PostsService(db);
   di.usersService = new UsersService(db);
+  di.sessionsService = new SessionsService(db);
 
   const highlighter = await getHighlighter({ theme: "material-palenight" });
 
@@ -92,6 +95,7 @@ if (!isProduction()) {
           immutable: true,
         })
       )
+      .use(cookieParser(SECRET))
       .use(ApiV1Controller.path, new ApiV1Controller().router)
       .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
       .use(AboutController.path, new AboutController().router)
