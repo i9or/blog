@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "@tinyhttp/app";
+import dayjs from "dayjs";
 
 import { di } from "../../../di";
 import { SESSION_TOKEN } from "../../../constants";
@@ -21,6 +22,13 @@ export const restrict = async (
     const session = await di.sessionsService.getByToken(sessionToken);
 
     if (session) {
+      if (session.isExpired) {
+        await di.sessionsService.removeByToken(session.token);
+        res.clearCookie(SESSION_TOKEN, { httpOnly: true });
+
+        return res.sendStatus(401);
+      }
+
       const newExpiresAt = await di.sessionsService.refreshByToken(
         session.token
       );
