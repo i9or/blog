@@ -14,7 +14,9 @@ type PostConstructor = {
 
 export class Post {
   readonly id: number;
+  // TODO: follow SQL schema, i.e. dates are Unix timestamps in seconds
   createdAt: Dayjs;
+  // TODO: follow SQL schema, i.e. dates are Unix timestamps in seconds
   updatedAt: Dayjs;
   title: string;
   slug: string;
