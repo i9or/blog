@@ -7,3 +7,7 @@ export const DB_FILENAME =
 export const SALT_ROUNDS = 10;
 
 export const SECRET = process.env.SECRET ?? "wow_so_secret";
+
+export const CLIENT_ORIGINS = process.env.CLIENT_ORIGIN
+  ? [process.env.CLIENT_ORIGIN]
+  : ["http://localhost:3000", "http://localhost:4000"];
