@@ -1,4 +1,4 @@
-import { isExpired, unixSecondsAsDate } from "../utilities/dates";
+import { isExpired, unixSecondsAsDate } from "~/utilities/dates";
 
 type SessionConstructor = {
   id?: number;

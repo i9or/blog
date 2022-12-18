@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 
 import { Analytics } from "../Analytics";
-import { todayInUnix } from "../../utilities/dates";
+import { todayInUnix } from "~/utilities/dates";
 
 test("Analytics constructor", () => {
   const a = new Analytics(1000, 123);

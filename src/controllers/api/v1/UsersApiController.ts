@@ -1,11 +1,10 @@
 import { NextFunction, Request, Response } from "@tinyhttp/app";
 
-import { BaseController } from "../../../framework/BaseController";
-import { di } from "../../../di";
-import { UserDTO, userDtoSchema } from "../../../dto/UserDTO";
-import dayjs from "dayjs";
+import { BaseController } from "~/framework/BaseController";
+import { di } from "~/di";
+import { UserDTO, userDtoSchema } from "~/dto/UserDTO";
 import { restrict } from "../utilities/restrict";
-import { SESSION_TOKEN } from "../../../constants";
+import { SESSION_TOKEN } from "~/constants";
 
 export class UsersApiController extends BaseController {
   constructor() {

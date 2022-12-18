@@ -1,5 +1,5 @@
-import { html } from "../utilities/html";
-import { ROUTES } from "../constants";
+import { html } from "~/utilities/html";
+import { ROUTES } from "~/constants";
 
 export const RssButton = () => {
   return html`<a

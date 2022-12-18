@@ -1,13 +1,35 @@
 import path from "path";
 
-export const PORT = parseInt(process.env.PORT ?? "4000");
-export const DB_FILENAME =
-  process.env.DB_FILENAME ?? path.resolve(__dirname, "../db/development.db");
+type MayBeUndefinedConfigurationMap<T extends string> = {
+  readonly [key in T]: Readonly<Optional<string>>;
+};
 
-export const SALT_ROUNDS = 10;
+type ConfigurationMap<T extends string> = {
+  readonly [key in T]: Readonly<string>;
+};
 
-export const SECRET = process.env.SECRET ?? "wow_so_secret";
+const defineConfiguration = <T extends string>(
+  configuration: MayBeUndefinedConfigurationMap<T>
+) => {
+  Object.entries(configuration).map(([key, value]) => {
+    if (!value) {
+      throw new Error(`Property ${key} is not defined`);
+    }
+  });
 
-export const CLIENT_ORIGINS = process.env.CLIENT_ORIGIN
-  ? [process.env.CLIENT_ORIGIN]
-  : ["http://localhost:3000", "http://localhost:4000"];
+  return configuration as ConfigurationMap<keyof typeof configuration>;
+};
+
+const ENV = defineConfiguration({
+  BLOG_PORT: process.env.BLOG_PORT,
+  DB_FILENAME: process.env.DB_FILENAME,
+  SALT_ROUNDS: process.env.SALT_ROUNDS,
+  BLOG_SECRET: process.env.BLOG_SECRET,
+  CLIENT_ORIGINS: process.env.CLIENT_ORIGINS,
+});
+
+export const BLOG_PORT = parseInt(ENV.BLOG_PORT);
+export const DB_FILENAME = path.resolve(__dirname, ENV.DB_FILENAME);
+export const SALT_ROUNDS = parseInt(ENV.SALT_ROUNDS);
+export const BLOG_SECRET = ENV.BLOG_SECRET;
+export const CLIENT_ORIGINS = JSON.parse(ENV.CLIENT_ORIGINS);

@@ -1,8 +1,8 @@
 import { Database } from "sqlite";
 
-import { Analytics } from "../models/Analytics";
-import { todayInUnix } from "../utilities/dates";
-import { BaseService } from "../framework/BaseService";
+import { Analytics } from "~/models/Analytics";
+import { todayInUnix } from "~/utilities/dates";
+import { BaseService } from "~/framework/BaseService";
 
 export class AnalyticsService extends BaseService {
   constructor(db: Database) {

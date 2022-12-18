@@ -1,9 +1,9 @@
 import { Database } from "sqlite";
 import { nanoid } from "nanoid";
 
-import { BaseService } from "../framework/BaseService";
-import { Session } from "../models/Session";
-import { oneDayFromNowInUnix } from "../utilities/dates";
+import { BaseService } from "~/framework/BaseService";
+import { Session } from "~/models/Session";
+import { oneDayFromNowInUnix } from "~/utilities/dates";
 
 export class SessionsService extends BaseService {
   constructor(db: Database) {

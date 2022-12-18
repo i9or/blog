@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response } from "@tinyhttp/app";
-import dayjs from "dayjs";
 
-import { di } from "../../../di";
-import { SESSION_TOKEN } from "../../../constants";
-import { unixSecondsAsDate } from "../../../utilities/dates";
+import { di } from "~/di";
+import { SESSION_TOKEN } from "~/constants";
+import { unixSecondsAsDate } from "~/utilities/dates";
 
 export const restrict = async (
   req: Request,

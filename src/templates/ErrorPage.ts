@@ -1,7 +1,8 @@
-import { html } from "../utilities/html";
-import errorPageStyles from "../styles/error.css";
-import { network2Ico } from "../assets";
-import { ROUTES } from "../constants";
+import errorPageStyles from "~/styles/error.css";
+
+import { html } from "~/utilities/html";
+import { network2Ico } from "~/assets";
+import { ROUTES } from "~/constants";
 
 type ErrorType = "404" | "500";
 

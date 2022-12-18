@@ -5,9 +5,15 @@ import { isProduction } from "./utilities.mjs";
 export const cssFilePlugin = {
   name: "css-file",
   setup(build) {
-    build.onResolve({ filter: /\.css$/ }, (args) => {
+    build.onResolve({ filter: /\.css$/ }, async (args) => {
+      // TODO: somehow replace patterns needs to be used from tsconfig.json
+      const importPath = args.path.replace(
+        "~",
+        path.resolve(process.cwd(), "./src")
+      );
+
       return {
-        path: path.join(args.resolveDir, args.path),
+        path: path.resolve(args.resolveDir, importPath),
         namespace: "css-file",
       };
     });

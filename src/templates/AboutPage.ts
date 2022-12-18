@@ -1,4 +1,4 @@
-import { html } from "../utilities/html";
+import { html } from "~/utilities/html";
 
 export const AboutPage = () => html`<h1>About</h1>
   <p>

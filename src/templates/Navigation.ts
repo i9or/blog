@@ -1,6 +1,6 @@
-import { html } from "../utilities/html";
+import { html } from "~/utilities/html";
+import { ROUTES } from "~/constants";
 import { Search } from "./Search";
-import { ROUTES } from "../constants";
 
 const HouseIcon = () => {
   return html`<svg

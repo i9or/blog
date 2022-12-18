@@ -1,4 +1,4 @@
-import { html } from "../utilities/html";
+import { html } from "~/utilities/html";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear().toString();

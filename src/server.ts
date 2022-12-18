@@ -1,3 +1,5 @@
+import "./setup";
+
 import MarkdownIt from "markdown-it";
 import pino from "pino";
 import pinoHttp from "pino-http";
@@ -12,7 +14,7 @@ import { AnalyticsService } from "./services/AnalyticsService";
 import { ApiV1Controller } from "./controllers/api/v1/ApiV1Controller";
 import { HitsCounterMiddleware } from "./middlewares/HitsCounterMiddleware";
 import { NowController } from "./controllers/NowController";
-import { PORT, DB_FILENAME, SECRET } from "./configuration";
+import { BLOG_PORT, DB_FILENAME, BLOG_SECRET } from "./configuration";
 import { PostsController } from "./controllers/PostsController";
 import { PostsService } from "./services/PostsService";
 import { SessionsService } from "./services/SessionsService";
@@ -95,15 +97,15 @@ if (!isProduction()) {
           immutable: true,
         })
       )
-      .use(cookieParser(SECRET))
+      .use(cookieParser(BLOG_SECRET))
       .use(ApiV1Controller.path, new ApiV1Controller().router)
       .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
       .use(AboutController.path, new AboutController().router)
       .use(NowController.path, new NowController().router)
-      // should be the last as it mounts on '/'
+      // NOTE: should be the last as it mounts on '/'
       .use(PostsController.path, new PostsController().router)
-      .listen(PORT, () =>
-        di.logger.info(`🚀 Listening on http://localhost:${PORT}`)
+      .listen(BLOG_PORT, () =>
+        di.logger.info(`🚀 Listening on http://localhost:${BLOG_PORT}`)
       );
   } catch (err: any) {
     di.logger.error(err);

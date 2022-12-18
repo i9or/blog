@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "@tinyhttp/app";
 
-import { BaseController } from "../../../framework/BaseController";
+import { BaseController } from "~/framework/BaseController";
 
 export class PostsApiController extends BaseController {
   constructor() {

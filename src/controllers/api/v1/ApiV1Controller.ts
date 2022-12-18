@@ -1,11 +1,11 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import { BaseController } from "../../../framework/BaseController";
+import { BaseController } from "~/framework/BaseController";
 import { PostsApiController } from "./PostsApiController";
 import { UsersApiController } from "./UsersApiController";
 import { restrict } from "../utilities/restrict";
-import { CLIENT_ORIGINS } from "../../../configuration";
+import { CLIENT_ORIGINS } from "~/configuration";
 
 export class ApiV1Controller extends BaseController {
   constructor() {
