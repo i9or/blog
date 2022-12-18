@@ -1,7 +1,7 @@
 import { App } from "@tinyhttp/app";
 
-import { fourOFourHandler } from "../utilities/fourOFourHandler";
-import { fiveHundredHandler } from "../utilities/fiveHundredHandler";
+import { fourOFourHandler } from "~/utilities/fourOFourHandler";
+import { fiveHundredHandler } from "~/utilities/fiveHundredHandler";
 
 export abstract class BaseController {
   private readonly _router = new App({

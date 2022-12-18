@@ -1,7 +1,7 @@
 import { Database } from "sqlite";
 
-import { Post } from "../models/Post";
-import { BaseService } from "../framework/BaseService";
+import { Post } from "~/models/Post";
+import { BaseService } from "~/framework/BaseService";
 
 export class PostsService extends BaseService {
   constructor(db: Database) {

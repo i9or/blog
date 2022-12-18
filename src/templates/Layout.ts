@@ -1,3 +1,9 @@
+import mainStyles from "~/styles/main.css";
+import { getLocalsValueByKey, Locals } from "~/utilities/response";
+import { html } from "~/utilities/html";
+import { network2Ico } from "~/assets";
+import { ROUTES } from "~/constants";
+
 import {
   NavigationToggleButton,
   NavigationToggleCheckbox,
@@ -7,11 +13,6 @@ import { Navigation } from "./Navigation";
 import { RssButton } from "./RssButton";
 import { SidebarBanners } from "./SidebarBanners";
 import { ThemeButton } from "./ThemeButton";
-import { getLocalsValueByKey, Locals } from "../utilities/response";
-import { html } from "../utilities/html";
-import { network2Ico } from "../assets";
-import mainStyles from "../styles/main.css";
-import { ROUTES } from "../constants";
 
 type LayoutProperties = {
   body: string;

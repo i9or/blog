@@ -1,5 +1,5 @@
-import { html } from "../utilities/html";
-import underConstruction from "../assets/under-construction.gif";
+import { html } from "~/utilities/html";
+import underConstruction from "~/assets/under-construction.gif";
 
 export const UnderConstruction = () => {
   return html` <section class="under-construction">

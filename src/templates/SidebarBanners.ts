@@ -1,4 +1,4 @@
-import { html } from "../utilities/html";
+import { html } from "~/utilities/html";
 import {
   agplv3Gif,
   alienNowGif,
@@ -26,7 +26,7 @@ import {
   webStormPng,
   wibyGif,
   yankowGif,
-} from "../assets";
+} from "~/assets";
 import { HitCounter } from "./HitCounter";
 
 export const SidebarBanners = (hits: number) => {

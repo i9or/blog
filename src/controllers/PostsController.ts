@@ -1,13 +1,12 @@
-import { Request, Response, NextFunction } from "@tinyhttp/app";
+import { NextFunction, Request, Response } from "@tinyhttp/app";
 
-import { html } from "../utilities/html";
-import { Layout } from "../templates/Layout";
-import { BaseController } from "../framework/BaseController";
-import { di } from "../di";
-import { samplePost } from "../sample-post";
-import { getLocalsValueByKey } from "../utilities/response";
-import { UnderConstruction } from "../templates/UnderConstruction";
-import { ROUTES } from "../constants";
+import { html } from "~/utilities/html";
+import { Layout } from "~/templates/Layout";
+import { BaseController } from "~/framework/BaseController";
+import { di } from "~/di";
+import { samplePost } from "~/sample-post";
+import { UnderConstruction } from "~/templates/UnderConstruction";
+import { ROUTES } from "~/constants";
 
 const fullDate = Intl.DateTimeFormat("en-US", {
   dateStyle: "full",

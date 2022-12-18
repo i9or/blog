@@ -1,4 +1,4 @@
-import { html } from "../utilities/html";
+import { html } from "~/utilities/html";
 
 const HIT_COUNTER_LENGTH = 10;
 

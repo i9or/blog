@@ -1,8 +1,8 @@
 import { Handler } from "@tinyhttp/app";
 
-import { BaseMiddleware } from "../framework/BaseMiddleware";
-import { di } from "../di";
-import { setLocalsValueByKey } from "../utilities/response";
+import { BaseMiddleware } from "~/framework/BaseMiddleware";
+import { di } from "~/di";
+import { setLocalsValueByKey } from "~/utilities/response";
 
 export class HitsCounterMiddleware extends BaseMiddleware {
   constructor() {

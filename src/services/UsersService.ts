@@ -1,10 +1,10 @@
 import { Database } from "sqlite";
 import bcrypt from "bcrypt";
 
-import { BaseService } from "../framework/BaseService";
-import { User } from "../models/User";
-import { di } from "../di";
-import { SALT_ROUNDS } from "../configuration";
+import { BaseService } from "~/framework/BaseService";
+import { User } from "~/models/User";
+import { di } from "~/di";
+import { SALT_ROUNDS } from "~/configuration";
 
 type AuthenticationStatus = "success" | "failure" | "initial";
 

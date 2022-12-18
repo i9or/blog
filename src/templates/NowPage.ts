@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 
-import { html } from "../utilities/html";
-import { MONTH_YEAR_DATE_FORMAT } from "../utilities/dates";
+import { html } from "~/utilities/html";
+import { MONTH_YEAR_DATE_FORMAT } from "~/utilities/dates";
 
 export const NowPage = () => html`<h1>Now! page</h1>
   <p>Here's the list of things I'm up to <strong>now</strong>:</p>
