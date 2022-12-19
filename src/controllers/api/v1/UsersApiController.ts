@@ -6,6 +6,8 @@ import { UserDTO, userDtoSchema } from "~/dto/UserDTO";
 import { restrict } from "../utilities/restrict";
 import { SESSION_TOKEN } from "~/constants";
 
+import { COMMON_COOKIE_OPTIONS } from "../utilities/cookie";
+
 export class UsersApiController extends BaseController {
   constructor() {
     super();
@@ -35,8 +37,8 @@ export class UsersApiController extends BaseController {
 
             res.cookie(SESSION_TOKEN, session.token, {
               expires: session.expiresAtAsDate,
-              httpOnly: true,
               signed: true,
+              ...COMMON_COOKIE_OPTIONS,
             });
 
             return res.json({
@@ -69,7 +71,7 @@ export class UsersApiController extends BaseController {
 
     try {
       await di.sessionsService.removeByToken(sessionToken);
-      res.clearCookie(SESSION_TOKEN, { httpOnly: true });
+      res.clearCookie(SESSION_TOKEN, { ...COMMON_COOKIE_OPTIONS });
 
       return res.sendStatus(204);
     } catch (err: any) {

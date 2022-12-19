@@ -4,6 +4,8 @@ import { di } from "~/di";
 import { SESSION_TOKEN } from "~/constants";
 import { unixSecondsAsDate } from "~/utilities/dates";
 
+import { COMMON_COOKIE_OPTIONS } from "./cookie";
+
 export const restrict = async (
   req: Request,
   res: Response,
@@ -23,7 +25,7 @@ export const restrict = async (
     if (session) {
       if (session.isExpired) {
         await di.sessionsService.removeByToken(session.token);
-        res.clearCookie(SESSION_TOKEN, { httpOnly: true });
+        res.clearCookie(SESSION_TOKEN, { ...COMMON_COOKIE_OPTIONS });
 
         return res.sendStatus(401);
       }
@@ -34,13 +36,13 @@ export const restrict = async (
 
       res.cookie(SESSION_TOKEN, session.token, {
         expires: unixSecondsAsDate(newExpiresAt),
-        httpOnly: true,
         signed: true,
+        ...COMMON_COOKIE_OPTIONS,
       });
 
       return next();
     } else {
-      res.clearCookie(SESSION_TOKEN, { httpOnly: true });
+      res.clearCookie(SESSION_TOKEN, { ...COMMON_COOKIE_OPTIONS });
     }
   } catch (err: any) {
     return next(err);
