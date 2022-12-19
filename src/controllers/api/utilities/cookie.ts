@@ -4,5 +4,5 @@ export const COMMON_COOKIE_OPTIONS = {
   domain: BLOG_DOMAIN,
   httpOnly: true,
   secure: true,
-  ...(MORE_SECURE && { sameSite: "Strict" }),
+  sameSite: MORE_SECURE ? "Strict" : "None",
 };
