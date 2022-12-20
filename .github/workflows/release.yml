@@ -16,6 +16,8 @@ jobs:
           node-version: "18.x"
           cache: "npm"
       - run: npm ci
+      - name: Set application version
+        run: echo "BLOG_APPLICATION_VERSION=v$(npm pkg get version | xargs)" >> $GITHUB_ENV
       - run: npm run build
       - run: npm test
       - name: Create release assets
@@ -25,4 +27,4 @@ jobs:
       - name: Publish release on GitHub
         env:
           GH_TOKEN: ${{ github.token }}
-        run: npm pkg get version | xargs -I{} gh release create v{} ./*.tgz --generate-notes
+        run: gh release create $BLOG_APPLICATION_VERSION ./*.tgz --generate-notes
