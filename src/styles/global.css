@@ -11,4 +11,5 @@ body {
 
 .footer {
   font-size: var(--t-small);
+  justify-content: space-between;
 }
