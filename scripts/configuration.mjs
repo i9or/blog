@@ -23,4 +23,9 @@ export const configuration = {
   assetNames: "public/[name]-[hash]",
   publicPath: "/",
   plugins: [cssFilePlugin],
+  define: {
+    BLOG_APPLICATION_VERSION: process.env.BLOG_APPLICATION_VERSION
+      ? `"${process.env.BLOG_APPLICATION_VERSION}"`
+      : '"latest"',
+  },
 };
