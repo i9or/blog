@@ -8,8 +8,4 @@ export class User {
     this.login = login;
     this.hashedPassword = hashedPassword;
   }
-
-  get isPasswordNeedsToBeChanged() {
-    return this.hashedPassword === "to_be_changed";
-  }
 }

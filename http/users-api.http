@@ -15,7 +15,8 @@ Accept: application/json
 
 {
   "login": "new_login",
-  "password": "qwerty123"
+  "password": "qwerty123",
+  "newPassword": "qwerty123"
 }
 
 ### Login with new credentials

@@ -3,9 +3,10 @@ import { NextFunction, Request, Response } from "@tinyhttp/app";
 import { BaseController } from "~/framework/BaseController";
 import { di } from "~/di";
 import { UserDTO, userDtoSchema } from "~/dto/UserDTO";
-import { restrict } from "../utilities/restrict";
+import { updateUserDtoSchema, UpdateUserDTO } from "~/dto/UpdateUserDTO";
 import { SESSION_TOKEN } from "~/constants";
 
+import { restrict } from "../utilities/restrict";
 import { COMMON_COOKIE_OPTIONS } from "../utilities/cookie";
 
 export class UsersApiController extends BaseController {
@@ -43,6 +44,7 @@ export class UsersApiController extends BaseController {
 
             return res.json({
               status,
+              userName: user.login,
               message: "Welcome, my friend!",
             });
           } catch (err: any) {
@@ -58,8 +60,15 @@ export class UsersApiController extends BaseController {
   };
 
   refresh = async (req: Request, res: Response, next: NextFunction) => {
-    di.logger.debug("UsersApiController#refresh — not implemented");
-    res.sendStatus(204);
+    const user = await di.usersService.getTheOnlyUser();
+
+    if (!user) {
+      return next(new Error("Oh no! The only user is gone..."));
+    }
+
+    res.json({
+      userName: user.login,
+    });
   };
 
   logout = async (req: Request, res: Response, next: NextFunction) => {
@@ -80,16 +89,22 @@ export class UsersApiController extends BaseController {
   };
 
   update = async (req: Request, res: Response, next: NextFunction) => {
-    if (await userDtoSchema.isValid(req.body)) {
-      const updatedUser: UserDTO = req.body;
+    if (await updateUserDtoSchema.isValid(req.body)) {
+      const updatedUser: UpdateUserDTO = req.body;
 
       try {
-        await di.usersService.update(updatedUser.login, updatedUser.password);
+        await di.usersService.update(
+          updatedUser.login,
+          updatedUser.password,
+          updatedUser.newPassword
+        );
       } catch (err: any) {
         return next(err);
       }
 
-      return res.sendStatus(204);
+      return res.json({
+        updatedUserName: updatedUser.login,
+      });
     }
 
     res.sendStatus(400);
