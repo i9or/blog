@@ -24,6 +24,7 @@ import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
 import { cookieParser } from "@tinyhttp/cookie-parser";
+import { FaviconMiddleware } from "~/middlewares/FaviconMiddleware";
 
 if (!isProduction()) {
   sqlite3.verbose();
@@ -97,6 +98,7 @@ if (!isProduction()) {
           immutable: true,
         })
       )
+      .use(FaviconMiddleware.path, new FaviconMiddleware().handler)
       .use(cookieParser(BLOG_SECRET))
       .use(ApiV1Controller.path, new ApiV1Controller().router)
       .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)

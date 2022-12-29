@@ -1,7 +1,7 @@
 import mainStyles from "~/styles/main.css";
 import { getLocalsValueByKey, Locals } from "~/utilities/response";
 import { html } from "~/utilities/html";
-import { network2Ico } from "~/assets";
+import { logPng, network2Ico } from "~/assets";
 import { ROUTES } from "~/constants";
 
 import {
@@ -35,11 +35,15 @@ export const Layout = ({ body, locals }: LayoutProperties) => {
       <body class="body-container">
         ${NavigationToggleCheckbox()}
         <header class="header">
-          <div class="header__title">
-            <h1>Ignore This Page</h1>
-            <small class="small-screen-hidden">
-              Move along, nothing to see here...
-            </small>
+          <div class="header__title-wrapper">
+            <img
+              class="header__logo small-screen-hidden"
+              src="${logPng}"
+              alt="Notepad logo"
+              width="32"
+              height="32"
+            />
+            <h1 class="header__title">Ignore This Page</h1>
           </div>
           <div class="header__actions">
             ${RssButton()} ${ThemeButton()} ${NavigationToggleButton()}

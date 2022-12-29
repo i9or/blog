@@ -25,3 +25,4 @@ export { default as twoThousandOneGif } from "./2001.gif";
 export { default as webStormPng } from "./webstorm.png";
 export { default as wibyGif } from "./wiby.gif";
 export { default as yankowGif } from "./yanknow.gif";
+export { default as logPng } from "./log02.png";
