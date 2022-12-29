@@ -7,3 +7,7 @@
 .main > article {
   padding-top: 1.5rem;
 }
+
+.header__title-wrapper {
+  display: flex;
+}
