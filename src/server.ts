@@ -8,23 +8,24 @@ import sqlite3 from "sqlite3";
 import { App } from "@tinyhttp/app";
 import { Database, open } from "sqlite";
 import { getHighlighter } from "shiki";
+import { cookieParser } from "@tinyhttp/cookie-parser";
 
 import { AboutController } from "./controllers/AboutController";
 import { AnalyticsService } from "./services/AnalyticsService";
 import { ApiV1Controller } from "./controllers/api/v1/ApiV1Controller";
+import { BLOG_PORT, DB_FILENAME, BLOG_SECRET } from "./configuration";
+import { FaviconMiddleware } from "./middlewares/FaviconMiddleware";
 import { HitsCounterMiddleware } from "./middlewares/HitsCounterMiddleware";
 import { NowController } from "./controllers/NowController";
-import { BLOG_PORT, DB_FILENAME, BLOG_SECRET } from "./configuration";
 import { PostsController } from "./controllers/PostsController";
 import { PostsService } from "./services/PostsService";
+import { RobotsMiddleware } from "./middlewares/RobotsMiddleware";
 import { SessionsService } from "./services/SessionsService";
 import { UsersService } from "./services/UsersService";
 import { di } from "./di";
 import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
-import { cookieParser } from "@tinyhttp/cookie-parser";
-import { FaviconMiddleware } from "~/middlewares/FaviconMiddleware";
 
 if (!isProduction()) {
   sqlite3.verbose();
@@ -99,6 +100,7 @@ if (!isProduction()) {
         })
       )
       .use(FaviconMiddleware.path, new FaviconMiddleware().handler)
+      .use(RobotsMiddleware.path, new RobotsMiddleware().handler)
       .use(cookieParser(BLOG_SECRET))
       .use(ApiV1Controller.path, new ApiV1Controller().router)
       .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
