@@ -3,7 +3,8 @@ import dayjs from "dayjs";
 import { html } from "~/utilities/html";
 import { MONTH_YEAR_DATE_FORMAT } from "~/utilities/dates";
 
-export const NowPage = () => html`<h1>Now! page</h1>
+export const NowPage = () => html`<article>
+  <h1>Now! page</h1>
   <p>Here's the list of things I'm up to <strong>now</strong>:</p>
   <ul>
     <li>
@@ -23,4 +24,5 @@ export const NowPage = () => html`<h1>Now! page</h1>
   <p>
     Inspired by other
     <a href="https://nownownow.com/about">now pages</a>.
-  </p>`;
+  </p>
+</article>`;

@@ -3,6 +3,7 @@ export const ROUTES = {
   about: "/about",
   now: "/now",
   rss: "/feed",
+  archive: "/archive",
 } as const;
 
 export const SESSION_TOKEN = "sessionToken";

@@ -9,6 +9,7 @@ import { App } from "@tinyhttp/app";
 import { Database, open } from "sqlite";
 import { getHighlighter } from "shiki";
 import { cookieParser } from "@tinyhttp/cookie-parser";
+import implicitFigures from "markdown-it-image-figures";
 
 import { AboutController } from "./controllers/AboutController";
 import { AnalyticsService } from "./services/AnalyticsService";
@@ -26,6 +27,7 @@ import { di } from "./di";
 import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
+import { ArchiveController } from "~/controllers/ArchiveController";
 
 if (!isProduction()) {
   sqlite3.verbose();
@@ -64,6 +66,7 @@ if (!isProduction()) {
   const highlighter = await getHighlighter({ theme: "material-palenight" });
 
   di.md = new MarkdownIt({
+    html: true,
     highlight: (str, lang, attrs) => {
       if (attrs?.length > 0) {
         const attributes = JSON.parse(attrs);
@@ -81,6 +84,11 @@ if (!isProduction()) {
         return "";
       }
     },
+  }).use(implicitFigures, {
+    dataType: true,
+    figcaption: true,
+    lazy: true,
+    async: true,
   });
 
   const app = new App({
@@ -106,6 +114,7 @@ if (!isProduction()) {
       .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
       .use(AboutController.path, new AboutController().router)
       .use(NowController.path, new NowController().router)
+      .use(ArchiveController.path, new ArchiveController().router)
       // NOTE: should be the last as it mounts on '/'
       .use(PostsController.path, new PostsController().router)
       .listen(BLOG_PORT, () =>

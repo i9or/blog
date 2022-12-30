@@ -11,3 +11,27 @@
 .header__title-wrapper {
   display: flex;
 }
+
+/* TODO: move to "blog-css" package */
+.post :not(.shiki) code {
+  background: ghostwhite;
+  padding: 2px;
+  border: thin solid lightgrey;
+  border-radius: var(--e-border-radius);
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.post .shiki {
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: var(--e-border-radius);
+  margin-bottom: 2rem;
+}
+
+.post__fin {
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+}

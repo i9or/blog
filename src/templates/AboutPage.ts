@@ -1,6 +1,7 @@
 import { html } from "~/utilities/html";
 
-export const AboutPage = () => html`<h1>About</h1>
+export const AboutPage = () => html`<article>
+  <h1>About</h1>
   <p>
     Welcome to my personal technical blog about programming and technology! My
     private digital garden, as they say, nowadays. My name is Igor, by the way.
@@ -36,4 +37,5 @@ export const AboutPage = () => html`<h1>About</h1>
     Thank you for visiting my blog anyway, hope you won't have any strong
     feelings one way or the other about my hot takes and badly formatted
     ramblings!
-  </p> `;
+  </p>
+</article>`;

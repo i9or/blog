@@ -2,7 +2,6 @@ import mainStyles from "~/styles/main.css";
 import { getLocalsValueByKey, Locals } from "~/utilities/response";
 import { html } from "~/utilities/html";
 import { logPng, network2Ico } from "~/assets";
-import { ROUTES } from "~/constants";
 
 import {
   NavigationToggleButton,
@@ -13,6 +12,8 @@ import { Navigation } from "./Navigation";
 import { RssButton } from "./RssButton";
 import { SidebarBanners } from "./SidebarBanners";
 import { ThemeButton } from "./ThemeButton";
+import { TagsWidget } from "./TagsWidget";
+import { RecentPostsWidget } from "./RecentPostsWidget";
 
 type LayoutProperties = {
   body: string;
@@ -50,84 +51,9 @@ export const Layout = ({ body, locals }: LayoutProperties) => {
           </div>
         </header>
         ${Navigation()}
-        <main class="main">
-          <article>${body}</article>
-        </main>
+        <main class="main">${body}</main>
         <aside class="sidebar">
-          <section class="sidebar-widget">
-            <header class="sidebar-widget__header">Recent Posts</header>
-            <ul class="sidebar-widget__content sidebar-widget__content--list">
-              <li class="sidebar-widget__list-item">
-                <a
-                  href="https://example.com"
-                  tabindex="0"
-                  title="Implementation of simple software renderer"
-                >
-                  Implementation of simple software renderer
-                </a>
-              </li>
-              <li class="sidebar-widget__list-item">
-                <a
-                  href="${ROUTES.home}"
-                  tabindex="0"
-                  title="Making Goodreads clone"
-                >
-                  Making Goodreads clone
-                </a>
-              </li>
-              <li class="sidebar-widget__list-item">
-                <a
-                  href="${ROUTES.home}"
-                  tabindex="0"
-                  title="A few thoughts on software quality"
-                >
-                  A few thoughts on software quality
-                </a>
-              </li>
-            </ul>
-          </section>
-          <section class="sidebar-widget">
-            <header class="sidebar-widget__header">Tags</header>
-            <ul class="sidebar-widget__content sidebar-widget__content--tags">
-              <li class="sidebar-widget__tag">
-                <a href="/tags/thoughts">Thoughts</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/graphics">Graphics</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/game-development">Game Development</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/backend">Backend</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/electronics">Electronics</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/drumming">Drumming</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/gardening">Gardening</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/frontend">Frontend</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/other">Other</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/memes">Memes</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/interesting">Interesting</a>
-              </li>
-              <li class="sidebar-widget__tag">
-                <a href="/tags/diy">DIY</a>
-              </li>
-            </ul>
-          </section>
-          ${SidebarBanners(hits)}
+          ${RecentPostsWidget()} ${TagsWidget()} ${SidebarBanners(hits)}
         </aside>
         ${Footer()}
       </body>

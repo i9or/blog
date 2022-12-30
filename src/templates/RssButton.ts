@@ -2,7 +2,7 @@ import { html } from "~/utilities/html";
 import { ROUTES } from "~/constants";
 
 export const RssButton = () => {
-  return html`<a
+  return html`<!--<a
     href="${ROUTES.rss}"
     class="rss-button small-screen-hidden"
     title="RSS feed"
@@ -18,5 +18,5 @@ export const RssButton = () => {
         fill="currentColor"
       />
     </svg>
-  </a>`;
+  </a>-->`;
 };

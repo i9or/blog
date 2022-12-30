@@ -39,7 +39,11 @@ export const Navigation = () => {
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item">
-        <a href="${ROUTES.now}" class="navigation__button">Now</a>
+        <a href="${ROUTES.now}" class="navigation__button">Now!</a>
+      </li>
+      <li class="navigation__divider" aria-hidden="true"></li>
+      <li class="navigation__item">
+        <a href="${ROUTES.archive}" class="navigation__button">Archive</a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item big-screen-hidden">
