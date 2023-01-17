@@ -1,39 +1,27 @@
 import { html } from "~/utilities/html";
+import { PostMeta } from "~/models/PostMeta";
 
-export const RecentPostsWidget = () => {
+const RenderNoPosts = () => html` <div
+  class="sidebar-widget__content sidebar-widget__content--tags"
+>
+  No recent posts yet.
+</div>`;
+
+const RenderPosts = (recentPosts: PostMeta[]) => html`<ul
+  class="sidebar-widget__content sidebar-widget__content--list"
+>
+  ${recentPosts.map(
+    (post) => html`<li class="sidebar-widget__list-item">
+      <a href="/post/${post.slug}" tabindex="0" title="${post.title}">
+        ${post.title}
+      </a>
+    </li>`
+  )}
+</ul>`;
+
+export const RecentPostsWidget = (recentPosts: PostMeta[]) => {
   return html`<section class="sidebar-widget">
     <header class="sidebar-widget__header">Recent Posts</header>
-    <!--<ul class="sidebar-widget__content sidebar-widget__content--list">
-              <li class="sidebar-widget__list-item">
-                <a
-                  href="https://example.com"
-                  tabindex="0"
-                  title="Implementation of simple software renderer"
-                >
-                  Implementation of simple software renderer
-                </a>
-              </li>
-              <li class="sidebar-widget__list-item">
-                <a
-                  href="https://example.com"
-                  tabindex="0"
-                  title="Making Goodreads clone"
-                >
-                  Making Goodreads clone
-                </a>
-              </li>
-              <li class="sidebar-widget__list-item">
-                <a
-                  href="https://example.com"
-                  tabindex="0"
-                  title="A few thoughts on software quality"
-                >
-                  A few thoughts on software quality
-                </a>
-              </li>
-            </ul>-->
-    <div class="sidebar-widget__content sidebar-widget__content--tags">
-      No recent posts yet.
-    </div>
+    ${recentPosts.length > 0 ? RenderPosts(recentPosts) : RenderNoPosts()}
   </section>`;
 };

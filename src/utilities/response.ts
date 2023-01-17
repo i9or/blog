@@ -1,7 +1,11 @@
-import { di } from "../di";
+import { di } from "~/di";
+import { Tag } from "~/models/Tag";
+import { PostMeta } from "~/models/PostMeta";
 
 export type Locals = Partial<{
   hits: number;
+  tags: Tag[];
+  recentPosts: PostMeta[];
 }>;
 
 export const setLocalsValueByKey = <K extends keyof Locals>(

@@ -22,6 +22,8 @@ type LayoutProperties = {
 
 export const Layout = ({ body, locals }: LayoutProperties) => {
   const hits = getLocalsValueByKey(locals, "hits") ?? 0;
+  const tags = getLocalsValueByKey(locals, "tags") ?? [];
+  const recentPosts = getLocalsValueByKey(locals, "recentPosts") ?? [];
 
   return html`<!DOCTYPE html>
     <html lang="en">
@@ -53,7 +55,8 @@ export const Layout = ({ body, locals }: LayoutProperties) => {
         ${Navigation()}
         <main class="main">${body}</main>
         <aside class="sidebar">
-          ${RecentPostsWidget()} ${TagsWidget()} ${SidebarBanners(hits)}
+          ${RecentPostsWidget(recentPosts)} ${TagsWidget(tags)}
+          ${SidebarBanners(hits)}
         </aside>
         ${Footer()}
       </body>

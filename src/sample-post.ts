@@ -5,10 +5,10 @@ import type { Post } from "./models/Post";
 // @ts-ignore
 export const samplePost: Post = {
   title: "Finding the Maximum Subarray Sum in C++",
-  tags: ["sample", "post", "testing"],
+  // tags: ["sample", "post", "testing"],
   isDraft: false,
-  createdAt: dayjs("April 29, 2022 03:24:00"),
-  updatedAt: dayjs("April 30, 2022 04:11:22"),
+  createdAt: dayjs("April 29, 2022 03:24:00").unix(),
+  updatedAt: dayjs("April 30, 2022 04:11:22").unix(),
   content: `# Drawing a Coloured Triangle using C and OpenGL 2.1
 
 In this tutorial, we will be learning how to draw a coloured triangle using the
@@ -31,7 +31,7 @@ The GLUT library is already available on macOS; for other operating systems, alt
 sudo apt-get install freeglut3-dev
 \`\`\`
 
-# Setting up the Project
+## Setting up the Project
 
 We will start by creating a new C file, \`triangle.c\`, and adding the following code to it:
 

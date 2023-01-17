@@ -1,5 +1,8 @@
 import dayjs from "dayjs";
 
+/**
+ * @deprecated
+ */
 export const todayInUnix = () => {
   // FIXME: use seconds instead of milliseconds
   return dayjs().startOf("day").valueOf();

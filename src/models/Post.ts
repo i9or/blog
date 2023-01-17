@@ -1,29 +1,23 @@
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 
 type PostConstructor = {
   id?: number;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt?: number;
+  updatedAt?: number;
   title: string;
-  slug?: string;
+  slug: string;
   content: string;
-  renderedContent?: string;
-  tags: string[];
   isDraft: boolean;
 };
 
 export class Post {
   readonly id: number;
-  // TODO: follow SQL schema, i.e. dates are Unix timestamps in seconds
-  createdAt: Dayjs;
-  // TODO: follow SQL schema, i.e. dates are Unix timestamps in seconds
-  updatedAt: Dayjs;
   title: string;
   slug: string;
   content: string;
-  renderedContent: string;
-  tags: string[];
   isDraft: boolean;
+  readonly createdAt: number;
+  updatedAt: number;
 
   constructor({
     id = -1,
@@ -32,18 +26,14 @@ export class Post {
     title,
     slug = "",
     content,
-    renderedContent = "",
-    tags,
     isDraft,
   }: PostConstructor) {
     this.id = id;
-    this.createdAt = createdAt ? dayjs(createdAt) : dayjs();
-    this.updatedAt = updatedAt ? dayjs(updatedAt) : dayjs();
+    this.createdAt = createdAt ?? dayjs().unix();
+    this.updatedAt = updatedAt ?? dayjs().unix();
     this.title = title;
     this.slug = slug;
     this.content = content;
-    this.renderedContent = renderedContent;
-    this.tags = tags;
     this.isDraft = isDraft;
   }
 }

@@ -49,6 +49,7 @@
     "del-cli": "5.0.0",
     "dotenv": "16.0.3",
     "esbuild": "0.14.51",
+    "helmet": "6.0.1",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
     "markdown-it": "13.0.1",
@@ -62,6 +63,7 @@
     "typescript": "4.9.4",
     "vite": "4.0.2",
     "vitest": "0.26.0",
+    "xss": "1.0.14",
     "yup": "1.0.0-beta.8"
   },
   "dependencies": {

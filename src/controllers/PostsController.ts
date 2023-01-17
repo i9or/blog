@@ -1,14 +1,13 @@
-import { Request, Response } from "@tinyhttp/app";
+import { NextFunction, Request, Response } from "@tinyhttp/app";
+import xss from "xss";
 
 import { html } from "~/utilities/html";
 import { Layout } from "~/templates/Layout";
 import { BaseController } from "~/framework/BaseController";
 import { di } from "~/di";
-import { samplePost } from "~/sample-post";
 import { ROUTES } from "~/constants";
-import { calendarPng } from "~/assets";
-import dayjs from "dayjs";
-import { MONTH_YEAR_DATE_FORMAT } from "~/utilities/dates";
+import { SinglePost } from "~/templates/SinglePost";
+import { UnderConstruction } from "~/templates/UnderConstruction";
 
 export class PostsController extends BaseController {
   constructor() {
@@ -18,48 +17,72 @@ export class PostsController extends BaseController {
     this.router.get("/post/:slug", this.show);
   }
 
-  index = (_: Request, res: Response) => {
-    res.send(
-      Layout({
-        body: html`<article class="post">
-          <section class="post__navigation">
-            <a href="#" title="Older post"><small>&larr; There</small></a>
-            <a href="#" title="Newer post"><small>Here &rarr;</small></a>
-          </section>
-          <small class="post__date">
-            <img
-              src="${calendarPng}"
-              width="16"
-              height="16"
-              alt="Small calendar icon"
-            />
-            ${dayjs().format("MMMM D, YYYY")}
-          </small>
-          ${di.md.render(samplePost.content)}
-          <p class="post__fin">☙</p>
-          <section class="post__tags">
-            <span>Tags:</span>
-            <a href="#">Sample Post</a>
-            ,
-            <a href="#">Nobody read the tags</a>
-            ,
-            <a href="#">Haha, boobs: (.)(.)</a>
-          </section>
-        </article>`,
-        locals: res.locals,
-      })
-    );
+  index = async (_: Request, res: Response, next: NextFunction) => {
+    try {
+      const latestPost = await di.postsService.getTheLastOne();
+
+      if (!latestPost) {
+        return res.send(
+          Layout({
+            body: UnderConstruction(),
+            locals: res.locals,
+          })
+        );
+      }
+
+      const tags = await di.tagsService.getByPostId(latestPost.id);
+      const previousPost = await di.postsService.getPreviousByCreatedAt(
+        latestPost.createdAt
+      );
+
+      res.send(
+        Layout({
+          body: SinglePost({
+            post: latestPost,
+            tags,
+            previousPost,
+          }),
+          locals: res.locals,
+        })
+      );
+    } catch (error) {
+      next(error);
+    }
   };
 
-  show = (req: Request, res: Response) => {
-    const { slug } = req.params;
+  show = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { slug } = req.params;
 
-    res.send(
-      Layout({
-        body: html`<p>Single Post ${slug}</p>`,
-        locals: res.locals,
-      })
-    );
+      if (slug) {
+        const sanitizedSlug = xss(slug);
+        const post = await di.postsService.getBySlug(sanitizedSlug);
+
+        if (!post) {
+          return next();
+        }
+
+        const [tags, previousPost, nextPost] = await Promise.all([
+          await di.tagsService.getByPostId(post.id),
+          di.postsService.getPreviousByCreatedAt(post.createdAt),
+          di.postsService.getNextByCreatedAt(post.createdAt),
+        ]);
+
+        return res.send(
+          Layout({
+            body: SinglePost({
+              post,
+              tags,
+              previousPost,
+              nextPost,
+            }),
+            locals: res.locals,
+          })
+        );
+      }
+    } catch (error) {
+      next(error);
+    }
   };
 
   static get path() {

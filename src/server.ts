@@ -28,6 +28,9 @@ import { fiveHundredHandler } from "./utilities/fiveHundredHandler";
 import { fourOFourHandler } from "./utilities/fourOFourHandler";
 import { isProduction } from "./utilities/development";
 import { ArchiveController } from "~/controllers/ArchiveController";
+import { TagsService } from "~/services/TagsService";
+import { TagsMiddleware } from "~/middlewares/TagsMiddleware";
+import { RecentPostsMiddleware } from "~/middlewares/RecentPostsMiddleware";
 
 if (!isProduction()) {
   sqlite3.verbose();
@@ -58,26 +61,19 @@ if (!isProduction()) {
     });
   }
 
+  // Services initialization
   di.analyticsService = new AnalyticsService(db);
   di.postsService = new PostsService(db);
   di.usersService = new UsersService(db);
   di.sessionsService = new SessionsService(db);
+  di.tagsService = new TagsService(db);
 
   const highlighter = await getHighlighter({ theme: "material-palenight" });
 
   di.md = new MarkdownIt({
     html: true,
-    highlight: (str, lang, attrs) => {
-      if (attrs?.length > 0) {
-        const attributes = JSON.parse(attrs);
-        for (const [key, value] of Object.entries(attributes)) {
-          di.logger.debug(`Key: "${key}" Value: "${value}"`);
-        }
-      }
+    highlight: (str, lang, _attrs) => {
       try {
-        // const tokens = highlighter.codeToThemedTokens(str, lang);
-        // return JSON.stringify(tokens);
-
         return highlighter.codeToHtml(str, { lang });
       } catch (err) {
         di.logger.error(err);
@@ -112,6 +108,8 @@ if (!isProduction()) {
       .use(cookieParser(BLOG_SECRET))
       .use(ApiV1Controller.path, new ApiV1Controller().router)
       .all(HitsCounterMiddleware.path, new HitsCounterMiddleware().handler)
+      .all(TagsMiddleware.path, new TagsMiddleware().handler)
+      .all(RecentPostsMiddleware.path, new RecentPostsMiddleware().handler)
       .use(AboutController.path, new AboutController().router)
       .use(NowController.path, new NowController().router)
       .use(ArchiveController.path, new ArchiveController().router)
