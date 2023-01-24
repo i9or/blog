@@ -1,6 +1,5 @@
 import { html } from "~/utilities/html";
-import { Tag } from "~/models/Tag";
-import { di } from "~/di";
+import { Tag } from "~/types";
 import { ROUTES } from "~/constants";
 
 const RenderNoTags = () => html`<div
@@ -14,7 +13,7 @@ const RenderTags = (tags: Tag[]) => html`<ul
 >
   ${tags.map(
     (tag) => html`<li class="sidebar-widget__tag">
-      <a href="${ROUTES.tag}/${tag.slug}">${tag.tag}</a>
+      <a href="/${ROUTES.tag}/${tag.slug}">${tag.text}</a>
     </li>`
   )}
 </ul>`;

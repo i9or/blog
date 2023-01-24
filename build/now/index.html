@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/public/network2-Y2HTEAXS.ico"
+      type="image/x-icon"
+    />
+    <link rel="icon" href="/public/network2-Y2HTEAXS.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/public/main-WWRK5UWG.css" />
+    <script>
+      const ws = new WebSocket("ws://localhost:4001");
+
+      ws.onopen = function () {
+        console.info("Connected");
+      };
+
+      ws.onmessage = function (event) {
+        if (event.data === "reload") {
+          window.location.reload();
+        }
+      };
+    </script>
+    <title>Ignore This Page</title>
+  </head>
+  <body class="body-container">
+    <input type="checkbox" id="navigation-toggle" class="visually-hidden" />
+    <header class="header">
+      <div class="header__title-wrapper">
+        <img
+          class="header__logo small-screen-hidden"
+          src="/public/log02-5GQ3HL2X.png"
+          alt="Notepad logo"
+          width="32"
+          height="32"
+        />
+        <h1 class="header__title">Ignore This Page</h1>
+      </div>
+      <div class="header__actions">
+        <a href="/feed" class="rss-button small-screen-hidden" title="RSS feed">
+          <svg
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="15" cy="85" r="15" fill="currentColor" />
+            <path
+              d="M 0 55 A 45 45 0 0 1 45 100 L 65 100 A 65 65 0 0 0 0 35 Z"
+              fill="currentColor"
+            />
+            <path
+              d="M 0 20 A 80 80 0 0 1 80 100 L 100 100 A 100 100 0 0 0 0 0 Z"
+              fill="currentColor"
+            />
+          </svg>
+        </a>
+        <label
+          for="navigation-toggle"
+          class="hamburger-button big-screen-hidden"
+          title="Toggle navigation menu"
+        >
+          <svg
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect y="10" width="100" height="10" fill="currentColor" />
+            <rect y="45" width="100" height="10" fill="currentColor" />
+            <rect y="80" width="100" height="10" fill="currentColor" />
+          </svg>
+        </label>
+      </div>
+    </header>
+    <nav class="navigation">
+      <span class="navigation__search">
+        <form class="search" method="get" action="https://duckduckgo.com/">
+          <input type="hidden" name="sites" value="https://ignorethis.page" />
+          <input
+            type="search"
+            name="q"
+            autocomplete="off"
+            aria-label="Search the site"
+            placeholder="Search…"
+            class="search__input"
+          />
+        </form>
+      </span>
+      <ul class="navigation__menu">
+        <li
+          class="navigation__divider big-screen-hidden"
+          aria-hidden="true"
+        ></li>
+        <li class="navigation__item">
+          <a
+            href="/"
+            class="navigation__button navigation__button--home"
+            title="Home"
+          >
+            <svg
+              class="small-screen-hidden"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="House icon"
+            >
+              <path
+                d="M 20 85 L 40 85 L 40 60 L 60 60 L 60 85 L 80 85 L 80 50 L 90 50 L 50 15 L 10 50 L 20 50 Z"
+                fill="currentColor"
+              />
+              <rect x="65" y="20" width="10" height="20" fill="currentColor" />
+            </svg>
+            <span class="big-screen-hidden">Home</span>
+          </a>
+        </li>
+        <li class="navigation__divider" aria-hidden="true"></li>
+        <li class="navigation__item">
+          <a href="/about" class="navigation__button">About</a>
+        </li>
+        <li class="navigation__divider" aria-hidden="true"></li>
+        <li class="navigation__item">
+          <a href="/now" class="navigation__button">Now!</a>
+        </li>
+        <li class="navigation__divider" aria-hidden="true"></li>
+        <li class="navigation__item">
+          <a href="/archive" class="navigation__button">Archive</a>
+        </li>
+        <li class="navigation__divider" aria-hidden="true"></li>
+        <li class="navigation__item big-screen-hidden">
+          <a class="navigation__button" href="/feed">RSS Feed</a>
+        </li>
+        <!--<li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
+            <li class="navigation__item big-screen-hidden">
+              <div class="navigation__button">
+                <label for="themeSelector"> Theme: </label>
+                <select name="themeSelector" id="themeSelector">
+                  <option value="os">OS Default</option>
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                </select>
+              </div>
+            </li>-->
+      </ul>
+    </nav>
+    <main class="main">
+      <article>
+        <h1>Now! page</h1>
+        <p>Here's the list of things I'm up to <strong>now</strong>:</p>
+        <ul>
+          <li>
+            <p>December 2022</p>
+            <ul>
+              <li>Making an almost static Blog engine using Node.js;</li>
+              <li>
+                Working on a legacy OpenGL demo with retro graphics and old
+                libraries;
+              </li>
+              <li>
+                Studying
+                <a href="https://sarabander.github.io/sicp/">SICP</a>.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          Inspired by other
+          <a href="https://nownownow.com/about">now pages</a>.
+        </p>
+      </article>
+    </main>
+    <aside class="sidebar">
+      <section class="sidebar-widget">
+        <header class="sidebar-widget__header">Recent Posts</header>
+        <ul class="sidebar-widget__content sidebar-widget__content--list">
+          <li class="sidebar-widget__list-item">
+            <a
+              href="/post/drawing-coloured-triangle-using-c-and-opengl"
+              tabindex="0"
+              title="Drawing a Coloured Triangle using C and OpenGL"
+            >
+              Drawing a Coloured Triangle using C and OpenGL
+            </a>
+          </li>
+          <li class="sidebar-widget__list-item">
+            <a
+              href="/post/sample-post-fifth"
+              tabindex="0"
+              title="Sample Post Fifth"
+            >
+              Sample Post Fifth
+            </a>
+          </li>
+          <li class="sidebar-widget__list-item">
+            <a
+              href="/post/sample-post-fourth"
+              tabindex="0"
+              title="Sample Post Fourth"
+            >
+              Sample Post Fourth
+            </a>
+          </li>
+          <li class="sidebar-widget__list-item">
+            <a
+              href="/post/sample-post-third"
+              tabindex="0"
+              title="Sample Post Third"
+            >
+              Sample Post Third
+            </a>
+          </li>
+          <li class="sidebar-widget__list-item">
+            <a
+              href="/post/sample-post-second"
+              tabindex="0"
+              title="Sample Post Second"
+            >
+              Sample Post Second
+            </a>
+          </li>
+        </ul>
+      </section>
+      <section class="sidebar-widget">
+        <header class="sidebar-widget__header">Tags</header>
+        <ul class="sidebar-widget__content sidebar-widget__content--tags">
+          <li class="sidebar-widget__tag">
+            <a href="/tag/test">Test</a>
+          </li>
+          <li class="sidebar-widget__tag">
+            <a href="/tag/some-tag">Some Tag</a>
+          </li>
+          <li class="sidebar-widget__tag">
+            <a href="/tag/sample">Sample</a>
+          </li>
+          <li class="sidebar-widget__tag">
+            <a href="/tag/graphics">Graphics</a>
+          </li>
+          <li class="sidebar-widget__tag">
+            <a href="/tag/opengl">OpenGL</a>
+          </li>
+          <li class="sidebar-widget__tag">
+            <a href="/tag/c">C</a>
+          </li>
+        </ul>
+      </section>
+      <section class="sidebar-banners">
+        <img
+          src="/public/hair-B5ZMUMGL.gif"
+          alt="No bad hair on the internet"
+        />
+        <img src="/public/macos_mov-5PAXNS2V.gif" alt="Made with MacOS" />
+        <img src="/public/linux_powered-3XB4JCTP.gif" alt="Linux powered" />
+        <a href="https://wiby.me/">
+          <img
+            src="/public/wiby-E7GX3O3V.gif"
+            alt="Wiby search engine micro banner"
+          />
+        </a>
+        <img src="/public/opengl-RTCOHNPV.png" alt="OpenGL logo micro banner" />
+        <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">
+          <img
+            src="/public/agplv3-88x31-AI7BJ3TP.gif"
+            alt="AGPLv3 logo micro banner"
+          />
+        </a>
+        <img
+          src="/public/bestvw-export-H7ESPG6Y.gif"
+          alt="Best viewed with computer and monitor"
+        />
+        <img
+          src="/public/anydamn-EPDXWEYY.gif"
+          alt="Best viewed with any damn browser"
+        />
+        <a href="https://www.mozilla.org/en-GB/firefox/new/">
+          <img
+            class="sidebar-banners--rounded"
+            src="/public/firefoxget-PTWTDP3M.gif"
+            alt="Get Firefox animation micro banner"
+          />
+        </a>
+        <a href="https://www.youtube.com/user/alyankovic/videos">
+          <img
+            src="/public/yanknow-4WCNUAZA.gif"
+            alt="Weird Al Yankovic logo micro banner"
+          />
+        </a>
+        <a href="https://www.jetbrains.com/webstorm/">
+          <img
+            src="/public/webstorm-24YHM4P2.png"
+            alt="WebStorm IDE logo micro banner"
+          />
+        </a>
+        <img src="/public/alienow-F722NEWX.gif" alt="Alien Now micro banner" />
+        <img
+          src="/public/anythingbut-P7SC26EW.gif"
+          alt="Anything but Chrome gif"
+        />
+        <img src="/public/benis-SROGCNYG.gif" alt="Benis Now!" />
+        <img
+          src="/public/bestenjoyed-5PPUZ5AV.gif"
+          alt="Best enjoyed with Coca-Cola"
+        />
+        <img src="/public/cards-D57WF3WX.png" alt="Cards micro banner" />
+        <img src="/public/chrome-SDGCSO3K.gif" alt="Chrome is evil" />
+        <img src="/public/coke-UCQSJDCW.png" alt="Powered by Coca-Cola" />
+        <img src="/public/css-4IZ244C2.png" alt="CSS is awesome" />
+        <img
+          src="/public/javascriptfree-WBIZITKK.gif"
+          alt="JavaScript Free Page"
+        />
+        <a href="https://capstasher.neocities.org/88x31collection-page1.html">
+          <img
+            src="/public/the-largest-88x31-collection-2-UNMROLFA.png"
+            alt="Largest collection of 88x31 buttons"
+          />
+        </a>
+        <a rel="me" href="https://masto.ai/@i9or">
+          <img
+            src="/public/masto-FY7MFTQH.gif"
+            alt="Join Mastodon, leave Twitter"
+        /></a>
+        <a href="https://www.getmonero.org/">
+          <img src="/public/monero-now-4PJLOID7.gif" alt="Monero Now" />
+        </a>
+        <img src="/public/possums-now-I4SEPO7L.png" alt="Possums Now" />
+        <img src="/public/slava-JIPXVKUI.gif" alt="Glory to Ukraine!" />
+        <img src="/public/2001-Z77RP4TU.gif" alt="I wish it was 2001" />
+        <div class="hit-counter">
+          <span class="hit-counter__digit">0</span
+          ><span class="hit-counter__digit">0</span
+          ><span class="hit-counter__digit">0</span
+          ><span class="hit-counter__digit">0</span
+          ><span class="hit-counter__digit">0</span
+          ><span class="hit-counter__digit">9</span
+          ><span class="hit-counter__digit">6</span
+          ><span class="hit-counter__digit">3</span
+          ><span class="hit-counter__digit">0</span
+          ><span class="hit-counter__digit">7</span>
+        </div>
+      </section>
+    </aside>
+    <footer class="footer">
+      <span>
+        Copyright © 2022 - 2023 Ignore This Page. All rights reserved.
+      </span>
+      <span>latest</span>
+    </footer>
+  </body>
+</html>

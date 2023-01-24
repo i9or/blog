@@ -20,7 +20,7 @@ export const configuration = {
     ".png": "file",
     ".ico": "file",
   },
-  assetNames: "public/[name]-[hash]",
+  assetNames: "/public/[name]-[hash]",
   publicPath: "/",
   plugins: [cssFilePlugin],
   define: {

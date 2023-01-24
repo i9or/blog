@@ -38,4 +38,10 @@ export const AboutPage = () => html`<article>
     feelings one way or the other about my hot takes and badly formatted
     ramblings!
   </p>
+
+  <p>
+    <strong>P.S.</strong> Or maybe there will be some articles about modern
+    JavaScript atrocities. I don't know! Who cares after all? Also, get off my
+    <s>lawn</s> <s>property</s> digital garden!
+  </p>
 </article>`;

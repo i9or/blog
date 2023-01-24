@@ -1,11 +1,9 @@
 import dayjs from "dayjs";
 
-import { Post } from "~/models/Post";
-import { Tag } from "~/models/Tag";
 import { calendarPng } from "~/assets";
 import { di } from "~/di";
 import { html } from "~/utilities/html";
-import { PostMeta } from "~/models/PostMeta";
+import { Post, PostMeta, Tag } from "~/types";
 import { ROUTES } from "~/constants";
 
 type SinglePostProps = {
@@ -20,7 +18,7 @@ const RenderTags = (tags: Tag[]) => {
     return html` <section class="post__tags">
       <span>Tags:</span>
       ${tags
-        .map(({ slug, tag }) => html`<a href="/tag/${slug}">${tag}</a>`)
+        .map(({ slug, text }) => html`<a href="/tag/${slug}">${text}</a>`)
         .join(", ")}
     </section>`;
   } else {
@@ -49,7 +47,7 @@ export const SinglePost = ({
   <section class="post__navigation">
     ${previousPost
       ? html`<a
-          href="${ROUTES.post}/${previousPost.slug}"
+          href="/${ROUTES.post}/${previousPost.slug}"
           title="${previousPost.title}"
         >
           <small>&larr; There</small>
@@ -57,7 +55,7 @@ export const SinglePost = ({
       : "&nbsp;"}
     ${nextPost
       ? html`<a
-          href="${ROUTES.post}/${nextPost.slug}"
+          href="/${ROUTES.post}/${nextPost.slug}"
           title="${nextPost.title}"
         >
           <small>Here &rarr;</small>

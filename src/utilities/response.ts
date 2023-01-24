@@ -1,6 +1,6 @@
 import { di } from "~/di";
-import { Tag } from "~/models/Tag";
-import { PostMeta } from "~/models/PostMeta";
+import { Tag } from "~/types/Tag";
+import { PostMeta } from "~/types/PostMeta";
 
 export type Locals = Partial<{
   hits: number;

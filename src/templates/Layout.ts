@@ -1,5 +1,4 @@
 import mainStyles from "~/styles/main.css";
-import { getLocalsValueByKey, Locals } from "~/utilities/response";
 import { html } from "~/utilities/html";
 import { logPng, network2Ico } from "~/assets";
 
@@ -11,21 +10,18 @@ import { Footer } from "./Footer";
 import { Navigation } from "./Navigation";
 import { RssButton } from "./RssButton";
 import { SidebarBanners } from "./SidebarBanners";
-import { ThemeButton } from "./ThemeButton";
 import { TagsWidget } from "./TagsWidget";
 import { RecentPostsWidget } from "./RecentPostsWidget";
+import { Tag, PostMeta } from "~/types";
 
 type LayoutProperties = {
   body: string;
-  locals?: Locals;
+  tags: Tag[];
+  recentPosts: PostMeta[];
 };
 
-export const Layout = ({ body, locals }: LayoutProperties) => {
-  const hits = getLocalsValueByKey(locals, "hits") ?? 0;
-  const tags = getLocalsValueByKey(locals, "tags") ?? [];
-  const recentPosts = getLocalsValueByKey(locals, "recentPosts") ?? [];
-
-  return html`<!DOCTYPE html>
+export const Layout = ({ body, tags, recentPosts }: LayoutProperties) =>
+  html`<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="utf-8" />
@@ -33,6 +29,19 @@ export const Layout = ({ body, locals }: LayoutProperties) => {
         <link rel="shortcut icon" href="${network2Ico}" type="image/x-icon" />
         <link rel="icon" href="${network2Ico}" type="image/x-icon" />
         <link rel="stylesheet" href="${mainStyles}" />
+        <script>
+          const ws = new WebSocket("ws://localhost:4001");
+
+          ws.onopen = function () {
+            console.info("Connected");
+          };
+
+          ws.onmessage = function (event) {
+            if (event.data === "reload") {
+              window.location.reload();
+            }
+          };
+        </script>
         <title>Ignore This Page</title>
       </head>
       <body class="body-container">
@@ -49,16 +58,15 @@ export const Layout = ({ body, locals }: LayoutProperties) => {
             <h1 class="header__title">Ignore This Page</h1>
           </div>
           <div class="header__actions">
-            ${RssButton()} ${ThemeButton()} ${NavigationToggleButton()}
+            ${RssButton()} ${NavigationToggleButton()}
           </div>
         </header>
         ${Navigation()}
         <main class="main">${body}</main>
         <aside class="sidebar">
           ${RecentPostsWidget(recentPosts)} ${TagsWidget(tags)}
-          ${SidebarBanners(hits)}
+          ${SidebarBanners()}
         </aside>
         ${Footer()}
       </body>
     </html>`;
-};

@@ -1,5 +1,5 @@
 import { html } from "~/utilities/html";
-import { PostMeta } from "~/models/PostMeta";
+import { PostMeta } from "~/types";
 
 const RenderNoPosts = () => html` <div
   class="sidebar-widget__content sidebar-widget__content--tags"
