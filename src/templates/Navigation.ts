@@ -25,9 +25,9 @@ export const Navigation = () => {
       <li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
       <li class="navigation__item">
         <a
-          href="${ROUTES.home}"
+          href="/${ROUTES.home}"
           class="navigation__button navigation__button--home"
-          arial-label="Home"
+          title="Home"
         >
           ${HouseIcon()}
           <span class="big-screen-hidden">Home</span>
@@ -35,15 +35,19 @@ export const Navigation = () => {
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item">
-        <a href="${ROUTES.about}" class="navigation__button">About</a>
+        <a href="/${ROUTES.about}" class="navigation__button">About</a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item">
-        <a href="${ROUTES.now}" class="navigation__button">Now</a>
+        <a href="/${ROUTES.now}" class="navigation__button">Now!</a>
+      </li>
+      <li class="navigation__divider" aria-hidden="true"></li>
+      <li class="navigation__item">
+        <a href="/${ROUTES.archive}" class="navigation__button">Archive</a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item big-screen-hidden">
-        <a class="navigation__button" href="${ROUTES.rss}">RSS Feed</a>
+        <a class="navigation__button" href="/${ROUTES.rss}">RSS Feed</a>
       </li>
       <!--<li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
             <li class="navigation__item big-screen-hidden">

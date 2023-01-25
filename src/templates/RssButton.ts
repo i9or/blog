@@ -3,7 +3,7 @@ import { ROUTES } from "~/constants";
 
 export const RssButton = () => {
   return html`<a
-    href="${ROUTES.rss}"
+    href="/${ROUTES.rss}"
     class="rss-button small-screen-hidden"
     title="RSS feed"
   >

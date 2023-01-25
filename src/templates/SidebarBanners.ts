@@ -29,7 +29,7 @@ import {
 } from "~/assets";
 import { HitCounter } from "./HitCounter";
 
-export const SidebarBanners = (hits: number) => {
+export const SidebarBanners = () => {
   return html`<section class="sidebar-banners">
     <img src="${hairGif}" alt="No bad hair on the internet" />
     <img src="${macosMovGif}" alt="Made with MacOS" />
@@ -80,6 +80,6 @@ export const SidebarBanners = (hits: number) => {
     <img src="${possumsNowPng}" alt="Possums Now" />
     <img src="${slavaGif}" alt="Glory to Ukraine!" />
     <img src="${twoThousandOneGif}" alt="I wish it was 2001" />
-    ${HitCounter(hits)}
+    ${HitCounter(Math.floor(Math.random() * 100000))}
   </section>`;
 };

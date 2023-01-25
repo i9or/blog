@@ -1,16 +1,33 @@
-import type { Logger } from "pino";
-import type MarkdownIt from "markdown-it";
+import MarkdownIt from "markdown-it";
+import { getHighlighter } from "shiki";
+import implicitFigures from "markdown-it-image-figures";
+import blockquoteAttribution from "markdown-it-attribution";
 
-import { PostsService } from "./services/PostsService";
-import { AnalyticsService } from "./services/AnalyticsService";
-import { UsersService } from "./services/UsersService";
-import { SessionsService } from "./services/SessionsService";
+export const initMd = async () => {
+  const highlighter = await getHighlighter({ theme: "material-palenight" });
 
-export const di = {} as {
-  analyticsService: AnalyticsService;
-  postsService: PostsService;
-  usersService: UsersService;
-  sessionsService: SessionsService;
-  logger: Logger;
-  md: MarkdownIt;
+  return new MarkdownIt({
+    html: true,
+    highlight: (str, lang, _attrs) => {
+      try {
+        return highlighter.codeToHtml(str, { lang });
+      } catch (err) {
+        console.error(err);
+        return "";
+      }
+    },
+  })
+    .use(implicitFigures, {
+      dataType: true,
+      figcaption: true,
+      lazy: true,
+      async: true,
+    })
+    .use(blockquoteAttribution, {
+      classNameContainer: "blockquote",
+      classNameAttribution: "blockquote__attribution",
+      removeMarker: false,
+    });
 };
+
+export const di = {} as { md: MarkdownIt };

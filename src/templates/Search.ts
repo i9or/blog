@@ -1,13 +1,19 @@
 import { html } from "~/utilities/html";
 
 export const Search = () => {
-  return html`<form action="/search" method="GET" class="search">
+  return html`<form
+    class="search"
+    method="get"
+    action="https://duckduckgo.com/"
+  >
+    <input type="hidden" name="sites" value="https://ignorethis.page" />
     <input
-      type="text"
-      placeholder="Search"
+      type="search"
+      name="q"
+      autocomplete="off"
+      aria-label="Search the site"
+      placeholder="Search…"
       class="search__input"
-      name="query"
-      disabled
     />
   </form>`;
 };

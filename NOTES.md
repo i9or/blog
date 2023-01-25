@@ -1,82 +1,27 @@
 # Some Notes
 
-## Controllers
+Just some development notes.
 
-### Returning `html` and `json` and using middleware
-
-```ts
-router.get(
-  "/",
-  (req, res, next) => {
-    console.log("SOME MIDDLEWARE");
-    next();
-  },
-  (_, res) => {
-    res.format({
-      html: () => {
-        res.send(
-          Layout({
-            body: html`<h1>Posts#index</h1>`,
-          })
-        );
-      },
-      json: () => {
-        res.send({
-          posts: [
-            { name: "Post1" },
-            { name: "Post2" },
-            { name: "Post3" },
-            { name: "Post4" },
-          ],
-        });
-      },
-    });
-  }
-);
-```
-
-### Using request parameters
+## Using Shiki highlighter
 
 ```ts
-app.get("/page/:page/", (req, res) => {
-  res.status(200).send(
-    Layout({
-      body: html`
-        <h1>Some cool page!!!</h1>
-        <h2>URL</h2>
-        ${req.url}
-        <h2>Params</h2>
-        ${JSON.stringify(req.params, null, 2)}
-      `,
-    })
-  );
-});
-```
+{
+  highlight: (str, lang, attrs) => {
+    if (attrs?.length > 0) {
+      const attributes = JSON.parse(attrs);
+      for (const [key, value] of Object.entries(attributes)) {
+        di.logger.debug(`Key: "${key}" Value: "${value}"`);
+      }
+    }
+    try {
+      // const tokens = highlighter.codeToThemedTokens(str, lang);
+      // return JSON.stringify(tokens);
 
-### Base Controller class reference implementation
-
-```ts
-export class BaseController {
-  private readonly _router = new App();
-
-  protected constructor() {
-    this.index = this.index.bind(this);
-    this._router.get("/", this.index);
-  }
-
-  index(req: Request, res: Response, next: NextFunction) {
-    res.send(`${this.constructor.name}#index is not implemented`);
-  }
-
-  new = () => {}; // might be not the best name
-  create = (req: Request, res: Response, next: NextFunction) => {};
-  edit = (req: Request, res: Response, next: NextFunction) => {};
-  show = (req: Request, res: Response, next: NextFunction) => {};
-  update = (req: Request, res: Response, next: NextFunction) => {};
-  destroy = (req: Request, res: Response, next: NextFunction) => {};
-
-  get router() {
-    return this._router;
-  }
+      return highlighter.codeToHtml(str, { lang });
+    } catch (err) {
+      di.logger.error(err);
+      return "";
+    }
+  };
 }
 ```

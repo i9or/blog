@@ -3,12 +3,6 @@ body {
   height: 100%;
 }
 
-.shiki {
-  overflow-x: auto;
-  padding: 0.5rem 1rem;
-  border-radius: var(--e-border-radius);
-}
-
 .footer {
   font-size: var(--t-small);
   justify-content: space-between;

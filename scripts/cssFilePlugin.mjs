@@ -1,6 +1,5 @@
 import path from "path";
 import esbuild from "esbuild";
-import { isProduction } from "./utilities.mjs";
 
 export const cssFilePlugin = {
   name: "css-file",
@@ -23,7 +22,7 @@ export const cssFilePlugin = {
         entryPoints: [args.path],
         bundle: true,
         write: false,
-        minify: isProduction(),
+        minify: process.env.NODE_ENV === "production",
         metafile: true,
       });
 

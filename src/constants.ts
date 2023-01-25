@@ -1,10 +1,13 @@
 export const ROUTES = {
-  home: "/",
-  about: "/about",
-  now: "/now",
-  rss: "/feed",
+  home: "",
+  about: "about",
+  now: "now",
+  rss: "feed",
+  archive: "archive",
+  tag: "tag",
+  post: "post",
+  privacyPolicy: "privacy",
 } as const;
 
-export const SESSION_TOKEN = "sessionToken";
-
-export const INITIAL_PASSWORD = "to_be_changed";
+export const SERVER_PORT = 4000;
+export const WSS_PORT = SERVER_PORT + 1;
