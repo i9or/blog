@@ -330,16 +330,7 @@ hr:after {
     text-shadow: none;
   }
 }
-.header__title-wrapper {
-  display: flex;
-  gap: 0.5rem;
-  gap: var(--e-gap-small-size);
-}
-.header__logo {
-  align-self: center;
-  image-rendering: crisp-edges;
-}
-.header__title {
+.header__title > h1 {
   font-size: 180%;
   margin: 0;
   padding: 0;
@@ -900,8 +891,14 @@ body {
 .main > article {
   padding-top: 1.5rem;
 }
-.header__title-wrapper {
-  display: flex;
+.footer a {
+  color: #00bfff;
+}
+.footer a:hover {
+  color: #80dfff;
+}
+.footer a:visited {
+  color: #ff1493;
 }
 .post {
   display: flex;
@@ -933,5 +930,8 @@ body {
 }
 .post__navigation {
   margin-top: auto;
+}
+.just-a-page {
+  padding-bottom: 3rem;
 }
 /*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */

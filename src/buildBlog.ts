@@ -11,6 +11,7 @@ import { AboutPage } from "~/templates/AboutPage";
 import { ArchivePage } from "~/templates/ArchivePage";
 import { ROUTES } from "~/constants";
 import { isProduction } from "~/utilities/development";
+import { PrivacyPolicyPage } from "~/templates/PrivacyPolicyPage";
 
 const prepareBlogData = async (postsPath: string) => {
   const posts: Post[] = [];
@@ -177,6 +178,10 @@ export const buildBlog = async () => {
   await createNewPage(NowPage(), join(buildPath, ROUTES.now));
   await createNewPage(AboutPage(), join(buildPath, ROUTES.about));
   await createNewPage(ArchivePage(), join(buildPath, ROUTES.archive));
+  await createNewPage(
+    PrivacyPolicyPage(),
+    join(buildPath, ROUTES.privacyPolicy)
+  );
 
   await createRobotsTxt(buildPath);
 

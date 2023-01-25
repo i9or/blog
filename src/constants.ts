@@ -6,6 +6,7 @@ export const ROUTES = {
   archive: "archive",
   tag: "tag",
   post: "post",
+  privacyPolicy: "privacy",
 } as const;
 
 export const SERVER_PORT = 4000;

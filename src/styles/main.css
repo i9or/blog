@@ -8,8 +8,16 @@
   padding-top: 1.5rem;
 }
 
-.header__title-wrapper {
-  display: flex;
+.footer a {
+  color: hsl(195, 100%, 50%);
+}
+
+.footer a:hover {
+  color: hsl(195, 100%, 75%);
+}
+
+.footer a:visited {
+  color: deeppink;
 }
 
 /* TODO: move to "blog-css" package */
@@ -48,4 +56,8 @@
 
 .post__navigation {
   margin-top: auto;
+}
+
+.just-a-page {
+  padding-bottom: 3rem;
 }
