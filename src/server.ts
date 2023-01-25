@@ -1,23 +1,16 @@
 import MarkdownIt from "markdown-it";
-import pino from "pino";
-import pinoHttp from "pino-http";
 import sirv from "sirv";
 import { App } from "@tinyhttp/app";
+import { logger } from "@tinyhttp/logger";
 import { getHighlighter } from "shiki";
 import implicitFigures from "markdown-it-image-figures";
 
 import { di } from "~/di";
-import { isProduction } from "~/utilities/development";
 import { buildBlog } from "~/buildBlog";
-
-const BLOG_PORT = 4000;
+import { SERVER_PORT, WSS_PORT } from "~/constants";
+import { isProduction } from "~/utilities/development";
 
 (async () => {
-  di.logger = pino({
-    level: !isProduction() ? "debug" : "warn",
-  });
-  const httpLogger = pinoHttp({ logger: di.logger });
-
   const highlighter = await getHighlighter({ theme: "material-palenight" });
 
   di.md = new MarkdownIt({
@@ -43,24 +36,24 @@ const BLOG_PORT = 4000;
 
   try {
     app
-      .use(httpLogger)
+      .use(logger())
       .use(
         "/public",
-        sirv("build/public", {
+        sirv("tmp/public", {
           maxAge: 31536000, // 1Y
           immutable: true,
         })
       )
       .use(
         "/images",
-        sirv("build/images", {
+        sirv("content/images", {
           maxAge: 31536000, // 1Y
           immutable: true,
         })
       )
       .use("/", sirv("build/", { dev: true }))
-      .listen(BLOG_PORT, () => {
-        di.logger.info(`🚀 Listening on http://localhost:${BLOG_PORT}`);
+      .listen(SERVER_PORT, () => {
+        console.info(`🚀 Listening on http://localhost:${SERVER_PORT}`);
       });
   } catch (err: any) {
     di.logger.error(err);

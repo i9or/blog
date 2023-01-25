@@ -7,14 +7,13 @@ export const configuration = {
   external: [
     "vscode-oniguruma",
     "shiki",
-    "sqlite3",
-    "mock-aws-s3",
-    "aws-sdk",
-    "nock",
+    // "mock-aws-s3",
+    // "aws-sdk",
+    // "nock",
     "bcrypt",
   ],
   bundle: true,
-  outfile: "dist/index.js",
+  outfile: "tmp/index.js",
   loader: {
     ".gif": "file",
     ".png": "file",

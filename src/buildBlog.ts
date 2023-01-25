@@ -11,6 +11,7 @@ import { NowPage } from "~/templates/NowPage";
 import { AboutPage } from "~/templates/AboutPage";
 import { ArchivePage } from "~/templates/ArchivePage";
 import { ROUTES } from "~/constants";
+import { isProduction } from "~/utilities/development";
 
 const prepareBlogData = async (postsPath: string) => {
   const posts: Post[] = [];
@@ -173,14 +174,17 @@ export const buildBlog = async () => {
   await createNewPage(AboutPage(), path.join(buildPath, ROUTES.about));
   await createNewPage(ArchivePage(), path.join(buildPath, ROUTES.archive));
 
-  await fs.cp(
-    path.resolve(process.cwd(), "content/images"),
-    path.join(buildPath, "images"),
-    { recursive: true }
-  );
-  await fs.cp(
-    path.resolve(process.cwd(), "dist/public"),
-    path.join(buildPath, "public"),
-    { recursive: true }
-  );
+  if (isProduction()) {
+    await fs.cp(
+      path.resolve(process.cwd(), "content/images"),
+      path.join(buildPath, "images"),
+      { recursive: true }
+    );
+
+    await fs.cp(
+      path.resolve(process.cwd(), "tmp/public"),
+      path.join(buildPath, "public"),
+      { recursive: true }
+    );
+  }
 };

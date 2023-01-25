@@ -130,5 +130,4 @@ dist
 .pnp.*
 
 # Database
-db/*
-!db/.gitkeep
+build/
