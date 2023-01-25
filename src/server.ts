@@ -1,36 +1,32 @@
-import MarkdownIt from "markdown-it";
 import sirv from "sirv";
 import { App } from "@tinyhttp/app";
 import { logger } from "@tinyhttp/logger";
-import { getHighlighter } from "shiki";
-import implicitFigures from "markdown-it-image-figures";
+import { WebSocketServer } from "ws";
+import { resolve } from "node:path";
+import { watch } from "chokidar";
 
-import { di } from "~/di";
+import { di, initMd } from "~/di";
 import { buildBlog } from "~/buildBlog";
 import { SERVER_PORT, WSS_PORT } from "~/constants";
 import { isProduction } from "~/utilities/development";
 
 (async () => {
-  const highlighter = await getHighlighter({ theme: "material-palenight" });
-
-  di.md = new MarkdownIt({
-    html: true,
-    highlight: (str, lang, _attrs) => {
-      try {
-        return highlighter.codeToHtml(str, { lang });
-      } catch (err) {
-        di.logger.error(err);
-        return "";
-      }
-    },
-  }).use(implicitFigures, {
-    dataType: true,
-    figcaption: true,
-    lazy: true,
-    async: true,
-  });
+  di.md = await initMd();
 
   await buildBlog();
+
+  if (isProduction()) {
+    return;
+  }
+
+  const wss = new WebSocketServer({ port: WSS_PORT });
+
+  watch(resolve(process.cwd(), "content/posts")).on("change", async () => {
+    await buildBlog();
+
+    console.info("Reloading...");
+    wss.clients.forEach((client) => client.send("reload"));
+  });
 
   const app = new App();
 
@@ -56,6 +52,6 @@ import { isProduction } from "~/utilities/development";
         console.info(`🚀 Listening on http://localhost:${SERVER_PORT}`);
       });
   } catch (err: any) {
-    di.logger.error(err);
+    console.error(err);
   }
 })();

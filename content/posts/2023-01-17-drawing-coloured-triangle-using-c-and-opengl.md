@@ -1,5 +1,5 @@
 ---
-{ "tags": ["Graphics", "OpenGL", "C"] }
+{ "tags": ["Graphics", "OpenGL", "C", "GLUT"] }
 ---
 
 # Drawing a Coloured Triangle using C and OpenGL

@@ -13,6 +13,7 @@ import { SidebarBanners } from "./SidebarBanners";
 import { TagsWidget } from "./TagsWidget";
 import { RecentPostsWidget } from "./RecentPostsWidget";
 import { Tag, PostMeta } from "~/types";
+import { DevelopmentScripts } from "~/templates/DevelopmentScripts";
 
 type LayoutProperties = {
   body: string;
@@ -29,19 +30,7 @@ export const Layout = ({ body, tags, recentPosts }: LayoutProperties) =>
         <link rel="shortcut icon" href="${network2Ico}" type="image/x-icon" />
         <link rel="icon" href="${network2Ico}" type="image/x-icon" />
         <link rel="stylesheet" href="${mainStyles}" />
-        <script>
-          const ws = new WebSocket("ws://localhost:4001");
-
-          ws.onopen = function () {
-            console.info("Connected");
-          };
-
-          ws.onmessage = function (event) {
-            if (event.data === "reload") {
-              window.location.reload();
-            }
-          };
-        </script>
+        ${DevelopmentScripts()}
         <title>Ignore This Page</title>
       </head>
       <body class="body-container">

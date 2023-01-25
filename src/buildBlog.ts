@@ -1,9 +1,8 @@
 import { Layout } from "~/templates/Layout";
-import * as fs from "node:fs/promises";
-import path from "node:path";
+import { opendir, readFile, mkdir, writeFile, cp } from "node:fs/promises";
+import { join, resolve } from "node:path";
 import dayjs from "dayjs";
 
-import { di } from "~/di";
 import { Post, PostMeta, Tag } from "~/types";
 import { SinglePost } from "~/templates/SinglePost";
 import { toSlug } from "~/utilities/toSlug";
@@ -19,16 +18,13 @@ const prepareBlogData = async (postsPath: string) => {
   const recentPosts: PostMeta[] = [];
 
   try {
-    const postsDirectory = await fs.opendir(postsPath);
+    const postsDirectory = await opendir(postsPath);
 
     for await (const entry of postsDirectory) {
       const [year, month, day, ...postSlug] = entry.name.split("-");
-      const entryContents = await fs.readFile(
-        path.join(postsPath, entry.name),
-        {
-          encoding: "utf-8",
-        }
-      );
+      const entryContents = await readFile(join(postsPath, entry.name), {
+        encoding: "utf-8",
+      });
 
       const [opening, metaJson, closing, empty, ...content] =
         entryContents.split("\n");
@@ -67,7 +63,7 @@ const prepareBlogData = async (postsPath: string) => {
       });
     }
   } catch (err) {
-    di.logger.error(err);
+    console.error(err);
     return;
   }
 
@@ -94,34 +90,42 @@ const pageBuilder = (recentPosts: PostMeta[], tags: Tag[]) => {
       tags,
     });
 
-    await fs.mkdir(buildPath, { recursive: true });
-    await fs.writeFile(path.join(buildPath, "index.html"), renderedPage);
+    await mkdir(buildPath, { recursive: true });
+    await writeFile(join(buildPath, "index.html"), renderedPage);
   };
 };
 
+const createRobotsTxt = async (buildPath: string) => {
+  await writeFile(
+    join(buildPath, "robots.txt"),
+    ["User-agent: *", "Allow: /", ""].join("\n")
+  );
+};
+
 export const buildBlog = async () => {
+  process.stdout.write("Building the blog...");
+  const start = process.hrtime();
+
   // Prepare phase
-  const postsPath = path.resolve(process.cwd(), "content/posts");
+  const postsPath = resolve(process.cwd(), "content/posts");
   const blogData = await prepareBlogData(postsPath);
 
   if (!blogData) {
-    di.logger.error("Hey chief, something is wrong, no blog data at all!");
-    throw new Error("No blog data");
+    throw new Error("Hey chief, something is wrong, no blog data at all!");
   }
 
   const { tags, recentPosts, posts } = blogData;
 
   // Build phase
-  const buildPath = path.resolve(process.cwd(), "build");
+  const buildPath = resolve(process.cwd(), "build");
 
   if (posts.length === 0) {
-    di.logger.error("Hey chief, something is wrong, no posts at all!");
-    throw new Error("No posts");
+    throw new Error("Hey chief, something is wrong, no posts at all!");
   }
 
   const createNewPage = pageBuilder(recentPosts, tags);
 
-  await fs.mkdir(buildPath, { recursive: true });
+  await mkdir(buildPath, { recursive: true });
 
   let mainPreviousPost: Optional<PostMeta> = undefined;
 
@@ -166,25 +170,28 @@ export const buildBlog = async () => {
         previousPost: previous,
         nextPost: next,
       }),
-      path.join(buildPath, ROUTES.post, posts[i].slug)
+      join(buildPath, ROUTES.post, posts[i].slug)
     );
   }
 
-  await createNewPage(NowPage(), path.join(buildPath, ROUTES.now));
-  await createNewPage(AboutPage(), path.join(buildPath, ROUTES.about));
-  await createNewPage(ArchivePage(), path.join(buildPath, ROUTES.archive));
+  await createNewPage(NowPage(), join(buildPath, ROUTES.now));
+  await createNewPage(AboutPage(), join(buildPath, ROUTES.about));
+  await createNewPage(ArchivePage(), join(buildPath, ROUTES.archive));
+
+  await createRobotsTxt(buildPath);
 
   if (isProduction()) {
-    await fs.cp(
-      path.resolve(process.cwd(), "content/images"),
-      path.join(buildPath, "images"),
+    await cp(
+      resolve(process.cwd(), "content/images"),
+      join(buildPath, "images"),
       { recursive: true }
     );
 
-    await fs.cp(
-      path.resolve(process.cwd(), "tmp/public"),
-      path.join(buildPath, "public"),
-      { recursive: true }
-    );
+    await cp(resolve(process.cwd(), "tmp/public"), join(buildPath, "public"), {
+      recursive: true,
+    });
   }
+
+  const elapsed = Math.round(process.hrtime(start)[1] / 1000000);
+  process.stdout.write(` done in ${elapsed}ms\n`);
 };

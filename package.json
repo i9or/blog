@@ -13,12 +13,12 @@
     "test:coverage": "vitest --coverage",
     "start": "node dist/index.js",
     "build:dev": "node scripts/build-dev.mjs",
-    "build": "del ./dist && cross-env NODE_ENV=production node scripts/build-prod.mjs",
+    "build:prod": "cross-env NODE_ENV=production node scripts/build-prod.mjs",
+    "build": "del ./tmp && del ./build && npm run build:prod && cross-env NODE_ENV=production node tmp/index.js",
     "watch:dev": "node scripts/watch-dev.mjs",
-    "watch:node": "nodemon -e js --watch dist tmp/index.js",
+    "watch:node": "nodemon -e js --watch tmp tmp/index.js",
     "watch": "concurrently -n \"BUILD,NODE\" -c \"blue,green\" \"npm:watch:dev\" \"npm:watch:node\"",
-    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
-    "db:migrate": "node scripts/migrate.mjs"
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
   },
   "repository": {
     "type": "git",
@@ -56,16 +56,10 @@
     "ws": "8.12.0"
   },
   "dependencies": {
+    "chokidar": "3.5.3",
     "shiki": "0.10.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  },
-  "files": [
-    "dist/*/**",
-    "migrations/*",
-    "scripts/migrate.mjs",
-    "scripts/utilities.mjs",
-    "npm-shrinkwrap.json"
-  ]
+  }
 }

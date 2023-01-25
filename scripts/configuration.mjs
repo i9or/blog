@@ -4,14 +4,7 @@ export const configuration = {
   logLevel: "info",
   entryPoints: ["./src/server.ts"],
   platform: "node",
-  external: [
-    "vscode-oniguruma",
-    "shiki",
-    // "mock-aws-s3",
-    // "aws-sdk",
-    // "nock",
-    "bcrypt",
-  ],
+  external: ["vscode-oniguruma", "shiki", "chokidar"],
   bundle: true,
   outfile: "tmp/index.js",
   loader: {
