@@ -1,0 +1,9 @@
+.posts-meta-table tr {
+  border: none;
+}
+
+.posts-meta-table__date {
+  width: 15ch;
+  font-weight: bold;
+  font-family: var(--t-sans);
+}

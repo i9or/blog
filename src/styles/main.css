@@ -6,6 +6,8 @@
 @import "./post.css";
 @import "./footer.css";
 @import "./tag-page.css";
+@import "./archive-page.css";
+@import "./posts-meta-table.css";
 
 .main > article {
   padding-top: 1.5rem;

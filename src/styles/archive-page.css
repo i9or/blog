@@ -1,0 +1,6 @@
+.archive-page__year {
+  border-bottom: thin solid var(--c-divider);
+  padding-left: 0.5rem;
+  font-size: var(--t-small);
+  font-weight: bold;
+}
