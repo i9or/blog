@@ -1,5 +1,5 @@
 import { Layout } from "~/templates/Layout";
-import { opendir, readFile, mkdir, writeFile, cp } from "node:fs/promises";
+import { cp, mkdir, opendir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import dayjs from "dayjs";
 
@@ -12,10 +12,18 @@ import { ArchivePage } from "~/templates/ArchivePage";
 import { ROUTES } from "~/constants";
 import { isProduction } from "~/utilities/development";
 import { PrivacyPolicyPage } from "~/templates/PrivacyPolicyPage";
+import { ErrorPage } from "~/templates/ErrorPage";
+import { TagPage } from "~/templates/TagPage";
 
 const prepareBlogData = async (postsPath: string) => {
   const posts: Post[] = [];
-  const allTags = new Map<string, string>();
+  const postsByTag = new Map<
+    Tag["text"],
+    {
+      slug: Tag["slug"];
+      posts: PostMeta[];
+    }
+  >();
   const recentPosts: PostMeta[] = [];
 
   try {
@@ -31,27 +39,41 @@ const prepareBlogData = async (postsPath: string) => {
         entryContents.split("\n");
 
       if (opening !== "---" || closing !== "---" || empty !== "") {
+        // noinspection ExceptionCaughtLocallyJS
         throw new Error(`Post "${entry.name}" is formatted incorrectly!`);
       }
 
       const { tags }: { tags: string[] } = JSON.parse(metaJson);
 
-      const slugifiedTags: Tag[] = tags.map((tag: string) => {
-        const s = toSlug(tag);
-        allTags.set(tag, toSlug(tag));
+      const postMeta: PostMeta = {
+        title: content[0].replace("#", "").trim(),
+        slug: postSlug.join("-").replace(".md", ""),
+        createdAt: dayjs(`${year}-${month}-${day}`).unix(),
+      };
+
+      const slugifiedTags: Tag[] = tags.map((tagText: string) => {
+        const tagSlug = toSlug(tagText);
+        const tag = postsByTag.get(tagText);
+
+        let tagPosts: PostMeta[] = !tag ? [postMeta] : [...tag.posts, postMeta];
+
+        postsByTag.set(tagText, {
+          slug: tagSlug,
+          posts: tagPosts,
+        });
 
         return {
-          slug: s,
-          text: tag,
+          slug: tagSlug,
+          text: tagText,
         };
       });
 
       posts.push({
         content: content.join("\n"),
-        slug: postSlug.join("-").replace(".md", ""),
+        createdAt: postMeta.createdAt,
+        slug: postMeta.slug,
         tags: slugifiedTags,
-        createdAt: dayjs(`${year}-${month}-${day}`).unix(),
-        title: content[0].replace("#", "").trim(),
+        title: postMeta.title,
       });
     }
 
@@ -61,6 +83,7 @@ const prepareBlogData = async (postsPath: string) => {
       recentPosts.push({
         slug: posts[i].slug,
         title: posts[i].title,
+        createdAt: posts[i].createdAt,
       });
     }
   } catch (err) {
@@ -69,10 +92,10 @@ const prepareBlogData = async (postsPath: string) => {
   }
 
   const tags: Tag[] = [];
-  allTags.forEach((slug, text) => {
+  postsByTag.forEach((tagMeta, tagText) => {
     tags.push({
-      text,
-      slug,
+      text: tagText,
+      slug: tagMeta.slug,
     });
   });
 
@@ -80,6 +103,7 @@ const prepareBlogData = async (postsPath: string) => {
     posts,
     tags,
     recentPosts,
+    postsByTag,
   };
 };
 
@@ -94,6 +118,10 @@ const pageBuilder = (recentPosts: PostMeta[], tags: Tag[]) => {
     await mkdir(buildPath, { recursive: true });
     await writeFile(join(buildPath, "index.html"), renderedPage);
   };
+};
+
+const createNotFoundPage = async (buildPath: string) => {
+  await writeFile(join(buildPath, "404.html"), ErrorPage("404"));
 };
 
 const createRobotsTxt = async (buildPath: string) => {
@@ -115,7 +143,7 @@ export const buildBlog = async () => {
     throw new Error("Hey chief, something is wrong, no blog data at all!");
   }
 
-  const { tags, recentPosts, posts } = blogData;
+  const { tags, recentPosts, posts, postsByTag } = blogData;
 
   // Build phase
   const buildPath = resolve(process.cwd(), "build");
@@ -134,6 +162,7 @@ export const buildBlog = async () => {
     mainPreviousPost = {
       title: posts[1].title,
       slug: posts[1].slug,
+      createdAt: posts[1].createdAt,
     };
   }
 
@@ -154,6 +183,7 @@ export const buildBlog = async () => {
       next = {
         slug: posts[i - 1].slug,
         title: posts[i - 1].title,
+        createdAt: posts[i - 1].createdAt,
       };
     }
 
@@ -161,6 +191,7 @@ export const buildBlog = async () => {
       previous = {
         slug: posts[i + 1].slug,
         title: posts[i + 1].title,
+        createdAt: posts[i + 1].createdAt,
       };
     }
 
@@ -175,6 +206,16 @@ export const buildBlog = async () => {
     );
   }
 
+  for (let [tagText, tagMeta] of postsByTag.entries()) {
+    await createNewPage(
+      TagPage(
+        tagText,
+        tagMeta.posts.sort((a, b) => b.createdAt - a.createdAt)
+      ),
+      join(buildPath, ROUTES.tag, tagMeta.slug)
+    );
+  }
+
   await createNewPage(NowPage(), join(buildPath, ROUTES.now));
   await createNewPage(AboutPage(), join(buildPath, ROUTES.about));
   await createNewPage(ArchivePage(), join(buildPath, ROUTES.archive));
@@ -184,6 +225,7 @@ export const buildBlog = async () => {
   );
 
   await createRobotsTxt(buildPath);
+  await createNotFoundPage(buildPath);
 
   if (isProduction()) {
     await cp(

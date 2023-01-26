@@ -1,7 +1,7 @@
 import path from "path";
-import esbuild from "esbuild";
+import esbuild, { Plugin } from "esbuild";
 
-export const cssFilePlugin = {
+export const cssFilePlugin: Plugin = {
   name: "css-file",
   setup(build) {
     build.onResolve({ filter: /\.css$/ }, async (args) => {

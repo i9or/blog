@@ -1,61 +1,14 @@
 @import "blog-css/css/blog.min.css";
 
 @import "./global.css";
-
 @import "./under-construction.css";
+@import "./header.css";
+@import "./post.css";
+@import "./footer.css";
+@import "./tag-page.css";
 
 .main > article {
   padding-top: 1.5rem;
-}
-
-.footer a {
-  color: hsl(195, 100%, 50%);
-}
-
-.footer a:hover {
-  color: hsl(195, 100%, 75%);
-}
-
-.footer a:visited {
-  color: deeppink;
-}
-
-/* TODO: move to "blog-css" package */
-.post {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.post p {
-  line-height: 1.625;
-}
-
-.post :not(.shiki) code {
-  background: ghostwhite;
-  padding: 1px 2px;
-  border: thin solid lightgrey;
-  border-radius: var(--e-border-radius);
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
-}
-
-.post .shiki {
-  overflow-x: auto;
-  padding: 1rem;
-  border-radius: var(--e-border-radius);
-  margin-bottom: 2rem;
-}
-
-.post__fin {
-  font-size: 3rem;
-  display: flex;
-  justify-content: center;
-}
-
-.post__navigation {
-  margin-top: auto;
 }
 
 .just-a-page {
