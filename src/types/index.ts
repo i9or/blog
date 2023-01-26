@@ -11,4 +11,4 @@ export type Post = {
   tags: Tag[];
 };
 
-export type PostMeta = Pick<Post, "title" | "slug">;
+export type PostMeta = Pick<Post, "title" | "slug" | "createdAt">;

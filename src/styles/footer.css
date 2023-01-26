@@ -1,0 +1,11 @@
+.footer a {
+  color: hsl(195, 100%, 50%);
+}
+
+.footer a:hover {
+  color: hsl(195, 100%, 75%);
+}
+
+.footer a:visited {
+  color: deeppink;
+}

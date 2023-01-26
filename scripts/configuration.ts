@@ -1,6 +1,8 @@
-import { cssFilePlugin } from "./cssFilePlugin.mjs";
+import { BuildOptions } from "esbuild";
 
-export const configuration = {
+import { cssFilePlugin } from "./cssFilePlugin";
+
+export const configuration: BuildOptions = {
   logLevel: "info",
   entryPoints: ["./src/server.ts"],
   platform: "node",

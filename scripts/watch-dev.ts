@@ -1,9 +1,9 @@
 import esbuild from "esbuild";
-import { configuration } from "./configuration.mjs";
+import { configuration } from "./configuration";
 
 esbuild
   .build({
     ...configuration,
     watch: true,
   })
-  .then((result) => {});
+  .then((_result) => {});
