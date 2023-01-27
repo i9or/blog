@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Yet another blog",
   "private": true,
   "engines": {
@@ -17,7 +17,7 @@
     "clean": "del ./tmp && del ./build",
     "build": "npm run clean && npm run build:prod && cross-env NODE_ENV=production node tmp/index.js",
     "watch:dev": "tsx scripts/watch-dev.ts",
-    "watch:node": "nodemon -e js,jpg,jpeg,png --watch content/images --watch tmp tmp/index.js",
+    "watch:node": "nodemon -d 300ms -e js,jpg,jpeg,png --watch content/images --watch tmp tmp/index.js",
     "watch": "concurrently -n \"BUILD,NODE\" -c \"blue,green\" \"npm:watch:dev\" \"npm:watch:node\"",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\""
   },
@@ -49,7 +49,7 @@
     "markdown-it-attribution": "0.1.4",
     "markdown-it-image-figures": "2.1.0",
     "nanoid": "4.0.0",
-    "nodemon": "2.0.19",
+    "nodemon": "2.0.20",
     "prettier": "2.7.1",
     "sirv": "2.0.2",
     "tsx": "3.12.2",
