@@ -2,6 +2,13 @@
   border: none;
 }
 
+.posts-meta-table__year {
+  border-bottom: thin solid var(--c-divider);
+  padding-left: 0.5rem;
+  font-size: var(--t-small);
+  font-weight: bold;
+}
+
 .posts-meta-table__date {
   width: 15ch;
   font-weight: bold;

@@ -3,57 +3,49 @@ import { html } from "~/utilities/html";
 import dayjs from "dayjs";
 import { ROUTES } from "~/constants";
 
-export const PostsMetaTable = (
-  postsMeta: PostMeta[] | undefined,
-  options?: { renderYear: boolean }
-) => {
+export const PostsMetaTable = (postsMeta: PostMeta[] | undefined) => {
   if (!postsMeta) {
     return "";
   }
 
-  const dateFormat = options?.renderYear ? "YYYY/MM/DD" : "MMMM D";
+  const yearSet = new Set<number>();
+  const postsByYear = new Map<number, PostMeta[]>();
 
-  const postMetaRows = postsMeta.map((post) => {
-    return html` <tr>
-      <td class="posts-meta-table__date">
-        ${dayjs.unix(post.createdAt).format(dateFormat)}
-      </td>
-      <td>
-        <a href="/${ROUTES.post}/${post.slug}">${post.title}</a>
-      </td>
-    </tr>`;
-  });
+  for (let post of postsMeta) {
+    const year = dayjs.unix(post.createdAt).year();
 
-  return html`<table class="posts-meta-table">
-    ${postMetaRows}
-  </table>`;
+    yearSet.add(year);
+
+    const postsByCurrentPostYear = postsByYear.get(year);
+    const postsMetaToSet = postsByCurrentPostYear
+      ? [...postsByCurrentPostYear, post]
+      : [post];
+    postsByYear.set(year, postsMetaToSet);
+  }
+
+  const years = Array.from(yearSet).sort().reverse();
+
+  return html`${years.map((year) => {
+    const postsByCurrentYear = postsByYear.get(year);
+
+    if (!postsByCurrentYear) {
+      return "";
+    }
+
+    const postsMetaRows = postsByCurrentYear.map((post) => {
+      return html`<tr>
+        <td class="posts-meta-table__date">
+          ${dayjs.unix(post.createdAt).format("MMMM D")}
+        </td>
+        <td>
+          <a href="/${ROUTES.post}/${post.slug}">${post.title}</a>
+        </td>
+      </tr>`;
+    });
+
+    return html`<h2 class="posts-meta-table__year">${year.toString()}</h2>
+      <table class="posts-meta-table">
+        ${postsMetaRows}
+      </table>`;
+  })}`;
 };
-
-// const years = Array.from(postsByYear.keys()).sort().reverse();
-//
-// return html` <article class="just-a-page">
-//   <h1>Archive</h1>
-//   ${years.map(
-//     (year) =>
-//       html`<h2 class="archive-page__year">${year.toString()}</h2>
-//         ${PostsMetaTable(postsByYear.get(year))}`
-//   )}
-// </article>`;
-
-// const postsByYear = new Map<number, PostMeta[]>();
-//
-// for (let post of posts) {
-//   const year = dayjs.unix(post.createdAt).year();
-//   const yearData = postsByYear.get(year);
-//
-//   // TODO: this needs to be a function
-//   const postMeta: PostMeta = {
-//     title: post.title,
-//     createdAt: post.createdAt,
-//     slug: post.slug,
-//   };
-//
-//   const posts = yearData ? [...yearData, postMeta] : [postMeta];
-//
-//   postsByYear.set(year, posts);
-// }
