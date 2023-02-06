@@ -12,7 +12,8 @@ export const Footer = () => {
   return html`<footer class="footer">
     <span>
       Copyright © ${copyrightYear} Ignore This Page. All rights reserved.
-      <a href="/${ROUTES.privacyPolicy}">Privacy Policy</a>.
+      <a href="/${ROUTES.privacyPolicy}">Privacy Policy</a>. Certified 100%
+      AI-Free Organic™ content.
     </span>
     <span class="small-screen-hidden">${deployedVersion}</span>
   </footer>`;
