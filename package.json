@@ -47,6 +47,7 @@
     "lint-staged": "13.0.3",
     "markdown-it": "13.0.1",
     "markdown-it-attribution": "0.1.4",
+    "markdown-it-footnote": "3.0.3",
     "markdown-it-image-figures": "2.1.0",
     "nanoid": "4.0.0",
     "nodemon": "2.0.20",
@@ -60,7 +61,7 @@
   },
   "dependencies": {
     "chokidar": "3.5.3",
-    "shiki": "0.10.1"
+    "shiki": "0.14.0"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
