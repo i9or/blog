@@ -1,0 +1,4 @@
+---
+downloads_path: /tmp/downloads
+current_release_path: /var/www/html
+backup_release_path: /var/www/html_bak

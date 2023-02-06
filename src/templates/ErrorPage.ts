@@ -32,7 +32,7 @@ export const ErrorPage = (errorType: ErrorType) => {
         <main class="error-page__wrapper">
           <h2>${resolveErrorTitle(errorType)}</h2>
           <h1 class="error_page__error-code">${errorType}</h1>
-          <h3><a href="${ROUTES.home}">Go back home</a></h3>
+          <h3><a href="/${ROUTES.home}">Go back home</a></h3>
         </main>
       </body>
     </html>`;

@@ -1,0 +1,13 @@
+- name: Remove previous backup
+  file:
+    path: "{{ backup_release_path }}"
+    state: absent
+
+- name: Find current deployment
+  stat:
+    path: "{{ current_release_path }}"
+  register: current_deployment
+
+- name: Backup current deployment
+  command: "mv {{ current_release_path }} {{ backup_release_path }}"
+  when: current_deployment.stat.exists
