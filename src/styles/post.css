@@ -26,6 +26,24 @@
   margin-bottom: 2rem;
 }
 
+.post figure[data-type="image"] figcaption {
+  text-align: center;
+}
+
+.post .footnotes-sep {
+  display: none;
+}
+
+.post .footnotes {
+  margin-top: 2.5rem;
+}
+
+.post .footnotes-list {
+  font-size: var(--t-small);
+  padding-inline-start: 3ch;
+  padding-inline-end: 3ch;
+}
+
 .post__fin {
   font-size: 3rem;
   display: flex;
