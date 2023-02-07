@@ -3,6 +3,7 @@ import { getHighlighter } from "shiki";
 import implicitFigures from "markdown-it-image-figures";
 import blockquoteAttribution from "markdown-it-attribution";
 import footNote from "markdown-it-footnote";
+import attrs from "markdown-it-attrs";
 
 export const initMd = async () => {
   const highlighter = await getHighlighter({
@@ -20,6 +21,7 @@ export const initMd = async () => {
       }
     },
   })
+    .use(attrs)
     .use(implicitFigures, {
       dataType: true,
       figcaption: true,
