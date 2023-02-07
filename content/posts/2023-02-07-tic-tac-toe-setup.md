@@ -250,6 +250,71 @@ The result should be a small empty window:
 
 Press escape to exit the game.
 
+It's time to commit all the changes. Let's first create `.gitignore` file:
+
+```
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# CLion
+cmake-build-debug
+cmake-build-release
+
+# Executable
+bin/*
+!bin/.gitkeep
+```
+
+Pay attention to the last two lines. Those two are needed to ignore any contents
+of the `bin` folder but allow `bin` folder to be committed to the repository.
+The final step is to create an empty `.gitkeep` file in the `bin` folder:
+
+```sh
+touch ./bin/.gitkeep
+```
+
+Now we can commit the changes:
+
+```sh
+git add -A
+git commit -m "Initial commit"
+```
+
+Done!
+
+Link to the project on
+GitHub: [https://github.com/i9or/tictactoe](https://github.com/i9or/tictactoe/tree/c367bd4a2859402d7d8422905cc7012258cf6086)
+
 ---
 
 In this tutorial, we have set up a basis for the C++ game using SFML. In the
