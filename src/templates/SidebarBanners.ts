@@ -71,7 +71,7 @@ export const SidebarBanners = () => {
         alt="Largest collection of 88x31 buttons"
       />
     </a>
-    <a rel="me" href="https://masto.ai/@i9or">
+    <a rel="me" href="https://mastodon.gamedev.place/@igor">
       <img src="${mastodonGif}" alt="Join Mastodon, leave Twitter"
     /></a>
     <a href="https://www.getmonero.org/">
