@@ -13,11 +13,11 @@ export const NowPage = () => html`<article class="just-a-page">
         <li>Learning Node.js in depth;</li>
         <li>Working on simple 2D games tutorials;</li>
         <li>
-          <s
-            >Working on a legacy OpenGL demo with retro graphics and old
-            libraries.</s
-          >
-          <em>On hold!</em>
+          <s>
+            Working on a legacy OpenGL demo with retro graphics and old
+            libraries.
+          </s>
+          <em class="now__on-hold">On hold!</em>
         </li>
       </ul>
     </li>
@@ -25,7 +25,7 @@ export const NowPage = () => html`<article class="just-a-page">
       <p>${dayjs("2023-01-25").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
         <li>
-          Still making an <s>almost</s> static blog <s>engine</s> generator
+          Still making <s>an almost</s> a static blog <s>engine</s> generator
           using Node.js;
         </li>
         <li>
@@ -33,7 +33,7 @@ export const NowPage = () => html`<article class="just-a-page">
         </li>
         <li>
           <s>Studying <a href="https://sarabander.github.io/sicp/">SICP</a>.</s>
-          <em>On hold!</em>
+          <em class="now__on-hold">On hold!</em>
         </li>
       </ul>
     </li>

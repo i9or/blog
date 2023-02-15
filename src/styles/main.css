@@ -6,6 +6,7 @@
 @import "./post.css";
 @import "./footer.css";
 @import "./posts-meta-table.css";
+@import "./now.css";
 
 .main > article {
   padding-top: 1.5rem;
