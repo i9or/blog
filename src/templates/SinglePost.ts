@@ -47,7 +47,7 @@ export const SinglePost = ({
   <section class="post__navigation">
     ${previousPost
       ? html`<a
-          href="/${ROUTES.post}/${previousPost.slug}"
+          href="/${ROUTES.post.path}/${previousPost.slug}"
           title="${previousPost.title}"
         >
           <small>&larr; There</small>
@@ -55,7 +55,7 @@ export const SinglePost = ({
       : "&nbsp;"}
     ${nextPost
       ? html`<a
-          href="/${ROUTES.post}/${nextPost.slug}"
+          href="/${ROUTES.post.path}/${nextPost.slug}"
           title="${nextPost.title}"
         >
           <small>Here &rarr;</small>

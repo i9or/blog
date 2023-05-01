@@ -115,11 +115,12 @@ const prepareBlogData = async (postsPath: string) => {
 };
 
 const pageBuilder = (recentPosts: PostMeta[], tags: Tag[]) => {
-  return async (body: string, buildPath: string) => {
+  return async (body: string, buildPath: string, title?: string) => {
     const renderedPage = Layout({
       body,
       recentPosts,
       tags,
+      title,
     });
 
     await mkdir(buildPath, { recursive: true });
@@ -173,6 +174,7 @@ export const buildBlog = async () => {
     };
   }
 
+  // Building the main page
   await createNewPage(
     SinglePost({
       post: posts[0],
@@ -182,6 +184,7 @@ export const buildBlog = async () => {
     buildPath
   );
 
+  // Building posts
   for (let i = 0; i < posts.length; i++) {
     let previous: Optional<PostMeta> = undefined;
     let next: Optional<PostMeta> = undefined;
@@ -209,7 +212,8 @@ export const buildBlog = async () => {
         previousPost: previous,
         nextPost: next,
       }),
-      join(buildPath, ROUTES.post, posts[i].slug)
+      join(buildPath, ROUTES.post.path, posts[i].slug),
+      posts[i].title
     );
   }
 
@@ -219,16 +223,30 @@ export const buildBlog = async () => {
         tagText,
         tagMeta.posts.sort((a, b) => b.createdAt - a.createdAt)
       ),
-      join(buildPath, ROUTES.tag, tagMeta.slug)
+      join(buildPath, ROUTES.tag.path, tagMeta.slug),
+      `Posts tagged with ${tagText}`
     );
   }
 
-  await createNewPage(NowPage(), join(buildPath, ROUTES.now));
-  await createNewPage(AboutPage(), join(buildPath, ROUTES.about));
-  await createNewPage(ArchivePage(postsMeta), join(buildPath, ROUTES.archive));
+  await createNewPage(
+    NowPage(),
+    join(buildPath, ROUTES.now.path),
+    ROUTES.now.title
+  );
+  await createNewPage(
+    AboutPage(),
+    join(buildPath, ROUTES.about.path),
+    ROUTES.about.title
+  );
+  await createNewPage(
+    ArchivePage(postsMeta),
+    join(buildPath, ROUTES.archive.path),
+    ROUTES.archive.title
+  );
   await createNewPage(
     PrivacyPolicyPage(),
-    join(buildPath, ROUTES.privacyPolicy)
+    join(buildPath, ROUTES.privacyPolicy.path),
+    ROUTES.privacyPolicy.title
   );
 
   await createRobotsTxt(buildPath);

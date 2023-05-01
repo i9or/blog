@@ -14,15 +14,19 @@ import { TagsWidget } from "./TagsWidget";
 import { RecentPostsWidget } from "./RecentPostsWidget";
 import { PostMeta, Tag } from "~/types";
 import { DevelopmentScripts } from "~/templates/DevelopmentScripts";
-import { ROUTES } from "~/constants";
+import { BLOG_TITLE, ROUTES } from "~/constants";
 
 type LayoutProperties = {
+  title?: string;
   body: string;
   tags: Tag[];
   recentPosts: PostMeta[];
 };
 
-export const Layout = ({ body, tags, recentPosts }: LayoutProperties) =>
+const resolveBlogTitle = (title?: string) =>
+  title ? `${BLOG_TITLE} | ${title}` : BLOG_TITLE;
+
+export const Layout = ({ title, body, tags, recentPosts }: LayoutProperties) =>
   html`<!DOCTYPE html>
     <html lang="en">
       <head>
@@ -32,13 +36,13 @@ export const Layout = ({ body, tags, recentPosts }: LayoutProperties) =>
         <link rel="icon" href="${network2Ico}" type="image/x-icon" />
         <link rel="stylesheet" href="${mainStyles}" />
         ${DevelopmentScripts()}
-        <title>Ignore This Page</title>
+        <title>${resolveBlogTitle(title)}</title>
       </head>
       <body class="body-container">
         ${NavigationToggleCheckbox()}
         <header class="header">
           <div class="header__title">
-            <h1><a href="/${ROUTES.home}">Ignore This Page</a></h1>
+            <h1><a href="/${ROUTES.home.path}">${BLOG_TITLE}</a></h1>
             <small class="small-screen-hidden">
               Move along, nothing to see here...
             </small>
