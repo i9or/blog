@@ -13,7 +13,7 @@ const RenderTags = (tags: Tag[]) => html`<ul
 >
   ${tags.map(
     (tag) => html`<li class="sidebar-widget__tag">
-      <a href="/${ROUTES.tag}/${tag.slug}">${tag.text}</a>
+      <a href="/${ROUTES.tag.path}/${tag.slug}">${tag.text}</a>
     </li>`
   )}
 </ul>`;

@@ -3,9 +3,9 @@ import { ROUTES } from "~/constants";
 
 export const RssButton = () => {
   return html`<a
-    href="/${ROUTES.rss}"
+    href="/${ROUTES.rss.path}"
     class="rss-button small-screen-hidden"
-    title="RSS feed"
+    title="${ROUTES.rss.title}"
   >
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="15" cy="85" r="15" fill="currentColor" />

@@ -25,29 +25,37 @@ export const Navigation = () => {
       <li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
       <li class="navigation__item">
         <a
-          href="/${ROUTES.home}"
+          href="/${ROUTES.home.path}"
           class="navigation__button navigation__button--home"
-          title="Home"
+          title="${ROUTES.home.title}"
         >
           ${HouseIcon()}
-          <span class="big-screen-hidden">Home</span>
+          <span class="big-screen-hidden">${ROUTES.home.title}</span>
         </a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item">
-        <a href="/${ROUTES.about}" class="navigation__button">About</a>
+        <a href="/${ROUTES.about.path}" class="navigation__button">
+          ${ROUTES.about.title}
+        </a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item">
-        <a href="/${ROUTES.now}" class="navigation__button">Now!</a>
+        <a href="/${ROUTES.now.path}" class="navigation__button">
+          ${ROUTES.now.title}
+        </a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item">
-        <a href="/${ROUTES.archive}" class="navigation__button">Archive</a>
+        <a href="/${ROUTES.archive.path}" class="navigation__button">
+          ${ROUTES.archive.title}
+        </a>
       </li>
       <li class="navigation__divider" aria-hidden="true"></li>
       <li class="navigation__item big-screen-hidden">
-        <a class="navigation__button" href="/${ROUTES.rss}">RSS Feed</a>
+        <a class="navigation__button" href="/${ROUTES.rss.path}">
+          ${ROUTES.rss.title}
+        </a>
       </li>
       <!--<li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
             <li class="navigation__item big-screen-hidden">

@@ -38,7 +38,7 @@ export const PostsMetaTable = (postsMeta: PostMeta[] | undefined) => {
           ${dayjs.unix(post.createdAt).format("MMMM D")}
         </td>
         <td>
-          <a href="/${ROUTES.post}/${post.slug}">${post.title}</a>
+          <a href="/${ROUTES.post.path}/${post.slug}">${post.title}</a>
         </td>
       </tr>`;
     });
