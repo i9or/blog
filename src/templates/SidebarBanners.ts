@@ -13,11 +13,13 @@ import {
   cssPng,
   firefoxGetGif,
   hairGif,
+  iMissXpGif,
   javascriptFreeGif,
   largestCollectionPng,
   linuxPoweredGif,
+  lolGif,
   macosMovGif,
-  mastodonGif,
+  minecraftGif,
   moneroNowGif,
   openglPng,
   possumsNowPng,
@@ -63,20 +65,20 @@ export const SidebarBanners = () => {
     <img src="${cardsPng}" alt="Cards micro banner" />
     <img src="${chromeGif}" alt="Chrome is evil" />
     <img src="${cokePng}" alt="Powered by Coca-Cola" />
+    <img src="${lolGif}" alt="LOL" />
     <img src="${cssPng}" alt="CSS is awesome" />
     <img src="${javascriptFreeGif}" alt="JavaScript Free Page" />
+    <img src="${minecraftGif}" alt="Minecraft" />
     <a href="https://capstasher.neocities.org/88x31collection-page1.html">
       <img
         src="${largestCollectionPng}"
         alt="Largest collection of 88x31 buttons"
       />
     </a>
-    <a rel="me" href="https://mastodon.gamedev.place/@igor">
-      <img src="${mastodonGif}" alt="Join Mastodon, leave Twitter"
-    /></a>
     <a href="https://www.getmonero.org/">
       <img src="${moneroNowGif}" alt="Monero Now" />
     </a>
+    <img src="${iMissXpGif}" alt="I miss Windows XP" />
     <img src="${possumsNowPng}" alt="Possums Now" />
     <img src="${slavaGif}" alt="Glory to Ukraine!" />
     <img src="${twoThousandOneGif}" alt="I wish it was 2001" />
