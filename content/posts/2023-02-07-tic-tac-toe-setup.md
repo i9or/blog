@@ -1,10 +1,10 @@
----
+=====
 { "tags": ["Game Development", "C++", "SFML", "macOS"] }
----
+=====
 
 # Tic Tac Toe: Setup
 
-In this tutorial we will be setting up a project for implementation of a small
+In this tutorial, we will be setting up a project for implementation of a small
 Tic Tac Toe game. The game will be written in C++ with the help of CMake and the
 SFML library. The setup below will be working on macOS only for now. Windows
 support will be added in the next parts. This is a _step-by-step_ tutorial, some
@@ -24,7 +24,7 @@ cmake --version
 git --version
 ```
 
-If none of the commands returned something like `Command not found`, we are
+If none of the commands returned something like `Command not found`, we're
 ready to go.
 
 ## Setting up a project
@@ -193,7 +193,7 @@ target_link_libraries(${PROJECT_NAME}
 ```
 
 Before adding SFML-related code to the game, let's check that the project builds
-without any issues, from the root of the project:
+without any issues from the root of the project:
 
 ```sh
 cmake --build ./build
@@ -204,7 +204,7 @@ project.
 
 ![Build output](/images/2023-02-07/screenshot-build-output.png "CMake build output")
 
-Now we are ready to add the basic SFML code to our game, replace `main.cpp`
+Now we're ready to add the basic SFML code to our game, replace `main.cpp`
 contents with the next code:
 
 ```cpp
@@ -317,6 +317,6 @@ GitHub: [https://github.com/i9or/tictactoe](https://github.com/i9or/tictactoe/tr
 
 ---
 
-In this tutorial, we have set up a basis for the C++ game using SFML. In the
+In this tutorial, we've set up a basis for the C++ game using SFML. In the
 next part, we will try to draw graphics and add basic game logic. That's all for
 now, have a good one!

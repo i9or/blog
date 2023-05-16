@@ -35,10 +35,9 @@ const prepareBlogData = async (postsPath: string) => {
         encoding: "utf-8",
       });
 
-      const [opening, metaJson, closing, empty, ...content] =
-        entryContents.split("\n");
+      const [empty, metaJson, content] = entryContents.split("=====");
 
-      if (opening !== "---" || closing !== "---" || empty !== "") {
+      if (empty !== "") {
         // noinspection ExceptionCaughtLocallyJS
         throw new Error(`Post "${entry.name}" is formatted incorrectly!`);
       }
@@ -69,7 +68,7 @@ const prepareBlogData = async (postsPath: string) => {
       });
 
       posts.push({
-        content: content.join("\n"),
+        content,
         createdAt: postMeta.createdAt,
         slug: postMeta.slug,
         tags: slugifiedTags,
