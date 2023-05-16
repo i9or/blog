@@ -44,8 +44,19 @@ const prepareBlogData = async (postsPath: string) => {
 
       const { tags }: { tags: string[] } = JSON.parse(metaJson);
 
+      const title = content.match(/#(.+)/g);
+
+      if (!title || !title[0]) {
+        // noinspection ExceptionCaughtLocallyJS
+        throw new Error(`Post ${entry.name} does not have a title`);
+      }
+
       const postMeta: PostMeta = {
-        title: content[0].replace("#", "").trim(),
+        title: title[0]
+          .replace("#", "")
+          .replace("\n", "")
+          .replace("\r", "")
+          .trim(),
         slug: postSlug.join("-").replace(".md", ""),
         createdAt: dayjs(`${year}-${month}-${day}`).unix(),
       };
