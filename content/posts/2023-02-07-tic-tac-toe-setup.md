@@ -6,9 +6,8 @@
 
 In this tutorial, we will be setting up a project for implementation of a small
 Tic Tac Toe game. The game will be written in C++ with the help of CMake and the
-SFML library. The setup below will be working on macOS only for now. Windows
-support will be added in the next parts. This is a _step-by-step_ tutorial, some
-steps might look too verbose.
+SFML library. The setup below is expected to be working on macOS only. This is a
+_step-by-step_ tutorial, some steps might look too verbose.
 
 ## Prerequisites
 
@@ -29,7 +28,7 @@ ready to go.
 
 ## Setting up a project
 
-First, we need to create a folder for the project and initialise an empty git
+First, we need to create a folder for the project and initialize an empty git
 repository. The Git repository is optional. However, it will help us later with
 dependency management using Git Submodules. Open the terminal and type:
 
