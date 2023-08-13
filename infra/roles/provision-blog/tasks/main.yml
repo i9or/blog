@@ -1,0 +1,9 @@
+---
+- name: Prepare OS
+  import_tasks: os.yml
+
+- name: Install Nginx
+  import_tasks: nginx.yml
+
+- name: Install GitHub CLI
+  import_tasks: gh.yml

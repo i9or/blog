@@ -18,6 +18,7 @@
   command: "mv {{ downloads_path }}/release {{ current_release_path }}"
 
 - name: Reload Nginx
+  become: yes
   systemd:
     name: nginx
     state: reloaded

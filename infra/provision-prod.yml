@@ -1,0 +1,7 @@
+---
+- hosts: blog-prod
+  user: root
+  vars_files:
+    - "./vars/common.yml"
+  roles:
+    - provision-blog

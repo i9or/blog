@@ -1,10 +1,19 @@
 # Blog Infrastructure
 
-Some fancy scripts and yamls for my blog infrastructure.
+Some fancy scripts and YAMLs for the blog infrastructure.
 
 ## Requirements
 
 - `ansible` v2.12+
+
+## Initial setup
+
+Next files need to be copied with new names and populated with values:
+
+```sh
+cp hosts.ini.example hosts.ini
+cp vars/common.yml.example var/common.yml
+```
 
 ## Keys
 
@@ -14,16 +23,32 @@ Key generation:
 ssh-keygen -t ed25519 -C "user@example.com" -f ./keys/production_key
 ```
 
-Key naming:
+VM should be created with the public key above.
 
-- `production_key` — SSH key for production
+Key path is controlled via `vars/common.yml` file:
+
+- `public_key_local_path` — path to the public key on local machine
 
 **Note: `./keys/` folder should be added to `.gitignore`!**
 
-## Deploy
+## Provision
 
-To deploy latest release:
+To provision **staging** environment:
 
 ```sh
-ansible-playbook deploy.yml
+ansible-playbook provision-staging.yml
+```
+
+To provision **prod** environment:
+
+```sh
+ansible-playbook provision-prod.yml
+```
+
+## Deploy
+
+To deploy latest release to **prod**:
+
+```sh
+ansible-playbook deploy-prod.yml
 ```
