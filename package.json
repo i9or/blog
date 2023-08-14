@@ -21,8 +21,7 @@
     "watch:typecheck": "tsc --pretty --watch --noEmit --preserveWatchOutput",
     "watch": "concurrently -n \"BUILD,NODE,TS\" -c \"yellow,green,blue\" \"npm:watch:dev\" \"npm:watch:node\" \"npm:watch:typecheck\"",
     "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
-    "deploy": "gh-pages -d ./build",
-    "cname": "touch ./build/CNAME && echo \"ignorethis.page\" > ./build/CNAME"
+    "deploy": "gh-pages -d ./build"
   },
   "repository": {
     "type": "git",
