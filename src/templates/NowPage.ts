@@ -8,6 +8,32 @@ export const NowPage = () => html`<article class="just-a-page">
   <p>Here's the list of things I'm up to <strong>now</strong>:</p>
   <ul>
     <li>
+      <p>${dayjs("2023-08-14").format(MONTH_YEAR_DATE_FORMAT)}</p>
+      <ul>
+        <li>Restored home server</li>
+        <li>Moved blog from GitHub pages to home server</li>
+        <li>Working on "Tic Tac Toe" tutorial, next part</li>
+      </ul>
+    </li>
+    <li>
+      <p>${dayjs("2023-07-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
+      <ul>
+        <li>
+          Everything is <s>still</s> almost not on
+          <em class="now__on-hold">On hold!</em>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>${dayjs("2023-06-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
+      <ul>
+        <li>
+          Everything is still on
+          <em class="now__on-hold">On hold!</em>
+        </li>
+      </ul>
+    </li>
+    <li>
       <p>${dayjs("2023-05-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
         <li>
@@ -28,7 +54,6 @@ export const NowPage = () => html`<article class="just-a-page">
       <p>${dayjs("2023-03-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
         <li>Moving to London</li>
-
         <li>
           Everything else is
           <em class="now__on-hold">On hold!</em>

@@ -1,5 +1,6 @@
 ---
 - name: Backup current release
+  become: yes
   import_tasks: backup.yml
 
 - name: Download new release and make it current

@@ -1,5 +1,5 @@
 ---
-- hosts: production
+- hosts: staging
   user: deploy
   vars_files:
     - "./vars/common.yml"

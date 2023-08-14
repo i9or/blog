@@ -15,7 +15,16 @@
     remote_src: yes
 
 - name: Make extracted release current
+  become: yes
   command: "mv {{ downloads_path }}/release {{ current_release_path }}"
+
+- name: Set custom 404
+  become: yes
+  lineinfile:
+    path: /etc/nginx/sites-enabled/default
+    state: present
+    insertafter: "server_name _;"
+    line: "error_page 404 /404.html;"
 
 - name: Reload Nginx
   become: yes

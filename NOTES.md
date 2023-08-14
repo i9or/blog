@@ -25,3 +25,10 @@ Just some development notes.
   };
 }
 ```
+
+## Fallback deploys to GitHub Pages
+
+```sh
+touch ./build/CNAME && echo \"ignorethis.page\" > ./build/CNAME
+BLOG_APPLICATION_VERSION=v$(npm pkg get version | xargs) npm run build && npm run cname && npm run deploy
+```
