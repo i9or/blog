@@ -25,3 +25,9 @@ Just some development notes.
   };
 }
 ```
+
+## Fallback deploys to GitHub Pages
+
+```sh
+BLOG_APPLICATION_VERSION=v$(npm pkg get version | xargs) npm run build && npm run cname && npm run deploy
+```
