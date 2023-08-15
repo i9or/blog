@@ -25,3 +25,6 @@
 - [x] Add deployment Ansible role
 - [x] Create staging and production environments
 - [ ] Add Mermaid diagrams
+- [ ] Dark mode
+  - [ ] Automatic dark/light mode based on system theme
+  - [ ] Manual dark mode using controls and Nginx magic
