@@ -1,11 +1,15 @@
 .footer a {
-  color: hsl(195, 100%, 50%);
+  color: var(--c-link-normal);
 }
 
 .footer a:hover {
-  color: hsl(195, 100%, 75%);
+  color: var(--c-link-hover);
+}
+
+.footer a:active {
+  color: var(--c-link-active);
 }
 
 .footer a:visited {
-  color: deeppink;
+  color: var(--c-link-visited);
 }

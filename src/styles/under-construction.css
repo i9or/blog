@@ -9,5 +9,5 @@
 }
 
 .under-construction__image {
-  border: thin solid black;
+  border: thin solid var(--c-black);
 }
