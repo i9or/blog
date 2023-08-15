@@ -1,9 +1,9 @@
 .now__on-hold {
   margin: 0 0.25rem;
-  background-color: grey;
+  background-color: var(--c-dove-gray);
   border-radius: var(--e-border-radius);
   padding: 0.1rem 0.35rem;
-  color: #fff;
-  text-shadow: 0 1px 0 #000;
+  color: var(--c-ghost-white);
+  text-shadow: 0 1px 0 var(--c-text-shadow);
   font-size: var(--t-small);
 }

@@ -28,7 +28,7 @@ const resolveBlogTitle = (title?: string) =>
 
 export const Layout = ({ title, body, tags, recentPosts }: LayoutProperties) =>
   html`<!DOCTYPE html>
-    <html lang="en">
+    <html lang="en" data-theme="system">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
