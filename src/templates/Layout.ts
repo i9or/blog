@@ -15,6 +15,7 @@ import { RecentPostsWidget } from "./RecentPostsWidget";
 import { PostMeta, Tag } from "~/types";
 import { DevelopmentScripts } from "~/templates/DevelopmentScripts";
 import { BLOG_TITLE, ROUTES } from "~/constants";
+import { ThemeButton } from "~/templates/ThemeButton";
 
 type LayoutProperties = {
   title?: string;
@@ -48,7 +49,7 @@ export const Layout = ({ title, body, tags, recentPosts }: LayoutProperties) =>
             </small>
           </div>
           <div class="header__actions">
-            ${RssButton()} ${NavigationToggleButton()}
+            ${RssButton()} ${ThemeButton()} ${NavigationToggleButton()}
           </div>
         </header>
         ${Navigation()}

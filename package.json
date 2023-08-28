@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Yet another blog",
   "private": true,
   "engines": {
@@ -39,7 +39,7 @@
     "@types/node": "18.11.15",
     "@types/ws": "8.5.4",
     "@vitest/coverage-c8": "0.26.0",
-    "blog-css": "0.6.1",
+    "blog-css": "0.7.1",
     "concurrently": "7.3.0",
     "cross-env": "7.0.3",
     "dayjs": "1.11.6",
