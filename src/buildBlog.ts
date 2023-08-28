@@ -145,7 +145,7 @@ const createNotFoundPage = async (buildPath: string) => {
 const createRobotsTxt = async (buildPath: string) => {
   await writeFile(
     join(buildPath, "robots.txt"),
-    ["User-agent: *", "Allow: /", ""].join("\n")
+    ["User-agent: *", "Disallow: /theme", ""].join("\n")
   );
 };
 

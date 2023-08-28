@@ -47,6 +47,16 @@ import { isProduction } from "~/utilities/development";
           immutable: true,
         })
       )
+      .use("/theme/:theme", (req, res, next) => {
+        const { theme } = req.params;
+        const { referer } = req.headers;
+
+        if (!theme || !referer) {
+          return res.redirect("/");
+        }
+
+        res.redirect(referer);
+      })
       .use("/", sirv("build/", { dev: true }))
       .listen(SERVER_PORT, () => {
         console.info(`🚀 Listening on http://localhost:${SERVER_PORT}`);

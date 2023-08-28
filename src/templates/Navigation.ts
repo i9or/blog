@@ -57,17 +57,15 @@ export const Navigation = () => {
           ${ROUTES.rss.title}
         </a>
       </li>
-      <!--<li class="navigation__divider big-screen-hidden" aria-hidden="true"></li>
-            <li class="navigation__item big-screen-hidden">
-              <div class="navigation__button">
-                <label for="themeSelector"> Theme: </label>
-                <select name="themeSelector" id="themeSelector">
-                  <option value="os">OS Default</option>
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
-                </select>
-              </div>
-            </li>-->
+      <li class="navigation__item big-screen-hidden">
+        <div class="navigation__button">
+          <ul class="mobile-theme-selector">
+            <li><a href="/theme/system">System</a></li>
+            <li><a href="/theme/dark">Dark</a></li>
+            <li><a href="/theme/light">Light</a></li>
+          </ul>
+        </div>
+      </li>
     </ul>
   </nav>`;
 };
