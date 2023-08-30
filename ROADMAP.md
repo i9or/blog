@@ -27,4 +27,5 @@
 - [ ] Add Mermaid diagrams
 - [ ] Dark mode
   - [x] Automatic dark/light mode based on system theme
-  - [ ] Manual dark mode using controls and Nginx magic
+  - [x] Manual dark mode using controls and Nginx magic
+  - [ ] Add dark mode to page 404
