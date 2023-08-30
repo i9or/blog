@@ -3,5 +3,6 @@
   user: deploy
   vars_files:
     - "./vars/common.yml"
+    - "./vars/prod.yml"
   roles:
     - deploy-blog

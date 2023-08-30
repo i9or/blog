@@ -1,0 +1,45 @@
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /var/www/html;
+  index index.html;
+  server_name _;
+  error_page 404 /404.html;
+
+  location /theme/system {
+    add_header Set-Cookie "theme=system;path=/;domain={{ domain }}";
+    rewrite .* $http_referer redirect;
+  }
+
+  location /theme/dark {
+    add_header Set-Cookie "theme=dark;path=/;domain={{ domain }}";
+    rewrite .* $http_referer redirect;
+  }
+
+  location /theme/light {
+    add_header Set-Cookie "theme=light;path=/;domain={{ domain }}";
+    rewrite .* $http_referer redirect;
+  }
+
+  location / {
+    try_files $uri $uri/ =404;
+  }
+
+  location ~* \.html$ {
+    expires -1;
+  }
+
+  set $theme data-theme="system";
+
+  if ($http_cookie ~* "theme=dark") {
+    set $theme data-theme="dark";
+  }
+
+  if ($http_cookie ~* "theme=light") {
+    set $theme data-theme="light";
+  }
+
+  sub_filter data-theme="system" $theme;
+  sub_filter_once on;
+}

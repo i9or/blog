@@ -18,13 +18,14 @@
   become: yes
   command: "mv {{ downloads_path }}/release {{ current_release_path }}"
 
-- name: Set custom 404
+- name: Update Nginx configuration
   become: yes
-  lineinfile:
-    path: /etc/nginx/sites-enabled/default
-    state: present
-    insertafter: "server_name _;"
-    line: "error_page 404 /404.html;"
+  template:
+    src: default.j2
+    dest: /etc/nginx/sites-available/default
+    owner: root
+    group: root
+    mode: 0644
 
 - name: Reload Nginx
   become: yes
