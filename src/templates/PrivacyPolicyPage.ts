@@ -27,10 +27,16 @@ export const PrivacyPolicyPage = () => html`<article class="just-a-page">
   <h2>Use of Information</h2>
 
   <p>
-    I use the information I collect to operate and maintain the Website, to
-    improve the content and functionality of the Website, and to respond to your
-    inquiries. I may also use your information to send you updates,
-    notifications, and other communications related to the Website.
+    Since I don't collect any information at the moment, there's no use of
+    information either.
+  </p>
+
+  <h2>Cookies</h2>
+
+  <p>
+    The only cookie is used on the Website is the one needed to store theme
+    setting on your side. That cookie does not contain any personal information
+    and therefore can't be used for tracking.
   </p>
 
   <h2>Disclosure of Information</h2>
