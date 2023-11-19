@@ -7,12 +7,12 @@ export const AboutPage = () => html`<article class="just-a-page">
   <p>
     <em>
       The views and opinions expressed in the content of this website are solely
-      those of the author (i.e. me) and do not necessarily reflect the official
+      those of the author (i.e., me) and do not necessarily reflect the official
       policy or position of the author's current, future or past employers. Any
       content provided by the author is of their opinion and is not intended to
       malign any religion, ethnic group, club, organization, company,
       individual, or anyone or anything. The information, including but not
-      limited to, text, graphics, images, and other material contained on this
+      limited to text, graphics, images, and other material contained on this
       website are for informational purposes only and should not be relied upon
       as legal, financial, or professional advice. Current, future or past
       employer of the author shall not be held liable for any damages incurred
@@ -26,11 +26,11 @@ export const AboutPage = () => html`<article class="just-a-page">
   <p>
     Welcome to my personal technical blog about programming and technology! My
     private digital garden, as they say, nowadays. My name is Igor, by the way.
-    You can easily find that this name is usually automatically adjusted to
+    You can find that this name is usually automatically adjusted to
     <em>Ignore</em> by many spellcheckers. Hence, the name of this blog. Here,
     you'll find posts about a variety of topics, mostly about outdated stuff,
     and probably a lot of swearing and complaining. Possibly the best thing to
-    do is <em>ignore this page</em>, you have been warned.
+    do is <em>ignore this page</em>; you have been warned.
   </p>
 
   <p>
