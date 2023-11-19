@@ -2,11 +2,36 @@ import dayjs from "dayjs";
 
 import { html } from "~/utilities/html";
 import { MONTH_YEAR_DATE_FORMAT } from "~/utilities/dates";
+import { OnHold } from "~/templates/OnHold";
 
 export const NowPage = () => html`<article class="just-a-page">
   <h1>Now! page</h1>
   <p>Here's the list of things I'm up to <strong>now</strong>:</p>
   <ul>
+    <li>
+      <p>${dayjs("2023-11-19").format(MONTH_YEAR_DATE_FORMAT)}</p>
+      <ul>
+        <li>
+          Working on Basic ToDo web application:
+          <a href="https://github.com/i9or/basictodo">
+            https://github.com/i9or/basictodo
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>${dayjs("2023-10-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
+      <ul>
+        <li>Tried to start working on the basic todo list web app</li>
+        <li>Started learning AWS... thanks, I hate cloud now!</li>
+      </ul>
+    </li>
+    <li>
+      <p>${dayjs("2023-09-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
+      <ul>
+        <li>Have no idea what I did this month at all...</li>
+      </ul>
+    </li>
     <li>
       <p>${dayjs("2023-08-14").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
@@ -18,28 +43,19 @@ export const NowPage = () => html`<article class="just-a-page">
     <li>
       <p>${dayjs("2023-07-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
-        <li>
-          Everything is <s>still</s> almost not on
-          <em class="now__on-hold">On hold!</em>
-        </li>
+        <li>Everything is <s>still</s> almost not on ${OnHold()}</li>
       </ul>
     </li>
     <li>
       <p>${dayjs("2023-06-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
-        <li>
-          Everything is still on
-          <em class="now__on-hold">On hold!</em>
-        </li>
+        <li>Everything is still on ${OnHold()}</li>
       </ul>
     </li>
     <li>
       <p>${dayjs("2023-05-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
-        <li>
-          Everything is still on
-          <em class="now__on-hold">On hold!</em>
-        </li>
+        <li>Everything is still on ${OnHold()}</li>
         <li>Started another gardening season</li>
         <li>Thinking to seriously start learning Java™</li>
       </ul>
@@ -54,10 +70,7 @@ export const NowPage = () => html`<article class="just-a-page">
       <p>${dayjs("2023-03-01").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
         <li>Moving to London</li>
-        <li>
-          Everything else is
-          <em class="now__on-hold">On hold!</em>
-        </li>
+        <li>Everything else is ${OnHold()}</li>
       </ul>
     </li>
     <li>
@@ -70,7 +83,7 @@ export const NowPage = () => html`<article class="just-a-page">
             Working on a legacy OpenGL demo with retro graphics and old
             libraries.
           </s>
-          <em class="now__on-hold">On hold!</em>
+          ${OnHold()}
         </li>
       </ul>
     </li>
@@ -86,7 +99,7 @@ export const NowPage = () => html`<article class="just-a-page">
         </li>
         <li>
           <s>Studying <a href="https://sarabander.github.io/sicp/">SICP</a>.</s>
-          <em class="now__on-hold">On hold!</em>
+          ${OnHold()}
         </li>
       </ul>
     </li>
