@@ -9,6 +9,36 @@ export const NowPage = () => html`<article class="just-a-page">
   <p>Here's the list of things I'm up to <strong>now</strong>:</p>
   <ul>
     <li>
+      <p>${dayjs("2023-02-26").format(MONTH_YEAR_DATE_FORMAT)}</p>
+      <ul>
+        <li>
+          Finished
+          <a href="https://github.com/i9or/tictactoe">
+            https://github.com/i9or/tictactoe
+          </a>
+        </li>
+        <li>
+          Working on
+          <a href="https://github.com/i9or/pong">
+            https://github.com/i9or/pong
+          </a>
+        </li>
+        <li>
+          Working on the second part of the tutorial
+          <a href="https://github.com/i9or/tictactoe">Tic Tac Toe</a> game
+        </li>
+      </ul>
+    </li>
+    <li>
+      <p>
+        ${dayjs("2023-12-01").format(MONTH_YEAR_DATE_FORMAT)} -
+        ${dayjs("2024-01-31").format(MONTH_YEAR_DATE_FORMAT)}
+      </p>
+      <ul>
+        <li>Was basically <s>dead</s> sick the whole time</li>
+      </ul>
+    </li>
+    <li>
       <p>${dayjs("2023-11-19").format(MONTH_YEAR_DATE_FORMAT)}</p>
       <ul>
         <li>
