@@ -53,3 +53,20 @@
 .post__navigation {
   margin-top: auto;
 }
+
+.post__details {
+  display: flex;
+  gap: 1rem;
+}
+
+.post__draft {
+  background: gold;
+  border-radius: var(--e-border-radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.25rem;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: var(--e-secondary-border);
+}

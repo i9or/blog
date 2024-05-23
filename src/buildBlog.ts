@@ -30,11 +30,12 @@ const prepareBlogData = async (postsPath: string) => {
     const postsDirectory = await opendir(postsPath);
 
     for await (const entry of postsDirectory) {
-      const [year, month, day, ...postSlug] = entry.name.split("-");
       const entryContents = await readFile(join(postsPath, entry.name), {
         encoding: "utf-8",
       });
-
+      const isDraft = entry.name.at(0) === "_";
+      const entryName = isDraft ? entry.name.slice(1) : entry.name;
+      const [year, month, day, ...postSlug] = entryName.split("-");
       const [empty, metaJson, content] = entryContents.split("=====");
 
       if (empty !== "") {
@@ -78,12 +79,17 @@ const prepareBlogData = async (postsPath: string) => {
         };
       });
 
+      if (isProduction() && isDraft) {
+        continue;
+      }
+
       posts.push({
         content,
         createdAt: postMeta.createdAt,
         slug: postMeta.slug,
         tags: slugifiedTags,
-        title: postMeta.title,
+        title: isDraft ? `Draft: ${postMeta.title}` : postMeta.title,
+        isDraft,
       });
     }
 

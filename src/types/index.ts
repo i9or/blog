@@ -9,6 +9,7 @@ export type Post = {
   slug: string;
   title: string;
   tags: Tag[];
+  isDraft: boolean;
 };
 
 export type PostMeta = Pick<Post, "title" | "slug" | "createdAt">;
