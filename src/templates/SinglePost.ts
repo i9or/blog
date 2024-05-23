@@ -32,15 +32,18 @@ export const SinglePost = ({
   previousPost,
   nextPost,
 }: SinglePostProps) => html`<article class="post">
-  <small class="post__date">
-    <img
-      src="${calendarPng}"
-      width="16"
-      height="16"
-      alt="Small calendar icon"
-    />
-    ${dayjs.unix(post.createdAt).format("MMMM D, YYYY")}
-  </small>
+  <div class="post__details">
+    <small class="post__date">
+      <img
+        src="${calendarPng}"
+        width="16"
+        height="16"
+        alt="Small calendar icon"
+      />
+      ${dayjs.unix(post.createdAt).format("MMMM D, YYYY")}
+    </small>
+    ${post.isDraft ? html`<small class="post__draft">Draft</small>` : ""}
+  </div>
   ${di.md.render(post.content)}
   <p class="post__fin">☙</p>
   ${RenderTags(tags)}
