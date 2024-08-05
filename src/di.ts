@@ -4,6 +4,7 @@ import implicitFigures from "markdown-it-image-figures";
 import blockquoteAttribution from "markdown-it-attribution";
 import footNote from "markdown-it-footnote";
 import attrs from "markdown-it-attrs";
+import { transformerNotationDiff } from "@shikijs/transformers";
 
 export const initMd = async () => {
   const highlighter = await createHighlighter({
@@ -18,6 +19,7 @@ export const initMd = async () => {
         return highlighter.codeToHtml(str, {
           lang,
           theme: "houston",
+          transformers: [transformerNotationDiff()],
         });
       } catch (err) {
         console.error(err);
