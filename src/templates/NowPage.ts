@@ -4,6 +4,23 @@ import { NowItem, NowList } from "~/templates/NowList";
 
 const NOWS: NowItem[] = [
   {
+    date: "2024-08-05",
+    events: [
+      html`Continue working on production ready BasicTODO application
+        <a href="https://github.com/i9or/basictodo">
+          https://github.com/i9or/basictodo
+        </a>`,
+    ],
+  },
+  {
+    date: "2024-07-01",
+    events: [html`Embracing Vim without plugins 😎`],
+  },
+  {
+    date: "2024-06-01",
+    events: [html`Nothing 🥲`],
+  },
+  {
     date: "2024-05-20",
     events: [
       html`Working on production ready BasicTODO application
@@ -128,12 +145,13 @@ const NOWS: NowItem[] = [
   },
 ];
 
-export const NowPage = () => html`<article class="just-a-page">
-  <h1>Now! page</h1>
-  <p>Here's the list of things I'm up to <strong>now</strong>:</p>
-  ${NowList(NOWS)}
-  <p>
-    Inspired by other
-    <a href="https://nownownow.com/about">now pages</a>.
-  </p>
-</article>`;
+export const NowPage = () =>
+  html`<article class="just-a-page">
+    <h1>Now! page</h1>
+    <p>Here's the list of things I'm up to <strong>now</strong>:</p>
+    ${NowList(NOWS)}
+    <p>
+      Inspired by other
+      <a href="https://nownownow.com/about">now pages</a>.
+    </p>
+  </article>`;

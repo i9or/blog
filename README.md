@@ -4,7 +4,7 @@ Yet another personal blog static website generator, written for no real reason f
 
 ## Setup
 
-Project uses Node.js 18.x. Once node is available, dependencies need to be installed:
+Project uses Node.js 20.x (current LTS). Once node is available, dependencies need to be installed:
 
 ```commandline
 npm ci

@@ -28,6 +28,7 @@
 
 .post figure[data-type="image"] figcaption {
   text-align: center;
+  color: var(--c-primary-foreground);
 }
 
 .post .footnotes-sep {

@@ -6,7 +6,8 @@ export const configuration: BuildOptions = {
   logLevel: "info",
   entryPoints: ["./src/server.ts"],
   platform: "node",
-  external: ["vscode-oniguruma", "shiki", "chokidar"],
+  format: "cjs",
+  external: ["vscode-oniguruma", "chokidar"],
   bundle: true,
   outfile: "tmp/index.js",
   loader: {
