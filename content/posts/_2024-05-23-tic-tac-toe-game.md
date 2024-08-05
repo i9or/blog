@@ -10,6 +10,18 @@ In this part of the tutorial, we will be finishing the Tic Tac Toe game.
 
 TODO: finish the tutorial
 
+```cpp
+#include <iostream>
+
+int main() {
+  std::cout << "Bye" << std::endl; // [!code ++]
+  std::cout << "Hello" << std::endl; // [!code ++]
+
+  return 1; // [!code --]
+  return 0; // [!code ++]
+}
+```
+
 <!--
 [//]: # "@formatter:off"
 
