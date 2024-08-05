@@ -28,11 +28,15 @@ const resolveBlogTitle = (title?: string) =>
   title ? `${BLOG_TITLE} | ${title}` : BLOG_TITLE;
 
 export const Layout = ({ title, body, tags, recentPosts }: LayoutProperties) =>
-  html`<!DOCTYPE html>
+  html`<!doctype html>
     <html lang="en" data-theme="system">
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Yet another technical blog. Whatever..."
+        />
         <link rel="shortcut icon" href="${network2Ico}" type="image/x-icon" />
         <link rel="icon" href="${network2Ico}" type="image/x-icon" />
         <link rel="stylesheet" href="${mainStyles}" />

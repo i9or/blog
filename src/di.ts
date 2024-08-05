@@ -8,7 +8,7 @@ import attrs from "markdown-it-attrs";
 export const initMd = async () => {
   const highlighter = await createHighlighter({
     langs: ["cpp", "sh", "cmake"],
-    themes: ["material-theme-palenight"],
+    themes: ["material-theme-palenight", "houston"],
   });
 
   return new MarkdownIt({
@@ -17,7 +17,7 @@ export const initMd = async () => {
       try {
         return highlighter.codeToHtml(str, {
           lang,
-          theme: "material-theme-palenight",
+          theme: "houston",
         });
       } catch (err) {
         console.error(err);
