@@ -8,7 +8,7 @@ import attrs from "markdown-it-attrs";
 export const initMd = async () => {
   const highlighter = await createHighlighter({
     langs: ["cpp", "sh", "cmake"],
-    themes: ["material-theme-palenight", "houston"],
+    themes: ["houston"],
   });
 
   return new MarkdownIt({
@@ -21,7 +21,7 @@ export const initMd = async () => {
         });
       } catch (err) {
         console.error(err);
-        return "";
+        return "Syntax highlighter failed...";
       }
     },
   })
