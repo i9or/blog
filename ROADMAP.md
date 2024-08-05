@@ -29,3 +29,5 @@
   - [x] Automatic dark/light mode based on system theme
   - [x] Manual dark mode using controls and Nginx magic
   - [ ] Add dark mode to page 404
+- [ ] Update esbuild
+- [ ] Update markdown related packages
