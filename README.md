@@ -39,3 +39,9 @@ With coverage:
 ```commandline
 npm run test:coverage
 ```
+
+## Attributions
+
+Favicon was made by Jessica Brown, https://www.raebear.net/computers/windows-98-icons/
+
+## License

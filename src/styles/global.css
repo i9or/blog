@@ -7,3 +7,11 @@ body {
   font-size: var(--t-small);
   justify-content: space-between;
 }
+
+.hitCounter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.75rem;
+  height: 4rem;
+}
