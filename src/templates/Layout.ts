@@ -16,6 +16,7 @@ import { PostMeta, Tag } from "~/types";
 import { DevelopmentScripts } from "~/templates/DevelopmentScripts";
 import { BLOG_TITLE, ROUTES } from "~/constants";
 import { ThemeButton } from "~/templates/ThemeButton";
+import { HitCounter } from "~/templates/HitCounter";
 
 type LayoutProperties = {
   title?: string;
@@ -60,7 +61,7 @@ export const Layout = ({ title, body, tags, recentPosts }: LayoutProperties) =>
         <main class="main">${body}</main>
         <aside class="sidebar">
           ${RecentPostsWidget(recentPosts)} ${TagsWidget(tags)}
-          ${SidebarBanners()}
+          ${SidebarBanners()} ${HitCounter()}
         </aside>
         ${Footer()}
       </body>
