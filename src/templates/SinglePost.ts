@@ -31,38 +31,39 @@ export const SinglePost = ({
   tags = [],
   previousPost,
   nextPost,
-}: SinglePostProps) => html`<article class="post">
-  <div class="post__details">
-    <small class="post__date">
-      <img
-        src="${calendarPng}"
-        width="16"
-        height="16"
-        alt="Small calendar icon"
-      />
-      ${dayjs.unix(post.createdAt).format("MMMM D, YYYY")}
-    </small>
-    ${post.isDraft ? html`<small class="post__draft">Draft</small>` : ""}
-  </div>
-  ${di.md.render(post.content)}
-  <p class="post__fin">☙</p>
-  ${RenderTags(tags)}
-  <section class="post__navigation">
-    ${previousPost
-      ? html`<a
-          href="/${ROUTES.post.path}/${previousPost.slug}"
-          title="${previousPost.title}"
-        >
-          <small>&larr; There</small>
-        </a>`
-      : "&nbsp;"}
-    ${nextPost
-      ? html`<a
-          href="/${ROUTES.post.path}/${nextPost.slug}"
-          title="${nextPost.title}"
-        >
-          <small>Here &rarr;</small>
-        </a>`
-      : "&nbsp;"}
-  </section>
-</article>`;
+}: SinglePostProps) =>
+  html`<article class="post">
+    <div class="post__details">
+      <small class="post__date">
+        <img
+          src="${calendarPng}"
+          width="16"
+          height="16"
+          alt="Small calendar icon"
+        />
+        ${dayjs.unix(post.createdAt).format("MMMM D, YYYY")}
+      </small>
+      ${post.isDraft ? html`<small class="post__draft">Draft</small>` : ""}
+    </div>
+    ${di.md.render(post.content)}
+    <p class="post__fin">☙</p>
+    ${RenderTags(tags)}
+    <section class="post__navigation">
+      ${previousPost
+        ? html`<a
+            href="/${ROUTES.post.path}/${previousPost.slug}"
+            title='Previous post: "${previousPost.title}"'
+          >
+            <small>&larr; There</small>
+          </a>`
+        : "&nbsp;"}
+      ${nextPost
+        ? html`<a
+            href="/${ROUTES.post.path}/${nextPost.slug}"
+            title='Next post: "${nextPost.title}"'
+          >
+            <small>Here &rarr;</small>
+          </a>`
+        : "&nbsp;"}
+    </section>
+  </article>`;

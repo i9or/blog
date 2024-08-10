@@ -3,8 +3,8 @@ import { html } from "~/utilities/html";
 export const HitCounter = () => {
   return html`<section class="hitCounter">
     <img
-      src="http://localhost:4005/count-me-in-scotty"
-      alt="Hit counter"
+      src="https://counter.ignorethis.page/count-me-in-scotty"
+      alt="I'm a hit counter, kinda"
       height="30"
       width="190"
     />
