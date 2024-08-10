@@ -27,7 +27,6 @@ import {
   wibyGif,
   yankowGif,
 } from "~/assets";
-import { HitCounter } from "./HitCounter";
 
 export const SidebarBanners = () => {
   return html`<section class="sidebar-banners">
@@ -142,6 +141,5 @@ export const SidebarBanners = () => {
       width="88"
       height="31"
     />
-    ${HitCounter(Math.floor(Math.random() * 100000))}
   </section>`;
 };
