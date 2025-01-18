@@ -133,3 +133,6 @@ build/
 
 # Temporary files
 tmp/
+
+# WebStorm
+.idea/
