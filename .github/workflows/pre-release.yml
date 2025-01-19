@@ -38,7 +38,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create $BLOG_APPLICATION_VERSION \
-          --title "Pre-release $BLOG_APPLICATION_VERSION" \
           --notes "Pre-release for PR #${{ github.event.pull_request.number }}" \
           --prerelease \
           ./*.tgz
