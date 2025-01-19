@@ -2,6 +2,7 @@ declare module "*.css";
 declare module "*.gif";
 declare module "*.ico";
 declare module "*.png";
+declare module "*.webp";
 
 declare module "markdown-it-image-figures";
 declare module "markdown-it-attribution";

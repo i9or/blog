@@ -1,0 +1,44 @@
+name: Pre-release
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          cache: "npm"
+      - run: npm ci
+      - name: Set application version
+        run: |
+          VERSION=$(npm pkg get version | xargs)
+          echo "BLOG_APPLICATION_VERSION=v${VERSION}-pr.${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+      - run: npm run build
+      - name: Create release assets
+        run: |
+          tar -czvf build.tgz -C build .
+      - name: Delete existing release if it exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view $BLOG_APPLICATION_VERSION &>/dev/null; then
+            echo "Deleting existing release $BLOG_APPLICATION_VERSION"
+            gh release delete $BLOG_APPLICATION_VERSION --yes
+            git push --delete origin $BLOG_APPLICATION_VERSION || true
+          fi
+      - name: Publish pre-release on GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create $BLOG_APPLICATION_VERSION \
+          --title "$BLOG_APPLICATION_VERSION" \
+          --notes "Pre-release for PR #${{ github.event.pull_request.number }}" \
+          --prerelease \
+          ./*.tgz
