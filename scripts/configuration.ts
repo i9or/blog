@@ -14,6 +14,7 @@ export const configuration: BuildOptions = {
     ".gif": "file",
     ".png": "file",
     ".ico": "file",
+    ".webp": "file",
   },
   assetNames: "/public/[name]-[hash]",
   publicPath: "/",
