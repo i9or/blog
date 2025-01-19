@@ -23,7 +23,7 @@ jobs:
       - name: Set application version
         run: |
           VERSION=$(npm pkg get version | xargs)
-          echo "BLOG_APPLICATION_VERSION=v${VERSION}-pr.${GITHUB_EVENT_NUMBER}" >> $GITHUB_ENV
+          echo "BLOG_APPLICATION_VERSION=v${VERSION}-pr.${{ github.event.pull_request.number }}" >> $GITHUB_ENV
       - run: npm run build
       - name: Create release assets
         run: |
@@ -34,6 +34,6 @@ jobs:
         run: |
           gh release create $BLOG_APPLICATION_VERSION \
           --title "Pre-release $BLOG_APPLICATION_VERSION" \
-          --notes "Pre-release for PR #${GITHUB_EVENT_NUMBER}" \
+          --notes "Pre-release for PR #${{ github.event.pull_request.number }}" \
           --prerelease \
           ./*.tgz
