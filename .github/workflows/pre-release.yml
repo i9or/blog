@@ -8,6 +8,10 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
+    if: |
+      success() &&
+      github.event.pull_request.draft == false
+
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js 22.x
@@ -17,13 +21,19 @@ jobs:
           cache: "npm"
       - run: npm ci
       - name: Set application version
-        run: echo "BLOG_APPLICATION_VERSION=v$(npm pkg get version | xargs)" >> $GITHUB_ENV
+        run: |
+          VERSION=$(npm pkg get version | xargs)
+          echo "BLOG_APPLICATION_VERSION=v${VERSION}-pr.${GITHUB_EVENT_NUMBER}" >> $GITHUB_ENV
       - run: npm run build
-      - run: npm test
       - name: Create release assets
         run: |
           tar -czvf build.tgz -C build .
-      - name: Publish release on GitHub
+      - name: Publish pre-release on GitHub
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create $BLOG_APPLICATION_VERSION ./*.tgz --generate-notes --prerelease
+        run: |
+          gh release create $BLOG_APPLICATION_VERSION \
+          --title "Pre-release $BLOG_APPLICATION_VERSION" \
+          --notes "Pre-release for PR #${GITHUB_EVENT_NUMBER}" \
+          --prerelease \
+          ./*.tgz
