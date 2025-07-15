@@ -4,6 +4,25 @@ import { NowItem, NowList } from "~/templates/NowList";
 
 const NOWS: NowItem[] = [
   {
+    date: "2025-05-01",
+    events: [
+      html`Trying my best to meet the allotment deadlines 😬`,
+      html`Everything else is ${OnHold()}`,
+    ],
+  },
+  {
+    date: "2025-04-10",
+    events: [html`Got an allotment plot! Yay! 🪴`],
+  },
+  {
+    date: "2025-03-01",
+    events: [html`Nothing 😒`],
+  },
+  {
+    date: "2025-02-01",
+    events: [html`Nothing 😒`],
+  },
+  {
     date: "2025-01-18",
     events: [html`Joined the Gym 💪`],
   },
