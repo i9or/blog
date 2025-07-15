@@ -4,6 +4,14 @@ import { NowItem, NowList } from "~/templates/NowList";
 
 const NOWS: NowItem[] = [
   {
+    date: "2025-07-01",
+    events: [html`Trying to get back to Linux 🐧, feels good to be back, man!`],
+  },
+  {
+    date: "2025-06-01",
+    events: [html`Finished building my Windows XP retro PC`],
+  },
+  {
     date: "2025-05-01",
     events: [
       html`Trying my best to meet the allotment deadlines 😬`,
