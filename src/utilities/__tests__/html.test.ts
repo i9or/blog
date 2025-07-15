@@ -16,7 +16,7 @@ test("escapeHtml should properly escape supplied string", () => {
     "<script>const a = `Value:${eval(true && console.log('Hello', \"Hello\"))}`; alert(a);</script>";
 
   expect(htmlEscape(stringToEscape)).toBe(
-    "&lt;script&gt;const a = &#96;Value:${eval(true &amp;&amp; console.log(&#39;Hello&#39;, &quot;Hello&quot;))}&#96;; alert(a);&lt;/script&gt;"
+    "&lt;script&gt;const a = &#96;Value:${eval(true &amp;&amp; console.log(&#39;Hello&#39;, &quot;Hello&quot;))}&#96;; alert(a);&lt;/script&gt;",
   );
 });
 
@@ -35,7 +35,7 @@ test("html tagged literal should return properly formatted string", () => {
 
   expect(expected).toMatchInlineSnapshot(`
     "<!DOCTYPE html>
-        <html lang=\\"en\\">
+        <html lang="en">
           <head>
             <title>Test Page</title>
           </head>
@@ -62,7 +62,7 @@ test("html tagged literal should support escaping", () => {
 
   expect(expected).toMatchInlineSnapshot(`
     "<!DOCTYPE html>
-        <html lang=\\"en\\">
+        <html lang="en">
           <head>
             <title>Test Page</title>
           </head>
@@ -91,7 +91,7 @@ test("html tagged literal should support array of strings as substitution", () =
 
   expect(expected).toMatchInlineSnapshot(`
     "<!DOCTYPE html>
-        <html lang=\\"en\\">
+        <html lang="en">
           <head>
             <title>Test Page</title>
           </head>
