@@ -12,7 +12,7 @@ Next files need to be copied with new names and populated with values:
 
 ```sh
 cp hosts.ini.example hosts.ini
-cp vars/common.yml.example var/common.yml
+cp ./vars/common.yml.example ./vars/common.yml
 ```
 
 ## Keys

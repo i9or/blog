@@ -2,7 +2,6 @@ import { html } from "~/utilities/html";
 import {
   agplv3Gif,
   alienNowGif,
-  anyDamnGif,
   anythingButChromeGif,
   benisGif,
   bestVwGif,
@@ -12,7 +11,6 @@ import {
   firefoxGetGif,
   hairGif,
   iMissXpGif,
-  javascriptFreeGif,
   largestCollectionPng,
   linuxPoweredGif,
   lolGif,
@@ -26,6 +24,24 @@ import {
   webStormPng,
   wibyGif,
   yankowGif,
+  adhdPng,
+  anyBrowserPng,
+  banner88x31Png,
+  darkModePng,
+  handCodedPng,
+  javascriptZeroPng,
+  mobileFriendlyPng,
+  nftGif,
+  nginxPng,
+  nnPng,
+  noGif,
+  nascarRocksGif,
+  sdlGif,
+  winampGif,
+  windowsGif,
+  ytButtonGif,
+  right2RepairPng,
+  uBlockOriginWebp,
 } from "~/assets";
 
 export const SidebarBanners = () => {
@@ -63,12 +79,6 @@ export const SidebarBanners = () => {
     <img
       src="${bestVwGif}"
       alt="Best viewed with computer and monitor"
-      width="88"
-      height="31"
-    />
-    <img
-      src="${anyDamnGif}"
-      alt="Best viewed with any damn browser"
       width="88"
       height="31"
     />
@@ -115,7 +125,7 @@ export const SidebarBanners = () => {
     <img src="${lolGif}" alt="LOL" width="88" height="31" />
     <img src="${cssPng}" alt="CSS is awesome" width="88" height="31" />
     <img
-      src="${javascriptFreeGif}"
+      src="${javascriptZeroPng}"
       alt="JavaScript Free Page"
       width="88"
       height="31"
@@ -138,6 +148,59 @@ export const SidebarBanners = () => {
     <img
       src="${twoThousandOneGif}"
       alt="I wish it was 2001"
+      width="88"
+      height="31"
+    />
+    <img src="${adhdPng}" alt="ADHD" width="88" height="31" />
+
+    <!--  New banners below  -->
+    <img src="${anyBrowserPng}" alt="Any browser" width="88" height="31" />
+    <a href="https://eightyeightthirty.one/">
+      <img src="${banner88x31Png}" alt="88x31 project" width="88" height="31" />
+    </a>
+    <img
+      src="${darkModePng}"
+      alt="This website supports dark mode"
+      width="88"
+      height="31"
+    />
+    <img
+      src="${handCodedPng}"
+      alt="100% hand coded HTML"
+      width="88"
+      height="31"
+    />
+    <img
+      src="${mobileFriendlyPng}"
+      alt="This website is mobile friendly"
+      width="88"
+      height="31"
+    />
+    <img src="${nftGif}" alt="No to NFT" width="88" height="31" />
+    <img src="${nginxPng}" alt="Powered by nginx" width="88" height="31" />
+    <img src="${nnPng}" alt="I support net neutrality" width="88" height="31" />
+    <img src="${noGif}" alt="Don't click here! No!" width="88" height="31" />
+    <img src="${nascarRocksGif}" alt="NASCAR rocks!" width="88" height="31" />
+    <img src="${sdlGif}" alt="SDL" width="88" height="31" />
+    <img src="${winampGif}" alt="Winamp" width="88" height="31" />
+    <img src="${windowsGif}" alt="Made with Windows" width="88" height="31" />
+    <a href="https://www.youtube.com/@bzzr">
+      <img
+        src="${ytButtonGif}"
+        alt="My YouTube channel"
+        width="88"
+        height="31"
+      />
+    </a>
+    <img
+      src="${right2RepairPng}"
+      alt="I support right to repair"
+      width="88"
+      height="31"
+    />
+    <img
+      src="${uBlockOriginWebp}"
+      alt="uBlock Origin Now!"
       width="88"
       height="31"
     />

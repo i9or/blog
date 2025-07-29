@@ -4,6 +4,59 @@ import { NowItem, NowList } from "~/templates/NowList";
 
 const NOWS: NowItem[] = [
   {
+    date: "2025-07-01",
+    events: [html`Trying to get back to Linux 🐧, feels good to be back, man!`],
+  },
+  {
+    date: "2025-06-01",
+    events: [html`Finished building my Windows XP retro PC`],
+  },
+  {
+    date: "2025-05-01",
+    events: [
+      html`Trying my best to meet the allotment deadlines 😬`,
+      html`Everything else is ${OnHold()}`,
+    ],
+  },
+  {
+    date: "2025-04-10",
+    events: [html`Got an allotment plot! Yay! 🪴`],
+  },
+  {
+    date: "2025-03-01",
+    events: [html`Nothing 😒`],
+  },
+  {
+    date: "2025-02-01",
+    events: [html`Nothing 😒`],
+  },
+  {
+    date: "2025-01-18",
+    events: [html`Joined the Gym 💪`],
+  },
+  {
+    date: "2024-12-16",
+    events: [
+      html`Started a new job waiting visa for almost two months 😩`,
+      html`Christmastime, so nothing new really 🎅🎄❄`,
+    ],
+  },
+  {
+    date: "2024-11-01",
+    events: [html`Found a new job, yay! 🎃`, html`Started learning Go 🐹`],
+  },
+  {
+    date: "2024-10-02",
+    events: [
+      html`Lots of interviews 🥴`,
+      html`Played golf first time in my life ⛳🏌️‍♂️`,
+    ],
+  },
+  {
+    date: "2024-09-25",
+    events: [html`Looking for a new job 💼`],
+  },
+  {
     date: "2024-08-05",
     events: [
       html`Continue working on production ready BasicTODO application
@@ -18,7 +71,7 @@ const NOWS: NowItem[] = [
   },
   {
     date: "2024-06-01",
-    events: [html`Nothing 🥲`],
+    events: [html`Nothing 😒`],
   },
   {
     date: "2024-05-20",
@@ -31,11 +84,11 @@ const NOWS: NowItem[] = [
   },
   {
     date: "2024-04-01",
-    events: [html`Started a new gardening season, yay! 🪴🧑‍🌾`],
+    events: [html`Started a new gardening season, yay! 🌱👨‍🌾`],
   },
   {
     date: "2024-03-01",
-    events: [html`Nothing 🥲`],
+    events: [html`Nothing 😒`],
   },
   {
     date: "2024-02-26",
