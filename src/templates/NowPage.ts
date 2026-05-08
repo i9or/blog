@@ -4,6 +4,49 @@ import { NowItem, NowList } from "~/templates/NowList";
 
 const NOWS: NowItem[] = [
   {
+    date: "2026-05-01",
+    events: [html`Started working on my British ILR application 🇬🇧`],
+  },
+  {
+    date: "2026-04-01",
+    events: [html`Started new allotment season 🪴`],
+  },
+  {
+    date: "2026-03-01",
+    events: [html`Sleep deprivation 🫩`],
+  },
+  {
+    date: "2026-02-01",
+    events: [html`Became father for the second time 👶`],
+  },
+  {
+    date: "2026-01-01",
+    events: [html`Happy New Year! 🎉`],
+  },
+  {
+    date: "2025-12-01",
+    events: [html`Doing some MS-DOS programming using Turbo C++`],
+  },
+  {
+    date: "2025-11-01",
+    events: [html`Fooling around with 3D Studio Max R3.1`],
+  },
+  {
+    date: "2025-10-01",
+    events: [html`Tinkering with Visual Studio 6.0`],
+  },
+  {
+    date: "2025-09-01",
+    events: [html`Nothing, really`],
+  },
+  {
+    date: "2025-08-01",
+    events: [
+      html`Started collecting hardware for MS-DOS, Windows NT, Windows 98SE, and
+      Windows 2000 machines as well 💿`,
+    ],
+  },
+  {
     date: "2025-07-01",
     events: [html`Trying to get back to Linux 🐧, feels good to be back, man!`],
   },
