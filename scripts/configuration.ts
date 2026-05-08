@@ -7,9 +7,10 @@ export const configuration: BuildOptions = {
   entryPoints: ["./src/server.ts"],
   platform: "node",
   format: "cjs",
+  target: "node24",
   external: ["vscode-oniguruma", "chokidar"],
   bundle: true,
-  outfile: "tmp/index.js",
+  outfile: "tmp/index.cjs",
   loader: {
     ".gif": "file",
     ".png": "file",
